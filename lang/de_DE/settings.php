@@ -74,10 +74,21 @@ return [
     'two_factor_regenerate_recovery_codes' => 'Neue Wiederherstellungscodes generieren',
 
     'page_title' => 'Seitentitel',
+    'logo_text' => 'Benutzerdefinierter Logotext',
     'guest_access' => 'Gastzugang aktivieren',
     'guest_access_help' => 'Wenn aktiviert, können Gäste alle Links sehen, die nicht privat sind.',
     'custom_header_content' => 'Benutzerdefinierter Inhalt für HTML Head',
     'custom_header_content_help' => 'Hier eingegebener Inhalt wird auf jeder LinkAce Seite im HTML &lt;/head&gt; platziert. Nützlich für Analytics Skripte. Achtung: Inhalte werden nicht geprüft und können die Seite kaputt machen!',
+
+    'additional_footer_link' => 'Zusätzlicher Link in der Fußzeile',
+    'additional_footer_link_url' => 'Link-URL',
+    'additional_footer_link_text' => 'Linktext',
+
+    'contact_page' => 'Kontakt/Über mich Seite',
+    'contact_page_info' => 'Die Kontakt-/Über mich Seite kann verwendet werden, um zusätzliche Informationen über deine Lesezeichen anzuzeigen. Der Link ist in der Fußzeile sichtbar. Markdown wird unterstützt.',
+    'contact_page_enabled' => 'Kontakt/Über mich Seite aktivieren',
+    'contact_page_title' => 'Eigener Titel für die Seite',
+    'contact_page_content' => 'Inhalt der Seite',
 
     'cron_token' => 'Cron-Token',
     'cron_token_generate' => 'Token generieren',

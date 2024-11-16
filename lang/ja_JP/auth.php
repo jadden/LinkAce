@@ -18,6 +18,7 @@ return [
 
     'failed' => '資格情報が記録と一致しません。',
     'throttle' => 'ログイン試行回数が多すぎます。:seconds 秒後にもう一度お試しください。',
+    'unauthorized' => 'ログイン権限がありません。管理者に問い合わせてください。',
 
     'confirm_title' => '確認が必要です',
     'confirm' => '現在のパスワードを使用してこの操作を確認してください。',
@@ -51,4 +52,24 @@ return [
     'api_tokens.revoke_confirm' => '本当にこのトークンを取り消しますか？このステップは取り消せず、トークンは復元できません。',
     'api_tokens.revoke_successful' => 'トークンは正常に取り消されました。',
 
+    'sso' => 'SSO',
+    'sso_account_provider' => 'SSOプロバイダー',
+    'sso_account_id' => 'SSO ID',
+    'sso_provider_disabled' => '選択したSSOプロバイダーは利用できません。別のプロバイダーを選択してください。',
+    'sso_wrong_provider' => ':currentProviderでログインできません。:userProviderでログインするか、管理者に問い合わせてください。',
+
+    'sso_provider' => [
+        'auth0' => '',
+        'authentik' => '',
+        'azure' => '',
+        'cognito' => '',
+        'fusionauth' => '',
+        'google' => '',
+        'github' => '',
+        'gitlab' => '',
+        'keycloak' => '',
+        'oidc' => '',
+        'okta' => '',
+        'zitadel' => '',
+    ],
 ];
