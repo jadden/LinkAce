@@ -1,9 +1,8 @@
 <?php
 
-namespace Controller\API;
+namespace Tests\Controller\API;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\Controller\API\ApiTestCase;
 
 class GeneralApiTest extends ApiTestCase
 {

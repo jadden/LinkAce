@@ -1,6 +1,16 @@
 <aside class="footer container text-center small pt-3 pb-5">
     <div>
         @lang('linkace.project_of') <a href="https://kovah.de/?utm_source=linkace" rel="noopener" target="_blank">Kovah.de</a>
+        @if(systemsettings('additional_footer_link_url') && systemsettings('additional_footer_link_text'))
+            | <a href="{{ systemsettings('additional_footer_link_url') }}" rel="noreferrer noopener" target="_blank">
+                {{ systemsettings('additional_footer_link_text') }}
+            </a>
+        @endif
+        @if(systemsettings('contact_page_enabled'))
+            | <a href="{{ route('contact') }}">
+                {{ systemsettings('contact_page_title') ?? trans('linkace.contact') }}
+            </a>
+        @endif
     </div>
     @auth
         <div class="mt-1">

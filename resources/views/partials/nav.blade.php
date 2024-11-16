@@ -1,7 +1,11 @@
 <nav class="navbar navbar-dark navbar-expand bg-primary shadow-sm d-none d-md-flex">
     <div class="container">
         <a class="navbar-brand" href="{{ route('dashboard') }}">
-            <x-icon.linkace/>
+            @if(systemsettings('logo_text'))
+                {{ systemsettings('logo_text') }}
+            @else
+                <x-icon.linkace/>
+            @endif
         </a>
         @auth
             <ul class="navbar-nav">
@@ -62,7 +66,11 @@
 <div class="navbar navbar-dark navbar-expand brand-only bg-primary shadow-sm d-md-none">
     <div class="container">
         <a class="navbar-brand" href="{{ route('dashboard') }}">
-            <x-icon.linkace/>
+            @if(systemsettings('logo_text'))
+                {{ systemsettings('logo_text') }}
+            @else
+                <x-icon.linkace/>
+            @endif
         </a>
         <ul class="navbar-nav ms-auto">
             @include('partials.nav-user')

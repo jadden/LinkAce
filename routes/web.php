@@ -13,6 +13,7 @@ use App\Http\Controllers\App\ImportController;
 use App\Http\Controllers\App\SearchController;
 use App\Http\Controllers\App\TrashController;
 use App\Http\Controllers\App\UserSettingsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CronController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\FrontController;
@@ -63,6 +64,8 @@ Route::prefix('bookmarklet')->group(function () {
     Route::get('show', [BookmarkletController::class, 'getCompleteView'])->name('bookmarklet-complete');
     Route::get('login', [BookmarkletController::class, 'getLoginForm'])->name('bookmarklet-login');
 });
+
+Route::get('contact', ContactController::class)->name('contact');
 
 Route::get('cron/{token}', CronController::class)->name('cron');
 

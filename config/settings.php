@@ -7,6 +7,7 @@ return [
      * put them (manually) here.
      */
     'settings' => [
+        \App\Settings\GuestSettings::class,
         \App\Settings\SystemSettings::class,
         \App\Settings\UserSettings::class,
     ],

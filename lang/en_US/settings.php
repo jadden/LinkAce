@@ -74,10 +74,21 @@ return [
     'two_factor_regenerate_recovery_codes' => 'Generate new Recovery Codes',
 
     'page_title' => 'Page Title',
+    'logo_text' => 'Custom Logo Text',
     'guest_access' => 'Enable Guest Access',
     'guest_access_help' => 'If enabled, guest will be able to see all links that are not private.',
     'custom_header_content' => 'Custom Header Content',
     'custom_header_content_help' => 'Content entered here will be placed before the &lt;/head&gt; tag on all LinkAce sites. Useful to place analytics or customization scripts. Caution: contents are not escaped and may break the site!',
+
+    'additional_footer_link' => 'Additional Link in the Footer',
+    'additional_footer_link_url' => 'Link URL',
+    'additional_footer_link_text' => 'Link Text',
+
+    'contact_page' => 'Contact/About Page',
+    'contact_page_info' => 'The contact/about page can be used to display additional information about your bookmarks. The link is visible in the footer. Markdown is supported.',
+    'contact_page_enabled' => 'Enable the contact/about page',
+    'contact_page_title' => 'Custom title for the page',
+    'contact_page_content' => 'Content of the page',
 
     'cron_token' => 'Cron Token',
     'cron_token_generate' => 'Generate Token',

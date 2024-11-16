@@ -41,8 +41,11 @@ class SystemSettingsController extends Controller
     public function updateGuest(SystemSettingsUpdateRequest $request): RedirectResponse
     {
         $guestSettings = app(GuestSettings::class);
+        $systemSettings = app(SystemSettings::class);
 
-        $settings = $request->except(['_token', 'guest_share']);
+        $systemSettings->guest_access_enabled = $request->input('guest_access_enabled');
+
+        $settings = $request->except(['_token', 'guest_share', 'guest_access_enabled']);
 
         foreach ($settings as $key => $value) {
             $guestSettings->$key = $value;
@@ -56,6 +59,7 @@ class SystemSettingsController extends Controller
             }
         }
 
+        $systemSettings->save();
         $guestSettings->save();
 
         flash(trans('settings.settings_saved'));

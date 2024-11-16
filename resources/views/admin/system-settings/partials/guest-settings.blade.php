@@ -13,6 +13,52 @@
                 <div class="col-12 col-sm-8 col-md-6">
 
                     <div class="mb-4">
+                        <label class="form-label" for="guest_access_enabled">
+                            @lang('settings.guest_access')
+                        </label>
+                        <select id="guest_access_enabled" name="guest_access_enabled"
+                            class="simple-select {{ $errors->has('guest_access_enabled') ? ' is-invalid' : '' }}">
+                            <x-forms.yes-no-options :setting="systemsettings('guest_access_enabled')"/>
+                        </select>
+                        <p class="small text-pale mt-1">@lang('settings.guest_access_help')</p>
+                        @if ($errors->has('guest_access_enabled'))
+                            <p class="invalid-feedback" role="alert">
+                                {{ $errors->first('guest_access_enabled') }}
+                            </p>
+                        @endif
+                    </div>
+
+                </div>
+                <div class="col-12 col-sm-8 col-md-6">
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 col-sm-8 col-md-6">
+
+                    <div class="mb-4">
+                        <label class="form-label" for="locale">
+                            @lang('settings.locale')
+                        </label>
+                        <select id="locale" name="locale"
+                            class="simple-select {{ $errors->has('locale') ? ' is-invalid' : '' }}">
+                            @foreach(config('app.available_locales') as $key => $locale)
+                                <option value="{{ $key }}"
+                                    @if(guestsettings('locale') === $key) selected @endif>
+                                    {{ $locale }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @if($errors->has('locale'))
+                            <p class="invalid-feedback" role="alert">
+                                {{ $errors->first('locale') }}
+                            </p>
+                        @endif
+                    </div>
+
+                </div>
+                <div class="col-12 col-sm-8 col-md-6">
+
+                    <div class="mb-4">
                         <label class="form-label" for="listitem_count">
                             @lang('settings.listitem_count')
                         </label>

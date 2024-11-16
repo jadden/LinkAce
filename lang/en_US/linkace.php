@@ -47,6 +47,7 @@ return [
     'menu' => 'Menu',
     'entries' => 'Entries',
     'feed' => 'Feed',
+    'contact' => 'Contact',
 
     'continue_adding' => 'Continue Adding',
 
