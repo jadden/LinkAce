@@ -2,7 +2,7 @@
 
 use Spatie\LaravelSettings\Migrations\SettingsMigration;
 
-Class ExtendSystemSettings extends SettingsMigration
+return new class extends SettingsMigration
 {
     public function up(): void
     {
@@ -17,4 +17,4 @@ Class ExtendSystemSettings extends SettingsMigration
 
         $this->migrator->add('guest.locale', config('app.fallback_locale'));
     }
-}
+};
