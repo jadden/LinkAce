@@ -50,9 +50,10 @@ body:not(.bookmarklet) {
   }
 }
 
-.navbar-brand {
+.navbar-brand.custom-brand {
   font-family: $font-family-sans-condensed;
   font-size: $font-size-lg;
+  font-weight: bold;
 }
 
 .card-table {

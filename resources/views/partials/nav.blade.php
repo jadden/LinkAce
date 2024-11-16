@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark navbar-expand bg-primary shadow-sm d-none d-md-flex">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('dashboard') }}">
+        <a class="navbar-brand{{ systemsettings('logo_text') ? ' custom-brand' : '' }}" href="{{ route('dashboard') }}">
             @if(systemsettings('logo_text'))
                 {{ systemsettings('logo_text') }}
             @else
@@ -65,7 +65,7 @@
 
 <div class="navbar navbar-dark navbar-expand brand-only bg-primary shadow-sm d-md-none">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('dashboard') }}">
+        <a class="navbar-brand{{ systemsettings('logo_text') ? ' custom-brand' : '' }}" href="{{ route('dashboard') }}">
             @if(systemsettings('logo_text'))
                 {{ systemsettings('logo_text') }}
             @else
