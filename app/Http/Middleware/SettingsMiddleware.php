@@ -28,6 +28,8 @@ class SettingsMiddleware
 
         if ($userLocale = usersettings('locale')) {
             app()->setLocale($userLocale);
+        } else {
+            app()->setLocale(guestsettings('locale'));
         }
 
         return $next($request);

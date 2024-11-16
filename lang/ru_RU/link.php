@@ -4,6 +4,7 @@ return [
     'links' => 'Ссылки',
     'all_links' => 'Все ссылки',
     'recent_links' => 'Недавние ссылки',
+    'update_links' => 'Обновить ссылки',
     'no_links' => 'Нет ссылок',
 
     'add' => 'Добавить ссылку',
@@ -12,15 +13,13 @@ return [
     'details' => 'Детали ссылки',
     'edit' => 'Изменить ссылку',
     'update' => 'Обновить ссылку',
-    'delete' => 'Удалить ссылку',
+    'delete' => 'Удалить ссылку|Удалить ссылки',
 
+    'public' => 'Публичная ссылка',
+    'internal' => 'Внутренняя ссылка',
     'private' => 'Приватная ссылка',
 
-    'history' => 'История',
-    'history_added' => 'Добавлено <code>:newvalue</code> в :fieldname.',
-    'history_changed' => 'Изменено :fieldname с <code>:oldvalue</code> на <code>:newvalue</code>',
-    'history_removed' => 'Удалено <code>:oldvalue</code> из :fieldname.',
-    'history_deleted' => 'Ссылка была удалена',
+    'history_deleted' => 'Ссылка была перемещена в корзину',
     'history_restored' => 'Ссылка была восстановлена',
     'history_created' => 'Ссылка была создана',
 
@@ -29,7 +28,7 @@ return [
     'description' => 'Описание',
     'revtags' => 'Теги',
     'revlists' => 'Списки',
-    'is_private' => 'Частный статус',
+    'visibility' => 'Состояние видимости',
 
     'status' => 'Статус',
     'stati' => [
@@ -51,12 +50,17 @@ return [
     'status_is_broken' => 'Ссылка помечена как неработающая',
     'status_mark_working' => 'Пометить как рабочую',
 
+    'bulk_title' => 'Вы хотите отредактировать :count ссылку.|Вы хотите отредактировать :count ссылок.',
+    'bulk_edit_add' => 'Добавить ссылку в массовое редактирование',
+    'bulk_edit_success' => 'Успешно обновлено :success ссылок из :selected выбранных.',
+    'bulk_delete_success' => 'Успешно переместил в корзину :success из :selected.',
+
     'added_successfully' => 'Ссылка успешно добавлена.',
     'added_connection_error' => 'Ссылка была добавлена, но при попытке доступа к URL-адресу произошла ошибка подключения. Подробности можно найти в журналах.',
     'added_request_error' => 'Ссылка была добавлена, но при попытке запросить URL-адрес произошла ошибка, например, неверный сертификат. Подробности можно найти в журналах.',
     'updated_successfully' => 'Ссылка успешно обновлена.',
-    'deleted_successfully' => 'Ссылка успешно удалена.',
-    'deletion_error' => 'Ссылка не может быть удалена.',
+    'deleted_successfully' => 'Ссылка успешно перемещена в корзину.',
+    'deletion_error' => 'Ссылка не может быть перемещена в корзину.',
 
     'duplicates_found' => 'LinkAce нашел возможные дубликаты отправленного URL-адреса:',
     'existing_found' => 'Ссылка с этим URL-адресом уже существует.',

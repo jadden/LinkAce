@@ -21,7 +21,7 @@ return [
     'name' => 'タグ名',
     'visibility' => '公開範囲',
 
-    'history_deleted' => 'タグが削除されました',
+    'history_deleted' => 'タグをごみ箱に移動しました',
     'history_restored' => 'タグが復元されました',
     'history_created' => 'タグが作成されました',
 
@@ -38,6 +38,6 @@ return [
 
     'added_successfully' => 'タグの追加に成功しました。',
     'updated_successfully' => 'タグの更新に成功しました。',
-    'deleted_successfully' => 'タグの削除に成功しました。',
-    'deletion_error' => 'タグを削除できませんでした。',
+    'deleted_successfully' => 'タグをごみ箱に移動しました。',
+    'deletion_error' => 'タグをごみ箱に移動できませんでした。',
 ];

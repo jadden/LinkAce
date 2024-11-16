@@ -1,4 +1,4 @@
-<div class="mb-3 my-5">
+<div class="my-4">
 
     <h5>
         @lang('settings.sharing')

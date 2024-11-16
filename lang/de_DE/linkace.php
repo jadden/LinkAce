@@ -8,6 +8,7 @@ return [
     'password' => 'Passwort',
     'password_confirm' => 'Passwort bestätigen',
     'login' => 'Anmelden',
+    'login_with' => 'Anmelden mit',
     'logout' => 'Abmelden',
     'remember_me' => 'Angemeldet bleiben',
     'go_to_dashboard' => 'Zur Übersicht gehen',
@@ -46,6 +47,7 @@ return [
     'menu' => 'Menü',
     'entries' => 'Einträge',
     'feed' => 'Feed',
+    'contact' => 'Kontakt',
 
     'continue_adding' => 'Weiter hinzufügen',
 

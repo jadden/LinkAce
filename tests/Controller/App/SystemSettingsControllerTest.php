@@ -53,19 +53,51 @@ class SystemSettingsControllerTest extends TestCase
         $response->assertDontSee('Begin of custom header scripts');
 
         $response = $this->post('settings/system', [
-            'page_title' => 'New Title',
-            'guest_access' => '1',
+            'page_title' => 'New HTML Title',
+            'logo_text' => 'Meine Bookmarks',
+            'additional_footer_link_url' => 'https://kovah.de',
+            'additional_footer_link_text' => 'Portfolio',
+            'contact_page_enabled' => '1',
+            'contact_page_title' => 'ContactPage',
+            'contact_page_content' => '**Example** with [link](https://kovah.de)',
             'custom_header_content' => '<script>console.log(\'scripts work\')</script>',
         ]);
 
         $response->assertRedirect('settings/system');
 
-        $this->assertEquals('New Title', systemsettings('page_title'));
-        $this->assertEquals(true, systemsettings('guest_access'));
-        $this->assertEquals('<script>console.log(\'scripts work\')</script>', systemsettings('custom_header_content'));
+        $this->assertEquals('New HTML Title', systemsettings('page_title'));
+        $this->assertEquals('Meine Bookmarks', systemsettings('logo_text'));
+        $this->assertEquals('https://kovah.de', systemsettings('additional_footer_link_url'));
+        $this->assertEquals('Portfolio', systemsettings('additional_footer_link_text'));
+        $this->assertTrue(systemsettings('contact_page_enabled'));
 
+        $this->get('contact')
+            ->assertSee('<script>console.log(\'scripts work\')</script>', false)
+            ->assertSee('New HTML Title')
+            ->assertSee('Meine Bookmarks')
+            ->assertSee('Portfolio')
+            ->assertSee('ContactPage')
+            ->assertSee('<strong>Example</strong> with <a href="https://kovah.de">link</a>', false);
+    }
+
+    public function testValidGuestSettingsUpdateResponse(): void
+    {
         $response = $this->get('dashboard');
-        $response->assertSee('<script>console.log(\'scripts work\')</script>', false);
+        $response->assertDontSee('Begin of custom header scripts');
+
+        $response = $this->post('settings/system/guest', [
+            'guest_access_enabled' => '1',
+            'locale' => 'de_DE',
+        ]);
+
+        $response->assertRedirect('settings/system');
+
+        $this->assertTrue(systemsettings('guest_access_enabled'));
+        $this->assertEquals('de_DE', guestsettings('locale'));
+
+        auth()->logout();
+        $response = $this->get('guest/links');
+        $response->assertSee('Listen');
     }
 
     public function testValidCronGeneratonResponse(): void

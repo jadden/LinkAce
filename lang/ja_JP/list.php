@@ -22,7 +22,7 @@ return [
     'description' => 'リストの概要',
     'visibility' => '公開範囲',
 
-    'history_deleted' => 'リストが削除されました',
+    'history_deleted' => 'リストをごみ箱に移動しました',
     'history_restored' => 'リストが復元されました',
     'history_created' => 'リストが作成されました',
 
@@ -41,6 +41,6 @@ return [
 
     'added_successfully' => 'リストの追加に成功しました。',
     'updated_successfully' => 'リストの更新に成功しました。',
-    'deleted_successfully' => 'リストの削除に成功しました。',
-    'deletion_error' => 'リストを削除できませんでした。',
+    'deleted_successfully' => 'リストをごみ箱に移動しました。',
+    'deletion_error' => 'リストをごみ箱に移動できませんでした。',
 ];

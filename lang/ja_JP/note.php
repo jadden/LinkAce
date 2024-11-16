@@ -17,6 +17,6 @@ return [
 
     'added_successfully' => 'ノートの追加に成功しました。',
     'updated_successfully' => 'ノートの更新に成功しました。',
-    'deleted_successfully' => 'ノートの削除に成功しました。',
-    'deletion_error' => 'ノートを削除できませんでした。',
+    'deleted_successfully' => 'ノートをごみ箱に移動しました。',
+    'deletion_error' => 'ノートをごみ箱に移動できませんでした。',
 ];

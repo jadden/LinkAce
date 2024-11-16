@@ -19,7 +19,7 @@ return [
     'internal' => '内部リンク',
     'private' => '非公開リンク',
 
-    'history_deleted' => 'リンクが削除されました',
+    'history_deleted' => 'リンクをごみ箱に移動しました',
     'history_restored' => 'リンクが復元されました',
     'history_created' => 'リンクが作成されました',
 
@@ -59,8 +59,8 @@ return [
     'added_connection_error' => 'リンクは追加されましたが、URLにアクセスしようとしたときに接続エラーが発生しました。詳細はログで確認できます。',
     'added_request_error' => 'リンクは追加されましたが、URLにアクセスしようとしたときに接続エラーが発生しました。例えば無効な証明書などです。詳細はログで確認できます。',
     'updated_successfully' => 'リンクの更新に成功しました。',
-    'deleted_successfully' => 'リンクの削除に成功しました。',
-    'deletion_error' => 'リンクを削除できませんでした。',
+    'deleted_successfully' => 'リンクをごみ箱に移動しました。',
+    'deletion_error' => 'リンクをごみ箱に移動できませんでした。',
 
     'duplicates_found' => 'LinkAceは送信されたURLと重複している可能性があるものを見つけました。',
     'existing_found' => 'そのURLのリンクはすでに存在します。',

@@ -4,7 +4,7 @@ use App\Enums\ModelAttribute;
 use Illuminate\Support\Collection;
 use Spatie\LaravelSettings\Migrations\SettingsMigration;
 
-class MigrateExistingSettings extends SettingsMigration
+return new class extends SettingsMigration
 {
     protected Collection $sysSettings;
     protected Collection $userSettings;
@@ -153,4 +153,4 @@ class MigrateExistingSettings extends SettingsMigration
         $this->migrator->add($id . '.share_whatsapp', (bool)$this->userSettings->get('share_whatsapp', true));
         $this->migrator->add($id . '.share_xing', (bool)$this->userSettings->get('share_xing', true));
     }
-}
+};

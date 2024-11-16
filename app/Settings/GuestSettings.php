@@ -10,6 +10,8 @@ class GuestSettings extends Settings
     public bool $links_new_tab;
     public int $darkmode_setting;
 
+    public string $locale;
+
     public bool $share_email;
     public bool $share_buffer;
     public bool $share_evernote;
