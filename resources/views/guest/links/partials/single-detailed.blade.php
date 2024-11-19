@@ -7,7 +7,7 @@
             {!! $link->getIcon() !!}
         </div>
         <div class="min-w-0">
-            <a href="{{ $link->url }}" {!! linkTarget() !!} class="two-lines">{{ $link->title }}</a>
+            <a href="{{ $link->url }}" {!! linkTarget() !!} class="link-url two-lines">{{ $link->title }}</a>
             <div class="mt-1 small text-pale w-100 one-line">
                 {{ $link->url }}
             </div>

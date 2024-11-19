@@ -1,7 +1,7 @@
 @php
 $currentSetting = auth()->check() ? usersettings('link_display_mode') : session('link_display_mode');
 @endphp
-<div {{ $attributes->merge(['class' => 'link-display-toggles']) }}>
+<div {{ $attributes->merge(['class' => 'link-display-toggles flex-shrink-0']) }}>
     <a href="{{ request()->fullUrlWithQuery(['link-display' => Link::DISPLAY_LIST_SIMPLE]) }}"
         class="{{ $currentSetting ===  Link::DISPLAY_LIST_SIMPLE ? 'active' : ''}}"
         data-bs-toggle="tooltip" data-bs-placement="bottom" title="@lang('settings.display_mode_list_simple')">

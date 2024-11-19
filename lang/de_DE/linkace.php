@@ -12,7 +12,7 @@ return [
     'logout' => 'Abmelden',
     'remember_me' => 'Angemeldet bleiben',
     'go_to_dashboard' => 'Zur Übersicht gehen',
-    'dashboard' => '',
+    'dashboard' => 'Dashboard',
     'system_logs' => 'System Logs',
 
     'reset_password' => 'Passwort zurücksetzen',

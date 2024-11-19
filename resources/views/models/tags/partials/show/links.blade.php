@@ -1,7 +1,8 @@
 <section class="tag-links my-4">
     @if($links->isNotEmpty())
-        <div class="d-flex align-items-center mb-4">
-            <x-models.link-display-toggles class="ms-auto"/>
+        <div class="d-flex align-items-center">
+            <x-models.open-all class="ms-auto"/>
+            <x-models.link-display-toggles class="ms-3"/>
             <x-models.link-order-dropdown class="ms-3"/>
         </div>
         <div class="link-wrapper">

@@ -7,6 +7,7 @@ import DatabaseSetup from './components/Setup';
 import GenerateCronToken from './components/GenerateCronToken';
 import Import from './components/Import';
 import LoadingButton from './components/LoadingButton';
+import OpenLinksInTabs from './components/OpenLinksInTabs';
 import ShareToggleAll from './components/ShareToggleAll';
 import SimpleSelect from './components/SimpleSelect';
 import TagsSelect from './components/TagsSelect';
@@ -25,6 +26,7 @@ function registerViews () {
   register('.simple-select', SimpleSelect);
   register('.tag-select', TagsSelect);
   register('.update-check', UpdateCheck);
+  register('.open-in-tabs', OpenLinksInTabs);
   register('button[type="submit"]', LoadingButton);
   register('input[id="url"]', UrlField);
 }

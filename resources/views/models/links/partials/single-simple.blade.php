@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center">
         <div class="me-4 one-line-sm">
             {!! $link->getIcon('me-1') !!}
-            <a href="{{ $link->url }}" title="{{ $link->url }}" {!! linkTarget() !!} class="title">
+            <a href="{{ $link->url }}" title="{{ $link->url }}" {!! linkTarget() !!} class="link-url title">
                 {{ $link->title }}
             </a>
         </div>

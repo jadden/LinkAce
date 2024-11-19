@@ -4,7 +4,7 @@
 <div class="single-link link-card col-12 col-sm-6 col-md-4 mb-4">
     <div class="h-100 card">
         <div class="link-thumbnail-list-holder-detailed">
-            <a href="{{ $link->url }}" {!! linkTarget() !!} class="link-thumbnail-list-detailed"
+            <a href="{{ $link->url }}" {!! linkTarget() !!} class="link-url link-thumbnail-list-detailed"
                 @if($link->thumbnail)
                     style="background-image: url('{{ $link->thumbnail }}');"
                 @endif>

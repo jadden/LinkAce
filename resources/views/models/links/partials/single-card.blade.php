@@ -4,7 +4,7 @@
 <div class="single-link link-card col-12 col-md-6 col-lg-4">
     <div class="h-100 card">
         <div class="link-thumbnail-list-holder-detailed">
-            <a href="{{ $link->url }}" {!! linkTarget() !!} class="link-thumbnail-list-detailed">
+            <a href="{{ $link->url }}" {!! linkTarget() !!} class="link-url link-thumbnail-list-detailed">
                 @if($link->thumbnail)
                     <img src="{{ $link->thumbnail }}" alt="{{ $link->title }}" class="w-100 h-100 object-fit-cover" loading="lazy">
                 @endif

@@ -41,6 +41,7 @@ return [
 
     'external_link' => 'Externer Link',
     'wayback' => 'Archiv @ Wayback Machine',
+    'open_in_tabs' => 'Links in Tabs öffnen',
 
     'check_disable' => 'Prüfung deaktivieren',
     'check_disabled' => 'Prüfung ist deaktiviert',

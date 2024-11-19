@@ -8,7 +8,7 @@
             <button type="button" class="bulk-edit-select-all btn btn-outline-primary btn-xs">Select all</button>
         </div>
     </form>
-    <ul class="link-list list-group mt-3">
+    <ul class="link-list list-group mt-2">
         @foreach($links as $link)
             @include('models.links.partials.single-simple')
         @endforeach

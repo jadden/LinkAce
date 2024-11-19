@@ -8,7 +8,7 @@
             <x-models.visibility-badge :model="$link"/>
         </div>
         <div class="min-w-0">
-            <a href="{{ $link->url }}" {!! linkTarget() !!} class="title two-lines">{{ $link->title }}</a>
+            <a href="{{ $link->url }}" {!! linkTarget() !!} class="link-url title two-lines">{{ $link->title }}</a>
             <div class="url mt-1 small text-pale w-100 one-line">
                 {{ $link->url }}
             </div>

@@ -41,6 +41,7 @@ return [
 
     'external_link' => 'External Link',
     'wayback' => 'Link archive @ Wayback Machine',
+    'open_in_tabs' => 'Open Links in Tabs',
 
     'check_disable' => 'Disable Check',
     'check_disabled' => 'Check is disabled',

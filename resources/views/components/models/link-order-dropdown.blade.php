@@ -1,7 +1,7 @@
 @props(['withoutWrapper' => false])
 {!! $withoutWrapper ? '<!--' : '' !!}<div {{ $attributes->merge(['class' => 'link-order-dropdown dropdown']) }}>{!! $withoutWrapper ? '-->' : '' !!}
     <button type="button" id="link-index-order-dd"
-        class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-split"
+        class="btn btn-xs btn-outline-primary dropdown-toggle dropdown-toggle-split"
         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         @lang('search.order_by')
         <x-icon.caret-down class="ml-1"/>
