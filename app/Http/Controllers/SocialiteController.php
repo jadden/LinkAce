@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Settings\SetDefaultSettingsForUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
@@ -32,7 +33,7 @@ class SocialiteController extends Controller
             }
 
             $user->update([
-                'name' => $authUser->getNickname(),
+                'name' => $authUser->getNickname() ?: Str::studly($authUser->getName()),
                 'sso_id' => $authUser->id,
                 'sso_provider' => $provider,
                 'sso_token' => $authUser->token ?? null,
@@ -57,7 +58,7 @@ class SocialiteController extends Controller
                 'sso_id' => $authUser->getId(),
                 'sso_provider' => $provider,
             ], [
-                'name' => $authUser->getNickname(),
+                'name' => $authUser->getNickname() ?: Str::studly($authUser->getName()),
                 'email' => $authUser->getEmail(),
                 'sso_id' => $authUser->getId(),
                 'sso_provider' => $provider,

@@ -70,7 +70,7 @@ class SocialiteControllerTest extends TestCase
             'id' => 'sso-user-sub-123',
             'email' => 'sso-user@linkace.org',
             'name' => 'SSO User',
-            'nickname' => 'SSOUser',
+            'nickname' => null,
             'given_name' => 'SSO',
             'family_name' => 'User',
         ]);
