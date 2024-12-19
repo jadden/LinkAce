@@ -39,6 +39,17 @@ class SocialiteController extends Controller
                 'sso_token_secret' => $authUser->tokenSecret ?? null,
                 'sso_refresh_token' => $authUser->refreshToken ?? null,
             ]);
+        } elseif (config('auth.sso.registration_enabled') === false) {
+            // Users should not be able to register new accounts on their own
+            $user = User::where([
+                'email' => $authUser->getEmail(),
+                'sso_id' => $authUser->getId(),
+                'sso_provider' => $provider,
+            ])->first();
+
+            if ($user === null) {
+                abort(403, trans('auth.sso_registration_disabled'));
+            }
         } else {
             // otherwise, either update an existing oauth user or register a new user
             $user = User::updateOrCreate([

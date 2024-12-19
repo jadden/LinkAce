@@ -62,6 +62,45 @@ class SocialiteControllerTest extends TestCase
         ]);
     }
 
+    public function testSsoLoginWithDisabledRegistration(): void
+    {
+        $ssoUser = new User();
+        $ssoUser->setToken('XF3hkrEeyYkLnTf1fKX');
+        $ssoUser->map([
+            'id' => 'sso-user-sub-123',
+            'email' => 'sso-user@linkace.org',
+            'name' => 'SSO User',
+            'nickname' => 'SSOUser',
+            'given_name' => 'SSO',
+            'family_name' => 'User',
+        ]);
+
+        $this->app->register(SocialiteServiceProvider::class);
+        Socialite::shouldReceive('driver->user')->twice()->andReturn($ssoUser);
+
+        config()->set('auth.sso.enabled', true);
+        config()->set('auth.sso.registration_enabled', false);
+        config()->set('services.auth0.enabled', true);
+
+        $this->get('auth/sso/auth0/callback')->assertForbidden();
+
+        // Try again after creating a user in the database
+        \App\Models\User::factory()->create([
+            'name' => 'MrPurpleHat',
+            'email' => 'sso-user@linkace.org',
+            'sso_id' => 'sso-user-sub-123',
+        ]);
+
+        $this->get('auth/sso/auth0/callback')->assertRedirect('dashboard');
+
+        $this->assertDatabaseHas('users', [
+            'name' => 'SSOUser',
+            'email' => 'sso-user@linkace.org',
+            'sso_id' => 'sso-user-sub-123',
+            'sso_token' => 'XF3hkrEeyYkLnTf1fKX',
+        ]);
+    }
+
     public function testLoginWithExistingSsoUser(): void
     {
         $ssoUser = new User();

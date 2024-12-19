@@ -56,6 +56,7 @@ return [
     'sso_account_provider' => 'SSO Provider',
     'sso_account_id' => 'SSO ID',
     'sso_provider_disabled' => 'The selected SSO provider is not available. Please choose another one.',
+    'sso_registration_disabled' => 'No existing user found for this provider. Only registered users can sign in via SSO. Please contact your administrator to get an account.',
     'sso_wrong_provider' => 'Unable to login with :currentProvider. Please use :userProvider to login, or contact your administrator for help.',
 
     'sso_provider' => [

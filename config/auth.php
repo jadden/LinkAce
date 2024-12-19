@@ -26,6 +26,7 @@ return [
 
     'sso' => [
         'enabled' => env('SSO_ENABLED', false),
+        'registration_enabled' => env('SSO_REGISTRATION_ENABLED', true),
         'regular_login_disabled' => env('REGULAR_LOGIN_DISABLED', false),
         'providers' => [
             'auth0',
