@@ -2,7 +2,7 @@
 
 # ================================
 # PHP Dependency Setup
-FROM docker.io/linkace/base-image:2.x-php-8.3 AS builder
+FROM docker.io/linkace/base-image:2.x-php-8.4 AS builder
 WORKDIR /app
 
 # Pull composer and install required packages
@@ -38,7 +38,7 @@ RUN mv vendor/spatie/laravel-backup/resources/lang/de vendor/spatie/laravel-back
 
 # ================================
 # Compile all assets
-FROM docker.io/library/node:20 AS npm_builder
+FROM docker.io/library/node:22 AS npm_builder
 WORKDIR /srv
 
 COPY ./resources/assets ./resources/assets
@@ -49,7 +49,13 @@ RUN npm run production
 
 # ================================
 # Prepare the final image
-FROM docker.io/linkace/base-image:2.x-php-8.3
+FROM docker.io/linkace/base-image:2.x-php-8.4
+
+LABEL org.opencontainers.image.title="LinkAce"
+LABEL org.opencontainers.image.authors="Kevin Woblick <mail@kovah.de>"
+LABEL org.opencontainers.image.url="https://www.linkace.org"
+LABEL org.opencontainers.image.source="https://github.com/Kovah/LinkAce"
+
 WORKDIR /app
 USER www-data
 
@@ -70,8 +76,8 @@ COPY --chown=www-data:www-data ["./artisan", "./composer.json", "./composer.lock
 COPY --from=builder --chown=www-data:www-data /app/vendor /app/vendor
 COPY --from=builder --chown=www-data:www-data /app/bootstrap/cache /app/bootstrap/cache
 
-# Publish package resources
-RUN php artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
+# Publish backup language files
+COPY --from=builder --chown=www-data:www-data /app/vendor/spatie/laravel-backup/resources/lang /app/lang/vendor/backup
 
 # Copy files from the theme build
 COPY --from=npm_builder --chown=www-data:www-data /srv/public/assets/dist/js /app/public/assets/dist/js

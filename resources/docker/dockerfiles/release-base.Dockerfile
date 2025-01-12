@@ -1,4 +1,4 @@
-FROM docker.io/library/php:8.3-fpm-alpine
+FROM docker.io/library/php:8.4-fpm-alpine
 
 # Install package and PHP dependencies
 RUN apk add --no-cache mariadb-client postgresql-client postgresql-dev sqlite zip libzip-dev supervisor \
