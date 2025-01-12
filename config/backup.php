@@ -7,6 +7,13 @@ return [
         'enabled' => env('BACKUP_ENABLED', true),
 
         /*
+         * Set the hour for cleaning old backups and creating a new one. Format must be in 24-hour time like
+         * '03:00' for 3 am or '14:00' for 2 pm.
+         */
+        'clean_hour' => env('BACKUP_CLEAN_HOUR', '01:00'),
+        'backup_hour' => env('BACKUP_RUN_HOUR', '02:00'),
+
+        /*
          * The name of this application. You can use this name to monitor
          * the backups.
          */
@@ -152,6 +159,8 @@ return [
      * the `Spatie\Backup\Notifications\Notifications` classes.
      */
     'notifications' => [
+
+        'enabled' => env('BACKUP_NOTIFICATIONS_ENABLED', true),
 
         'notifications' => [
             \Spatie\Backup\Notifications\Notifications\BackupHasFailedNotification::class => ['mail'],

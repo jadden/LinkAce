@@ -2,14 +2,6 @@
 
 namespace App\Console;
 
-use App\Console\Commands\CheckLinksCommand;
-use App\Console\Commands\CompleteSetupCommand;
-use App\Console\Commands\ImportCommand;
-use App\Console\Commands\ListUsersCommand;
-use App\Console\Commands\RegisterUserCommand;
-use App\Console\Commands\ResetPasswordCommand;
-use App\Console\Commands\UpdateLinkThumbnails;
-use App\Console\Commands\ViewRecoveryCodesCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -22,8 +14,15 @@ class Kernel extends ConsoleKernel
         $schedule->command('links:check')->hourly();
 
         if (config('backup.backup.enabled')) {
-            $schedule->command('backup:clean')->daily()->at('01:00');
-            $schedule->command('backup:run')->daily()->at('02:00');
+            $notificationsDisabled = config('backup.notifications.enabled') === false;
+
+            $schedule->command('backup:clean', ['--disable-notifications' => $notificationsDisabled])
+                ->daily()
+                ->at(config('backup.backup.clean_hour'));
+
+            $schedule->command('backup:run', ['--disable-notifications' => $notificationsDisabled])
+                ->daily()
+                ->at(config('backup.backup.backup_hour'));
         }
     }
 
