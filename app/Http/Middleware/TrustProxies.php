@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Middleware\TrustProxies as Middleware;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Http\Request;
 
 class TrustProxies extends Middleware
@@ -15,7 +14,7 @@ class TrustProxies extends Middleware
      */
     protected $proxies = null;
 
-    public function __construct(Repository $config)
+    public function __construct()
     {
         $this->proxies = config('app.trusted_proxies');
     }

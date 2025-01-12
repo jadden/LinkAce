@@ -15,7 +15,7 @@ class UserInviteNotification extends Notification
     {
     }
 
-    public function via($notifiable): array
+    public function via(): array
     {
         return ['mail'];
     }

@@ -13,11 +13,10 @@ class CronController extends Controller
      * This endpoint allows the execution of the cron if a system-controlled
      * cron is not available.
      *
-     * @param Request $request
      * @param string  $cronToken
      * @return ResponseFactory|Response
      */
-    public function __invoke(Request $request, string $cronToken)
+    public function __invoke(string $cronToken)
     {
         // Verify the cron token
         if ($cronToken !== systemsettings('cron_token')) {

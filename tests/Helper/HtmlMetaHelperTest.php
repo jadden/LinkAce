@@ -172,7 +172,7 @@ class HtmlMetaHelperTest extends TestCase
     {
         $url = 'http://192.168.0.123:54623';
 
-        Http::fake(function (Request $request) {
+        Http::fake(function () {
             throw new ConnectionException(
                 'cURL error 7: Failed to connect to 192.168.0.123 port 54623: Connection refused'
             );

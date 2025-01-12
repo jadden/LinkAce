@@ -18,7 +18,7 @@ class CheckLinksCommandTest extends TestCase
     public function test_check_with200_response(): void
     {
         Http::fake([
-            '*' => Http::response('', 200),
+            '*' => Http::response(),
         ]);
 
         Notification::fake();
@@ -33,7 +33,7 @@ class CheckLinksCommandTest extends TestCase
     public function test_check_with204_response(): void
     {
         Http::fake([
-            '*' => Http::response('', 204),
+            '*' => Http::response(status: 204),
         ]);
 
         Notification::fake();
@@ -77,14 +77,14 @@ class CheckLinksCommandTest extends TestCase
         Notification::assertSentTo(
             $user,
             LinkCheckNotification::class,
-            fn (LinkCheckNotification $notification, $channels) => count($notification->movedLinks) === 1
+            fn (LinkCheckNotification $notification) => count($notification->movedLinks) === 1
                 && count($notification->brokenLinks) === 1
         );
 
         Notification::assertSentTo(
             $anotherUser,
             LinkCheckNotification::class,
-            fn (LinkCheckNotification $notification, $channels) => count($notification->movedLinks) === 2
+            fn (LinkCheckNotification $notification) => count($notification->movedLinks) === 2
                 && count($notification->brokenLinks) === 2
         );
     }
@@ -100,11 +100,11 @@ class CheckLinksCommandTest extends TestCase
 
     public function test_check_with_exception(): void
     {
-        Http::fake([
-            '*' => function () {
-                throw new ConnectionException('Unable to connect to host');
-            },
-        ]);
+        Http::fake(function () {
+            throw new ConnectionException(
+                'cURL error 7: Failed to connect to 192.168.0.123 port 54623: Connection refused'
+            );
+        });
 
         Notification::fake();
 
@@ -116,7 +116,7 @@ class CheckLinksCommandTest extends TestCase
         Notification::assertSentTo(
             $user,
             LinkCheckNotification::class,
-            fn (LinkCheckNotification $notification, $channels) => count($notification->brokenLinks) === 1
+            fn (LinkCheckNotification $notification) => count($notification->brokenLinks) === 1
         );
     }
 
@@ -136,7 +136,7 @@ class CheckLinksCommandTest extends TestCase
         Notification::assertSentTo(
             $user,
             LinkCheckNotification::class,
-            fn (LinkCheckNotification $notification, $channels) => count($notification->brokenLinks) === 5
+            fn (LinkCheckNotification $notification) => count($notification->brokenLinks) === 5
         );
     }
 }

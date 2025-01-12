@@ -9,19 +9,15 @@ class ApiTokenAbilityRule implements Rule
 {
     private static array $availableAbilities = [
         ApiToken::ABILITY_LINKS_READ,
-        ApiToken::ABILITY_LINKS_CREATE,
         ApiToken::ABILITY_LINKS_UPDATE,
         ApiToken::ABILITY_LINKS_DELETE,
         ApiToken::ABILITY_LISTS_READ,
-        ApiToken::ABILITY_LISTS_CREATE,
         ApiToken::ABILITY_LISTS_UPDATE,
         ApiToken::ABILITY_LISTS_DELETE,
         ApiToken::ABILITY_TAGS_READ,
-        ApiToken::ABILITY_TAGS_CREATE,
         ApiToken::ABILITY_TAGS_UPDATE,
         ApiToken::ABILITY_TAGS_DELETE,
         ApiToken::ABILITY_NOTES_READ,
-        ApiToken::ABILITY_NOTES_CREATE,
         ApiToken::ABILITY_NOTES_UPDATE,
         ApiToken::ABILITY_NOTES_DELETE,
     ];
