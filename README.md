@@ -38,19 +38,19 @@ LinkAce ia a powerful, self-hosted solution for managing your personal link arch
 
 #### Feature Highlights
 
-* Multi-user support
-* Save links with automatic title and description generation.
+* Organize bookmarks with the help of lists and tags.
+* Multi-user support with internal sharing of links, lists or tags.
+* OAuth and OIDC are supported for SSO login to LinkAce.
 * Automated link monitoring informs you when any links become unavailable or were moved.
 * Automated archiving of saved sites via the [Internet Archive](https://web.archive.org/).
-* Organize bookmarks with the help of lists and tags.
 * A full REST API offers access to all features of LinkAce from other apps and services.
 * LinkAce is also [available on Zapier](https://zapier.com/apps/linkace/integrations) and integrates with over 2500+ applications.
-* OAuth and OIDC are supported for SSO login to LinkAce.
-* LinkAce ships with a light and dark theme, that can be toggled or changes automatically.
 * An advanced search including different filters and ordering.
 * A bookmarklet to quickly save links from any browser.
+* Save links with automatic title and description generation.
+* LinkAce ships with a light and dark theme, that can be toggled or changes automatically.
 * Links can be private or public, so friends or internet strangers may see your collection.
-* Both private and public links are accessible via RSS feeds.
+* Both private and public lists of links are accessible via RSS feeds.
 * Import and export of bookmarks from and to HTML.
 * Support for complete database and application backups to any AWS S3-compatible storage.
 
@@ -66,6 +66,7 @@ LinkAce provides multiple ways of installing it on your server. The complete doc
 
 * [Setup with Docker](https://www.linkace.org/docs/v2/setup/setup-with-docker/) (_recommended_)
 * [Setup without Docker](https://www.linkace.org/docs/v2/setup/setup-without-docker/)
+* [Official managed Hosting](https://hosting.linkace.org) (_Beta Waitlist_)
 
 
 &nbsp;
@@ -84,7 +85,7 @@ I built LinkAce to solve my own problem, and I now offer my solution and code wi
 
 ### Documentation and Community
 
-Details about all features and advanced configuration can be found in the [**project documentation**](https://www.linkace.org/docs/).  
+Details about all features and advanced configuration can be found in the [**project documentation**](https://www.linkace.org/docs/v2).  
 Additionally, you may visit the [community discussions](https://github.com/Kovah/LinkAce/discussions) to share your ideas, talk with other users or find help for specific problems.
 
 

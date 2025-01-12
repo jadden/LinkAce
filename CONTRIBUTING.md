@@ -26,7 +26,7 @@ starting to code.
 
 * [Docker](https://www.docker.com/products/docker-desktop)/[Podman](https://podman.io/docs/installation) _or_ a [currently-supported PHP version](https://www.php.net/supported-versions.php)
   * For Podman, you also need to `apt`, `dnf`, or otherwise install [`podman-compose`](https://github.com/containers/podman-compose)
-* [Node](https://nodejs.org/en/) (currently 20 LTS)
+* [Node](https://nodejs.org/en/) (currently 22 LTS)
 
 ### 1. Basic Setup
 
