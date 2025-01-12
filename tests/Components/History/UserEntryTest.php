@@ -12,7 +12,7 @@ class UserEntryTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testRegularChange(): void
+    public function test_regular_change(): void
     {
         $user = User::factory()->create(['name' => 'TestUser']);
         $this->travel(10)->seconds();
@@ -30,7 +30,7 @@ class UserEntryTest extends TestCase
         $this->assertStringContainsString('User <code>TestUser</code> was created', $output);
     }
 
-    public function testModelDeletion(): void
+    public function test_model_deletion(): void
     {
         $user = User::factory()->create(['name' => 'TestUser']);
         $this->travel(10)->seconds();
@@ -49,7 +49,7 @@ class UserEntryTest extends TestCase
         $this->assertStringContainsString('User <code>TestUser</code> was created', $output);
     }
 
-    public function testModelBlocking(): void
+    public function test_model_blocking(): void
     {
         $admin = User::factory()->create();
         $admin->assignRole(Role::ADMIN);

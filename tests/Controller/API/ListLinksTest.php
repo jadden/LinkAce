@@ -12,7 +12,7 @@ class ListLinksTest extends ApiTestCase
     use PreparesTestData;
     use RefreshDatabase;
 
-    public function testLinksRequest(): void
+    public function test_links_request(): void
     {
         $this->createTestLists();
         [$link, $link2, $link3] = $this->createTestLinks();
@@ -52,7 +52,7 @@ class ListLinksTest extends ApiTestCase
             ->assertForbidden();
     }
 
-    public function testLinksRequestWithoutLinks(): void
+    public function test_links_request_without_links(): void
     {
         LinkList::factory()->create();
 
@@ -63,7 +63,7 @@ class ListLinksTest extends ApiTestCase
             ]);
     }
 
-    public function testShowRequestNotFound(): void
+    public function test_show_request_not_found(): void
     {
         $this->getJsonAuthorized('api/v2/lists/1/links')->assertNotFound();
     }

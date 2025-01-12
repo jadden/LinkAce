@@ -11,12 +11,12 @@ class SearchLinksTest extends ApiTestCase
 {
     use RefreshDatabase;
 
-    public function testUnauthorizedRequest(): void
+    public function test_unauthorized_request(): void
     {
         $this->getJson('api/v2/search/links')->assertUnauthorized();
     }
 
-    public function testWithoutQuery(): void
+    public function test_without_query(): void
     {
         $msg = 'You must either enter a search query, or select a list, a tag or enable searching for broken links.';
         $this->getJsonAuthorized('api/v2/search/links')
@@ -28,7 +28,7 @@ class SearchLinksTest extends ApiTestCase
         ]);
     }
 
-    public function testRegularSearchResult(): void
+    public function test_regular_search_result(): void
     {
         $link = Link::factory()->create([
             'user_id' => $this->user->id,
@@ -63,7 +63,7 @@ class SearchLinksTest extends ApiTestCase
             ]);
     }
 
-    public function testSearchByTitle(): void
+    public function test_search_by_title(): void
     {
         $link = Link::factory()->create([
             'user_id' => $this->user->id,
@@ -87,7 +87,7 @@ class SearchLinksTest extends ApiTestCase
             ]);
     }
 
-    public function testSearchByDescription(): void
+    public function test_search_by_description(): void
     {
         $link = Link::factory()->create([
             'user_id' => $this->user->id,
@@ -113,7 +113,7 @@ class SearchLinksTest extends ApiTestCase
             ]);
     }
 
-    public function testSearchPrivateOnly(): void
+    public function test_search_private_only(): void
     {
         $link = Link::factory()->create([
             'user_id' => $this->user->id,
@@ -139,7 +139,7 @@ class SearchLinksTest extends ApiTestCase
             ]);
     }
 
-    public function testSearchBrokenOnly(): void
+    public function test_search_broken_only(): void
     {
         $link = Link::factory()->create([
             'user_id' => $this->user->id,
@@ -164,7 +164,7 @@ class SearchLinksTest extends ApiTestCase
             ]);
     }
 
-    public function testSearchWithLists(): void
+    public function test_search_with_lists(): void
     {
         $list = LinkList::factory()->create([
             'user_id' => $this->user->id,
@@ -195,7 +195,7 @@ class SearchLinksTest extends ApiTestCase
             ]);
     }
 
-    public function testSearchWithTags(): void
+    public function test_search_with_tags(): void
     {
         $tag = Tag::factory()->create([
             'user_id' => $this->user->id,

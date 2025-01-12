@@ -14,7 +14,7 @@ class LinkControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testValidLinkOverviewResponse(): void
+    public function test_valid_link_overview_response(): void
     {
         SystemSettings::fake([
             'guest_access_enabled' => true,
@@ -40,7 +40,7 @@ class LinkControllerTest extends TestCase
             ->assertDontSee('privateTag');
     }
 
-    public function testLinkDisplayToggle(): void
+    public function test_link_display_toggle(): void
     {
         SystemSettings::fake([
             'guest_access_enabled' => true,

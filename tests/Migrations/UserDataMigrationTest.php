@@ -19,7 +19,7 @@ class UserDataMigrationTest extends TestCase
 {
     use MigratesUpTo;
 
-    public function testLinkVisibilityMigration(): void
+    public function test_link_visibility_migration(): void
     {
         $this->migrateUpTo('2022_06_23_112431_migrate_user_data.php');
 
@@ -50,7 +50,7 @@ class UserDataMigrationTest extends TestCase
         ]);
     }
 
-    public function testLinkVisibilityMigrationWithEnabledGuestMode(): void
+    public function test_link_visibility_migration_with_enabled_guest_mode(): void
     {
         $this->migrateUpTo('2022_06_23_112431_migrate_user_data.php');
 
@@ -83,7 +83,7 @@ class UserDataMigrationTest extends TestCase
         ]);
     }
 
-    public function testListVisibilityMigration(): void
+    public function test_list_visibility_migration(): void
     {
         $this->migrateUpTo('2022_06_23_112431_migrate_user_data.php');
 
@@ -112,7 +112,7 @@ class UserDataMigrationTest extends TestCase
         ]);
     }
 
-    public function testListVisibilityMigrationWithEnabledGuestMode(): void
+    public function test_list_visibility_migration_with_enabled_guest_mode(): void
     {
         $this->migrateUpTo('2022_06_23_112431_migrate_user_data.php');
 
@@ -143,7 +143,7 @@ class UserDataMigrationTest extends TestCase
         ]);
     }
 
-    public function testTagVisibilityMigration(): void
+    public function test_tag_visibility_migration(): void
     {
         $this->migrateUpTo('2022_06_23_112431_migrate_user_data.php');
 
@@ -172,7 +172,7 @@ class UserDataMigrationTest extends TestCase
         ]);
     }
 
-    public function testTagVisibilityMigrationWithEnabledGuestMode(): void
+    public function test_tag_visibility_migration_with_enabled_guest_mode(): void
     {
         $this->migrateUpTo('2022_06_23_112431_migrate_user_data.php');
 
@@ -203,7 +203,7 @@ class UserDataMigrationTest extends TestCase
         ]);
     }
 
-    public function testNoteVisibilityMigration(): void
+    public function test_note_visibility_migration(): void
     {
         $this->migrateUpTo('2022_06_23_112431_migrate_user_data.php');
 
@@ -234,7 +234,7 @@ class UserDataMigrationTest extends TestCase
         ]);
     }
 
-    public function testNoteVisibilityMigrationWithEnabledGuestMode(): void
+    public function test_note_visibility_migration_with_enabled_guest_mode(): void
     {
         $this->migrateUpTo('2022_06_23_112431_migrate_user_data.php');
 
@@ -267,7 +267,7 @@ class UserDataMigrationTest extends TestCase
         ]);
     }
 
-    public function testUserApiTokenMigration(): void
+    public function test_user_api_token_migration(): void
     {
         $this->migrateUpTo('2022_06_23_112431_migrate_user_data.php');
 

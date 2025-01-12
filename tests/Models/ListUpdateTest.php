@@ -24,7 +24,7 @@ class ListUpdateTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function testValidListUpdate(): void
+    public function test_valid_list_update(): void
     {
         $this->be($this->user);
 

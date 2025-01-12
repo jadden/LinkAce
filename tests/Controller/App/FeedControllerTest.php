@@ -24,14 +24,14 @@ class FeedControllerTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function testUnauthorizedRequest(): void
+    public function test_unauthorized_request(): void
     {
         $response = $this->get('links/feed');
 
         $response->assertRedirect('login');
     }
 
-    public function testLinksFeed(): void
+    public function test_links_feed(): void
     {
         $link = Link::factory()->create();
 
@@ -40,7 +40,7 @@ class FeedControllerTest extends TestCase
         $response->assertOk()->assertSee($link->url);
     }
 
-    public function testListsFeed(): void
+    public function test_lists_feed(): void
     {
         $list = LinkList::factory()->create();
 
@@ -49,7 +49,7 @@ class FeedControllerTest extends TestCase
         $response->assertOk()->assertSee($list->name);
     }
 
-    public function testListLinkFeed(): void
+    public function test_list_link_feed(): void
     {
         $link = LinkList::factory()->create();
         $listLink = Link::factory()->create();
@@ -65,7 +65,7 @@ class FeedControllerTest extends TestCase
             ->assertDontSee($unrelatedLink->url);
     }
 
-    public function testTagsFeed(): void
+    public function test_tags_feed(): void
     {
         $tag = Tag::factory()->create();
 
@@ -74,7 +74,7 @@ class FeedControllerTest extends TestCase
         $response->assertOk()->assertSee($tag->name);
     }
 
-    public function testTagLinkFeed(): void
+    public function test_tag_link_feed(): void
     {
         $tag = Tag::factory()->create();
         $tagLink = Link::factory()->create();

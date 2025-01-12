@@ -11,7 +11,7 @@ class BookmarkletControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testValidBookmarkletResponse(): void
+    public function test_valid_bookmarklet_response(): void
     {
         $user = User::factory()->create();
         $this->actingAs($user);
@@ -23,7 +23,7 @@ class BookmarkletControllerTest extends TestCase
             ->assertSee('Example Title');
     }
 
-    public function testBookmarkletWithExistingLink(): void
+    public function test_bookmarklet_with_existing_link(): void
     {
         Link::factory()->create([
             'url' => 'https://example.com/test',
@@ -36,7 +36,7 @@ class BookmarkletControllerTest extends TestCase
         $response->assertOk()->assertSee('A Link with that URL already exists.');
     }
 
-    public function testLoginRedirectForBookmarklet(): void
+    public function test_login_redirect_for_bookmarklet(): void
     {
         $response = $this->get('bookmarklet/add?u=https://example.com&t=Example%20Title');
 
@@ -45,7 +45,7 @@ class BookmarkletControllerTest extends TestCase
             ->assertSessionHas('bookmarklet.new_title', 'Example Title');
     }
 
-    public function testValidBookmarkletWithTagsAndLists(): void
+    public function test_valid_bookmarklet_with_tags_and_lists(): void
     {
         $user = User::factory()->create();
         $this->actingAs($user);

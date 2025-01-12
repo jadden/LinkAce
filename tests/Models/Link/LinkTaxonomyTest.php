@@ -13,7 +13,7 @@ class LinkTaxonomyTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testListTaxonomyOutput(): void
+    public function test_list_taxonomy_output(): void
     {
         $link = Link::factory()->create();
         LinkList::factory()->count(5)->create();
@@ -27,7 +27,7 @@ class LinkTaxonomyTest extends TestCase
         $this->assertCount(3, $parsedData);
     }
 
-    public function testTagsTaxonomyOutput(): void
+    public function test_tags_taxonomy_output(): void
     {
         $link = Link::factory()->create();
         Tag::factory()->count(5)->create();
@@ -41,11 +41,11 @@ class LinkTaxonomyTest extends TestCase
         $this->assertCount(3, $parsedData);
     }
 
-    public function testTaxonomyOutputWithOldData(): void
+    public function test_taxonomy_output_with_old_data(): void
     {
         $this->actingAs(User::factory()->create());
 
-        Tag::factory()->count(5)->sequence(fn($sequence) => ['name' => 'Tag ' . $sequence->index])->create();
+        Tag::factory()->count(5)->sequence(fn ($sequence) => ['name' => 'Tag ' . $sequence->index])->create();
         Link::factory()->create(['url' => 'https://existing.com']);
 
         $link = Link::factory()->create(['url' => 'https://example.com']);

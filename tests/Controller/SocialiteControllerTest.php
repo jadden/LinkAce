@@ -12,7 +12,7 @@ class SocialiteControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testRedirect(): void
+    public function test_redirect(): void
     {
         $this->app->register(SocialiteServiceProvider::class);
         Socialite::shouldReceive('driver->redirect')->once()->andReturn(redirect()->to('https://sso-provider.com/auth'));
@@ -33,7 +33,7 @@ class SocialiteControllerTest extends TestCase
         $this->get('auth/sso/auth0/redirect')->assertRedirect('https://sso-provider.com/auth');
     }
 
-    public function testRegularSsoLogin(): void
+    public function test_regular_sso_login(): void
     {
         $ssoUser = new User();
         $ssoUser->setToken('XF3hkrEeyYkLnTf1fKX');
@@ -62,7 +62,7 @@ class SocialiteControllerTest extends TestCase
         ]);
     }
 
-    public function testSsoLoginWithDisabledRegistration(): void
+    public function test_sso_login_with_disabled_registration(): void
     {
         $ssoUser = new User();
         $ssoUser->setToken('XF3hkrEeyYkLnTf1fKX');
@@ -101,7 +101,7 @@ class SocialiteControllerTest extends TestCase
         ]);
     }
 
-    public function testLoginWithExistingSsoUser(): void
+    public function test_login_with_existing_sso_user(): void
     {
         $ssoUser = new User();
         $ssoUser->setToken('XF3hkrEeyYkLnTf1fKX');
@@ -136,7 +136,7 @@ class SocialiteControllerTest extends TestCase
         ]);
     }
 
-    public function testLoginWithExistingSsoUserWrongProvider(): void
+    public function test_login_with_existing_sso_user_wrong_provider(): void
     {
         $ssoUser = new User();
         $ssoUser->setToken('XF3hkrEeyYkLnTf1fKX');
@@ -165,7 +165,7 @@ class SocialiteControllerTest extends TestCase
         $this->get('auth/sso/auth0/callback')->assertStatus(403)->assertSee('Unable to login with Auth0. Please use OIDC to login');
     }
 
-    public function testLoginWithExistingEmail(): void
+    public function test_login_with_existing_email(): void
     {
         $ssoUser = new User();
         $ssoUser->setToken('XF3hkrEeyYkLnTf1fKX');

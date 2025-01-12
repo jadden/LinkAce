@@ -21,7 +21,7 @@ class UserControllerTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testAuthorComponent(): void
+    public function test_author_component(): void
     {
         $user = User::factory()->create(['name' => 'MrTestUser']);
 
@@ -36,7 +36,7 @@ class UserControllerTest extends TestCase
         $response->assertOk()->assertSee('MrTestUser')->assertSee('User deleted');
     }
 
-    public function testUserProfile(): void
+    public function test_user_profile(): void
     {
         $user = User::factory()->create(['name' => 'MrTestUser']);
 

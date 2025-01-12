@@ -11,12 +11,12 @@ class TagApiTest extends ApiTestCase
     use PreparesTestData;
     use RefreshDatabase;
 
-    public function testUnauthorizedRequest(): void
+    public function test_unauthorized_request(): void
     {
         $this->getJson('api/v2/tags')->assertUnauthorized();
     }
 
-    public function testIndexRequest(): void
+    public function test_index_request(): void
     {
         $this->createTestTags();
 
@@ -35,7 +35,7 @@ class TagApiTest extends ApiTestCase
             ]);
     }
 
-    public function testMinimalCreateRequest(): void
+    public function test_minimal_create_request(): void
     {
         $this->postJsonAuthorized('api/v2/tags', [
             'name' => 'Test Tag',
@@ -50,7 +50,7 @@ class TagApiTest extends ApiTestCase
         $this->assertEquals('Test Tag', $databaseTag->name);
     }
 
-    public function testFullCreateRequest(): void
+    public function test_full_create_request(): void
     {
         $this->postJsonAuthorized('api/v2/tags', [
             'name' => 'Test Tag',
@@ -66,7 +66,7 @@ class TagApiTest extends ApiTestCase
         $this->assertEquals('Test Tag', $databaseTag->name);
     }
 
-    public function testInvalidCreateRequest(): void
+    public function test_invalid_create_request(): void
     {
         $this->postJsonAuthorized('api/v2/tags', [
             'name' => null,
@@ -77,7 +77,7 @@ class TagApiTest extends ApiTestCase
         ]);
     }
 
-    public function testShowRequest(): void
+    public function test_show_request(): void
     {
         $this->createTestTags();
 
@@ -97,12 +97,12 @@ class TagApiTest extends ApiTestCase
             ->assertForbidden();
     }
 
-    public function testShowRequestNotFound(): void
+    public function test_show_request_not_found(): void
     {
         $this->getJsonAuthorized('api/v2/tags/1')->assertNotFound();
     }
 
-    public function testUpdateRequest(): void
+    public function test_update_request(): void
     {
         $this->createTestTags();
 
@@ -136,7 +136,7 @@ class TagApiTest extends ApiTestCase
             ->assertForbidden();
     }
 
-    public function testInvalidUpdateRequest(): void
+    public function test_invalid_update_request(): void
     {
         Tag::factory()->create();
 
@@ -149,7 +149,7 @@ class TagApiTest extends ApiTestCase
         ]);
     }
 
-    public function testUpdateRequestNotFound(): void
+    public function test_update_request_not_found(): void
     {
         $this->patchJsonAuthorized('api/v2/tags/1', [
             'name' => 'Updated Tag Title',
@@ -157,7 +157,7 @@ class TagApiTest extends ApiTestCase
         ])->assertNotFound();
     }
 
-    public function testDeleteRequest(): void
+    public function test_delete_request(): void
     {
         $this->createTestTags();
 
@@ -170,7 +170,7 @@ class TagApiTest extends ApiTestCase
         $this->assertEquals(2, Tag::count());
     }
 
-    public function testDeleteRequestNotFound(): void
+    public function test_delete_request_not_found(): void
     {
         $this->deleteJsonAuthorized('api/v2/tags/1')->assertNotFound();
     }

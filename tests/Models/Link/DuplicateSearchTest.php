@@ -22,7 +22,7 @@ class DuplicateSearchTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function testWithoutDuplicates(): void
+    public function test_without_duplicates(): void
     {
         /** @var Link $link */
         $link = Link::factory()->create([
@@ -34,7 +34,7 @@ class DuplicateSearchTest extends TestCase
         $this->assertTrue($check->isEmpty());
     }
 
-    public function testScheme(): void
+    public function test_scheme(): void
     {
         /** @var Link $link */
         $link = Link::factory()->create([
@@ -52,7 +52,7 @@ class DuplicateSearchTest extends TestCase
         $this->assertTrue($check->contains('id', $duplicateLink->id));
     }
 
-    public function testTrailingSlashes(): void
+    public function test_trailing_slashes(): void
     {
         /** @var Link $link */
         $link = Link::factory()->create([
@@ -70,7 +70,7 @@ class DuplicateSearchTest extends TestCase
         $this->assertTrue($check->contains('id', $duplicateLink->id));
     }
 
-    public function testUrlFragments(): void
+    public function test_url_fragments(): void
     {
         /** @var Link $link */
         $link = Link::factory()->create([
@@ -88,7 +88,7 @@ class DuplicateSearchTest extends TestCase
         $this->assertTrue($check->contains('id', $duplicateLink->id));
     }
 
-    public function testQueryParameters(): void
+    public function test_query_parameters(): void
     {
         /** @var Link $link */
         $link = Link::factory()->create([
@@ -106,7 +106,7 @@ class DuplicateSearchTest extends TestCase
         $this->assertTrue($check->contains('id', $duplicateLink->id));
     }
 
-    public function testUrlWithPort(): void
+    public function test_url_with_port(): void
     {
         /** @var Link $link */
         $link = Link::factory()->create([
@@ -124,7 +124,7 @@ class DuplicateSearchTest extends TestCase
         $this->assertTrue($check->contains('id', $duplicateLink->id));
     }
 
-    public function testUrlWithSimpleAuth(): void
+    public function test_url_with_simple_auth(): void
     {
         /** @var Link $link */
         $link = Link::factory()->create([
@@ -142,7 +142,7 @@ class DuplicateSearchTest extends TestCase
         $this->assertTrue($check->contains('id', $duplicateLink->id));
     }
 
-    public function testUrlWithFullAuth(): void
+    public function test_url_with_full_auth(): void
     {
         /** @var Link $link */
         $link = Link::factory()->create([
@@ -160,7 +160,7 @@ class DuplicateSearchTest extends TestCase
         $this->assertTrue($check->contains('id', $duplicateLink->id));
     }
 
-    public function testBrokenUrl(): void
+    public function test_broken_url(): void
     {
         /** @var Link $link */
         $link = Link::factory()->create([

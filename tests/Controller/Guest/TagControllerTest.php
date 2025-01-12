@@ -22,7 +22,7 @@ class TagControllerTest extends TestCase
         ]);
     }
 
-    public function testValidTagOverviewResponse(): void
+    public function test_valid_tag_overview_response(): void
     {
         User::factory()->create();
 
@@ -43,7 +43,7 @@ class TagControllerTest extends TestCase
             ->assertDontSee('private tag');
     }
 
-    public function testValidTagDetailResponse(): void
+    public function test_valid_tag_detail_response(): void
     {
         User::factory()->create();
 
@@ -58,7 +58,7 @@ class TagControllerTest extends TestCase
             ->assertSee('testTag');
     }
 
-    public function testInvalidTagDetailResponse(): void
+    public function test_invalid_tag_detail_response(): void
     {
         User::factory()->create();
 

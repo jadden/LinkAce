@@ -15,7 +15,7 @@ class HtmlMetaHelperTest extends TestCase
      * Test the HtmlMeta helper with a regular website containing some meta information. Must properly return the
      * information extracted from the meta.
      */
-    public function testMetaFromValidURL(): void
+    public function test_meta_from_valid_url(): void
     {
         $testHtml = '<!DOCTYPE html><head>' .
             '<title>DuckDuckGo</title>' .
@@ -28,7 +28,7 @@ class HtmlMetaHelperTest extends TestCase
 
         $url = 'https://duckduckgo.com/';
 
-        $result = (new HtmlMeta)->getFromUrl($url);
+        $result = (new HtmlMeta())->getFromUrl($url);
 
         $this->assertEquals('DuckDuckGo', $result['title']);
         $this->assertEquals('This an example description', $result['description']);
@@ -39,7 +39,7 @@ class HtmlMetaHelperTest extends TestCase
     /*
      * Test the HtmlMeta helper with an alternative description provided by the og:description tag.
      */
-    public function testAlternativeDescriptionFromValidURL(): void
+    public function test_alternative_description_from_valid_url(): void
     {
         $testHtml = '<!DOCTYPE html><head>' .
             '<title>DuckDuckGo</title>' .
@@ -50,14 +50,14 @@ class HtmlMetaHelperTest extends TestCase
 
         $url = 'https://duckduckgo.com/';
 
-        $result = (new HtmlMeta)->getFromUrl($url);
+        $result = (new HtmlMeta())->getFromUrl($url);
 
         $this->assertEquals('DuckDuckGo', $result['title']);
         $this->assertEquals('This an example description', $result['description']);
         $this->assertTrue($result['success']);
     }
 
-    public function testThumbnailWithoutHostFromValidURL(): void
+    public function test_thumbnail_without_host_from_valid_url(): void
     {
         $testHtml = '<!DOCTYPE html><head>' .
             '<meta property="og:image" content="/assets/logo_social-media.png">' .
@@ -67,7 +67,7 @@ class HtmlMetaHelperTest extends TestCase
 
         $url = 'https://duckduckgo.com/about-us?utm_source=foo';
 
-        $result = (new HtmlMeta)->getFromUrl($url);
+        $result = (new HtmlMeta())->getFromUrl($url);
 
         $this->assertEquals('https://duckduckgo.com/assets/logo_social-media.png', $result['thumbnail']);
         $this->assertTrue($result['success']);
@@ -76,7 +76,7 @@ class HtmlMetaHelperTest extends TestCase
     /*
      * Test the HtmlMeta helper with a YouTube link. Must return a special YouTube thumbnail.
      */
-    public function testYoutubeThumbnailFromValidURL(): void
+    public function test_youtube_thumbnail_from_valid_url(): void
     {
         $testHtml = '<!DOCTYPE html><head>' .
             '<title>YouTube</title>' .
@@ -86,7 +86,7 @@ class HtmlMetaHelperTest extends TestCase
 
         // Regular YouTube link
         $url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-        $result = (new HtmlMeta)->getFromUrl($url);
+        $result = (new HtmlMeta())->getFromUrl($url);
 
         $this->assertArrayHasKey('title', $result);
         $this->assertEquals('YouTube', $result['title']);
@@ -95,7 +95,7 @@ class HtmlMetaHelperTest extends TestCase
 
         // Short Youtu.be sharing link
         $url = 'https://youtu.be/dQw4w9WgXcQ';
-        $result = (new HtmlMeta)->getFromUrl($url);
+        $result = (new HtmlMeta())->getFromUrl($url);
 
         $this->assertArrayHasKey('title', $result);
         $this->assertEquals('YouTube', $result['title']);
@@ -106,13 +106,13 @@ class HtmlMetaHelperTest extends TestCase
     /*
      * Test the HtmlMeta helper with an invalid URL. Must return the hostname as the title.
      */
-    public function testTitleFromInvalidURL(): void
+    public function test_title_from_invalid_url(): void
     {
         $url = 'https://duckduckgogo.comcom/';
 
         Http::fake(['*' => Http::response('', 404)]);
 
-        $result = (new HtmlMeta)->getFromUrl($url);
+        $result = (new HtmlMeta())->getFromUrl($url);
 
         $this->assertArrayHasKey('title', $result);
         $this->assertEquals('duckduckgogo.comcom', $result['title']);
@@ -122,7 +122,7 @@ class HtmlMetaHelperTest extends TestCase
     /*
      * Test the HtmlMeta helper with an invalid URL. Must return the hostname as the title.
      */
-    public function testTitleFromUrlWithoutProtocol(): void
+    public function test_title_from_url_without_protocol(): void
     {
         $url = 'duckduckgo.com/about-us';
 
@@ -130,7 +130,7 @@ class HtmlMetaHelperTest extends TestCase
             '*' => Http::response(null, 404),
         ]);
 
-        $result = (new HtmlMeta)->getFromUrl($url);
+        $result = (new HtmlMeta())->getFromUrl($url);
 
         $this->assertArrayHasKey('title', $result);
         $this->assertEquals('duckduckgo.com/about-us', $result['title']);
@@ -140,7 +140,7 @@ class HtmlMetaHelperTest extends TestCase
     /*
      * Test the HtmlMeta helper with an URL returning a certificate error. Must return the hostname as the title.
      */
-    public function testRequestError(): void
+    public function test_request_error(): void
     {
         $url = 'https://self-signed.badssl.com/';
 
@@ -151,7 +151,7 @@ class HtmlMetaHelperTest extends TestCase
             );
         });
 
-        $result = (new HtmlMeta)->getFromUrl($url, true);
+        $result = (new HtmlMeta())->getFromUrl($url, true);
 
         $this->assertArrayHasKey('title', $result);
         $this->assertEquals('self-signed.badssl.com', $result['title']);
@@ -168,7 +168,7 @@ class HtmlMetaHelperTest extends TestCase
      * Test the HtmlMeta helper with an URL that is not accessible due to connection errors, such as a refused
      * connection for a specific port. Must return the hostname as the title.
      */
-    public function testConnectionError(): void
+    public function test_connection_error(): void
     {
         $url = 'http://192.168.0.123:54623';
 
@@ -178,7 +178,7 @@ class HtmlMetaHelperTest extends TestCase
             );
         });
 
-        $result = (new HtmlMeta)->getFromUrl($url, true);
+        $result = (new HtmlMeta())->getFromUrl($url, true);
 
         $this->assertArrayHasKey('title', $result);
         $this->assertEquals('192.168.0.123', $result['title']);
@@ -197,7 +197,7 @@ class HtmlMetaHelperTest extends TestCase
      * '<title>Пикабу</title>' in this case. 'Пикабу' must be correctly parsed
      * and converted into UTF-8 as the title.
      */
-    public function testMetaEncodingWithCharsetAvailable(): void
+    public function test_meta_encoding_with_charset_available(): void
     {
         $testHtml = '<!DOCTYPE html><head>' .
             '<meta charset="windows-1251">' .
@@ -208,7 +208,7 @@ class HtmlMetaHelperTest extends TestCase
 
         $url = 'https://duckduckgo.com/';
 
-        $result = (new HtmlMeta)->getFromUrl($url);
+        $result = (new HtmlMeta())->getFromUrl($url);
 
         $this->assertArrayHasKey('title', $result);
         $this->assertEquals('Пикабу', $result['title']);
@@ -221,7 +221,7 @@ class HtmlMetaHelperTest extends TestCase
      *
      * The returned title must the the domain of the original URL.
      */
-    public function testMetaEncodingWithCharsetMissing(): void
+    public function test_meta_encoding_with_charset_missing(): void
     {
         $testHtml = '<!DOCTYPE html><head>' .
             hex2bin('3c7469746c653ecfe8eae0e1f33c2f7469746c653e') .
@@ -231,7 +231,7 @@ class HtmlMetaHelperTest extends TestCase
 
         $url = 'https://duckduckgo.com/';
 
-        $result = (new HtmlMeta)->getFromUrl($url);
+        $result = (new HtmlMeta())->getFromUrl($url);
 
         $this->assertArrayHasKey('title', $result);
         $this->assertEquals('duckduckgo.com', $result['title']);
@@ -242,7 +242,7 @@ class HtmlMetaHelperTest extends TestCase
      * Should return the host as the title because conversion is not possible
      * in this case.
      */
-    public function testMetaEncodingWithIncorrectCharset(): void
+    public function test_meta_encoding_with_incorrect_charset(): void
     {
         $testHtml = '<!DOCTYPE html><head>' .
             '<title>DuckDuckGo</title>' .
@@ -252,7 +252,7 @@ class HtmlMetaHelperTest extends TestCase
         Http::fake(['*' => Http::response($testHtml)]);
 
         $url = 'https://duckduckgo.com/';
-        $result = (new HtmlMeta)->getFromUrl($url);
+        $result = (new HtmlMeta())->getFromUrl($url);
 
         $this->assertArrayHasKey('title', $result);
         $this->assertEquals('duckduckgo.com', $result['title']);
@@ -266,7 +266,7 @@ class HtmlMetaHelperTest extends TestCase
      * in this case. 'Qualität' must be correctly parsed and converted into
      * UTF-8 as the description.
      */
-    public function testMetaEncodingWithContentType(): void
+    public function test_meta_encoding_with_content_type(): void
     {
         $testHtml = '<!DOCTYPE html><head>' .
             hex2bin('3c6d657461206e616d653d226465736372697074696f6e2220636f6e74656e743d225175616c6974e474223e') .
@@ -280,7 +280,7 @@ class HtmlMetaHelperTest extends TestCase
 
         $url = 'https://encoding-test.com/';
 
-        $result = (new HtmlMeta)->getFromUrl($url);
+        $result = (new HtmlMeta())->getFromUrl($url);
 
         $this->assertArrayHasKey('description', $result);
         $this->assertEquals('Qualität', $result['description']);

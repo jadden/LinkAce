@@ -11,7 +11,7 @@ class LinkNotesTest extends ApiTestCase
     use PreparesTestData;
     use RefreshDatabase;
 
-    public function testLinksRequest(): void
+    public function test_links_request(): void
     {
         $this->createTestLinks();
         $this->createTestNotes(Link::find(2));
@@ -41,7 +41,7 @@ class LinkNotesTest extends ApiTestCase
             ->assertForbidden();
     }
 
-    public function testLinksRequestWithoutLinks(): void
+    public function test_links_request_without_links(): void
     {
         Link::factory()->create();
 
@@ -52,7 +52,7 @@ class LinkNotesTest extends ApiTestCase
             ]);
     }
 
-    public function testShowRequestNotFound(): void
+    public function test_show_request_not_found(): void
     {
         $this->getJsonAuthorized('api/v2/links/1/notes')->assertNotFound();
     }

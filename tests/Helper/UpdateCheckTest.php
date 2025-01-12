@@ -13,7 +13,7 @@ class UpdateCheckTest extends TestCase
      * Test the checkForUpdates() helper function with a new update available.
      * Must return the given version string.
      */
-    public function testSuccessfulCheck(): void
+    public function test_successful_check(): void
     {
         Http::fake([
             '*' => Http::response('v100.0.0'),
@@ -28,7 +28,7 @@ class UpdateCheckTest extends TestCase
      * Test the checkForUpdates() helper function with no update available.
      * Must return true.
      */
-    public function testSuccessfulCheckWithoutVersion(): void
+    public function test_successful_check_without_version(): void
     {
         Http::fake([
             '*' => Http::response('v0.0.0'),
@@ -43,7 +43,7 @@ class UpdateCheckTest extends TestCase
      * Test the checkForUpdates() helper function, but trigger a network / http error.
      * Must return false.
      */
-    public function testUpdateCheckWithNetworkError(): void
+    public function test_update_check_with_network_error(): void
     {
         Http::fake([
             '*' => Http::response('', 404),
@@ -57,7 +57,7 @@ class UpdateCheckTest extends TestCase
     /*
      * Test if the UpdateHelper correctly returns a version from the package.json file.
      */
-    public function testVersionFromPackage(): void
+    public function test_version_from_package(): void
     {
         Storage::fake('root')->put('package.json', '{"version":"0.0.39"}');
 
@@ -69,7 +69,7 @@ class UpdateCheckTest extends TestCase
     /*
      * The UpdateHelper should return null if there is no version field.
      */
-    public function testVersionFromPackageWithInvalidFile(): void
+    public function test_version_from_package_with_invalid_file(): void
     {
         Storage::fake('root')->put('package.json', '{"foo":"bar"}');
 
@@ -81,7 +81,7 @@ class UpdateCheckTest extends TestCase
     /*
      * The UpdateHelper should return null if no package.json file was found.
      */
-    public function testVersionFromPackageWithMissingFile(): void
+    public function test_version_from_package_with_missing_file(): void
     {
         Storage::fake('root');
 

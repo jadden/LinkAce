@@ -29,7 +29,7 @@ class HelperFunctionsTest extends TestCase
      * Test the usersettings() helper function and try to get all user settings
      * at once.
      */
-    public function testGetAllUserSettings(): void
+    public function test_get_all_user_settings(): void
     {
         $this->actingAs($this->user);
 
@@ -50,7 +50,7 @@ class HelperFunctionsTest extends TestCase
      * Test the systemsettings() helper function and try to get all system
      * settings at once.
      */
-    public function testGetAllSystemSettings(): void
+    public function test_get_all_system_settings(): void
     {
         $this->user->assignRole(Role::ADMIN);
         $this->actingAs($this->user);
@@ -69,7 +69,7 @@ class HelperFunctionsTest extends TestCase
     /**
      * Test the formatDateTime() helper with a specific user format set first.
      */
-    public function testDateTimeFormatterWithUserSettings(): void
+    public function test_date_time_formatter_with_user_settings(): void
     {
         $this->actingAs($this->user);
 
@@ -90,7 +90,7 @@ class HelperFunctionsTest extends TestCase
     /**
      * Test the formatDateTime() helper with a specific user format set first.
      */
-    public function testPaginationLimitWithUserSettings(): void
+    public function test_pagination_limit_with_user_settings(): void
     {
         $this->actingAs($this->user);
 

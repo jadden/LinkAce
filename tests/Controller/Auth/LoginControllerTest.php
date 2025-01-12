@@ -11,7 +11,7 @@ class LoginControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testValidLoginResponse(): void
+    public function test_valid_login_response(): void
     {
         $response = $this->get('login');
 
@@ -19,7 +19,7 @@ class LoginControllerTest extends TestCase
             ->assertSee('Login');
     }
 
-    public function testValidLoginRedirect(): void
+    public function test_valid_login_redirect(): void
     {
         $user = User::factory()->create();
         $this->actingAs($user);
@@ -29,7 +29,7 @@ class LoginControllerTest extends TestCase
         $response->assertRedirect('dashboard');
     }
 
-    public function testValidLoginSubmit(): void
+    public function test_valid_login_submit(): void
     {
         $user = User::factory()->create();
 
@@ -41,7 +41,7 @@ class LoginControllerTest extends TestCase
         $response->assertRedirect('dashboard');
     }
 
-    public function testInvalidLoginSubmit(): void
+    public function test_invalid_login_submit(): void
     {
         $user = User::factory()->create();
 
@@ -53,7 +53,7 @@ class LoginControllerTest extends TestCase
         $response->assertSessionHasErrors(['email']);
     }
 
-    public function testConfirmPasswordView(): void
+    public function test_confirm_password_view(): void
     {
         $user = User::factory()->create();
 

@@ -20,7 +20,7 @@ class ListEntryTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testAddedChange(): void
+    public function test_added_change(): void
     {
         $list = LinkList::factory()->create([
             'description' => null,
@@ -35,7 +35,7 @@ class ListEntryTest extends TestCase
         $this->assertStringContainsString('Added <code>Test Description</code> to List Description', $output);
     }
 
-    public function testRegularChange(): void
+    public function test_regular_change(): void
     {
         $list = LinkList::factory()->create([
             'description' => 'Test Description',
@@ -53,7 +53,7 @@ class ListEntryTest extends TestCase
         );
     }
 
-    public function testRemoveChange(): void
+    public function test_remove_change(): void
     {
         $list = LinkList::factory()->create([
             'description' => 'Test Description',
@@ -68,7 +68,7 @@ class ListEntryTest extends TestCase
         $this->assertStringContainsString('Removed <code>Test Description</code> from List Description', $output);
     }
 
-    public function testModelDeletion(): void
+    public function test_model_deletion(): void
     {
         $list = LinkList::factory()->create();
 

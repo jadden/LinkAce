@@ -29,7 +29,7 @@ class ListDeleteTest extends TestCase
      *
      * @return void
      */
-    public function testValidListCreation(): void
+    public function test_valid_list_creation(): void
     {
         $this->be($this->user);
 

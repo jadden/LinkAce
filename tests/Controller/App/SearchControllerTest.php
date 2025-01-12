@@ -25,14 +25,14 @@ class SearchControllerTest extends TestCase
         $this->setupTestData();
     }
 
-    public function testValidSearchResponse(): void
+    public function test_valid_search_response(): void
     {
         $this->get('search')
             ->assertOk()
             ->assertSee('Search');
     }
 
-    public function testValidSearchResult(): void
+    public function test_valid_search_result(): void
     {
         $this->post('search', [
             'query' => 'example',
@@ -42,7 +42,7 @@ class SearchControllerTest extends TestCase
             ->assertDontSee('https://test.com');
     }
 
-    public function testValidSearchWithOrdering(): void
+    public function test_valid_search_with_ordering(): void
     {
         $response = $this->post('search', [
             'query' => 'example',
@@ -56,7 +56,7 @@ class SearchControllerTest extends TestCase
         $this->assertTrue($posLink1 < $posLink2);
     }
 
-    public function testValidUrlSearchResult(): void
+    public function test_valid_url_search_result(): void
     {
         $response = $this->post('search', [
             'query' => 'https://example.com',
@@ -67,7 +67,7 @@ class SearchControllerTest extends TestCase
             ->assertDontSee('https://test.com');
     }
 
-    public function testValidTitleSearchResult(): void
+    public function test_valid_title_search_result(): void
     {
         $response = $this->post('search', [
             'query' => 'special',
@@ -79,7 +79,7 @@ class SearchControllerTest extends TestCase
             ->assertDontSee('https://test.com');
     }
 
-    public function testValidDescriptionSearchResult(): void
+    public function test_valid_description_search_result(): void
     {
         $response = $this->post('search', [
             'query' => 'description',
@@ -91,7 +91,7 @@ class SearchControllerTest extends TestCase
             ->assertDontSee('https://test.com');
     }
 
-    public function testValidPrivateSearchResult(): void
+    public function test_valid_private_search_result(): void
     {
         $response = $this->post('search', [
             'query' => 'example',
@@ -103,7 +103,7 @@ class SearchControllerTest extends TestCase
             ->assertDontSee('https://test.com');
     }
 
-    public function testValidBrokenSearchResult(): void
+    public function test_valid_broken_search_result(): void
     {
         $response = $this->post('search', [
             'query' => 'broken',
@@ -116,7 +116,7 @@ class SearchControllerTest extends TestCase
             ->assertDontSee('https://test.com');
     }
 
-    public function testValidTagSearchResult(): void
+    public function test_valid_tag_search_result(): void
     {
         $response = $this->post('search', [
             'only_tags' => '1',
@@ -127,7 +127,7 @@ class SearchControllerTest extends TestCase
             ->assertDontSee('https://test.com');
     }
 
-    public function testValidTagSearchResultWithoutResult(): void
+    public function test_valid_tag_search_result_without_result(): void
     {
         $response = $this->post('search', [
             'only_tags' => '5',
@@ -138,7 +138,7 @@ class SearchControllerTest extends TestCase
             ->assertDontSee('https://test.com');
     }
 
-    public function testValidListSearchResult(): void
+    public function test_valid_list_search_result(): void
     {
         $response = $this->post('search', [
             'only_lists' => '1',
@@ -149,7 +149,7 @@ class SearchControllerTest extends TestCase
             ->assertDontSee('https://example.com');
     }
 
-    public function testValidListSearchResultWithoutResults(): void
+    public function test_valid_list_search_result_without_results(): void
     {
         $response = $this->post('search', [
             'only_lists' => '5',
@@ -160,7 +160,7 @@ class SearchControllerTest extends TestCase
             ->assertDontSee('https://example.com');
     }
 
-    public function testEmptyListSearchResult(): void
+    public function test_empty_list_search_result(): void
     {
         $response = $this->post('search', [
             'query' => 'Test',

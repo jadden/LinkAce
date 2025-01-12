@@ -23,7 +23,7 @@ class ListControllerTest extends TestCase
         ]);
     }
 
-    public function testValidListOverviewResponse(): void
+    public function test_valid_list_overview_response(): void
     {
         User::factory()->create();
 
@@ -43,7 +43,7 @@ class ListControllerTest extends TestCase
             ->assertDontSee('private list');
     }
 
-    public function testValidListDetailResponse(): void
+    public function test_valid_list_detail_response(): void
     {
         User::factory()->create();
 
@@ -57,7 +57,7 @@ class ListControllerTest extends TestCase
         $response->assertOk()->assertSee('test list name');
     }
 
-    public function testInvalidListDetailResponse(): void
+    public function test_invalid_list_detail_response(): void
     {
         User::factory()->create();
 

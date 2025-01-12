@@ -15,7 +15,7 @@ class CheckLinksCommandTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCheckWith200Response(): void
+    public function test_check_with200_response(): void
     {
         Http::fake([
             '*' => Http::response('', 200),
@@ -30,7 +30,7 @@ class CheckLinksCommandTest extends TestCase
         Notification::assertNothingSent();
     }
 
-    public function testCheckWith204Response(): void
+    public function test_check_with204_response(): void
     {
         Http::fake([
             '*' => Http::response('', 204),
@@ -45,7 +45,7 @@ class CheckLinksCommandTest extends TestCase
         Notification::assertNothingSent();
     }
 
-    public function testCheckWithMovedOrBrokenLinks(): void
+    public function test_check_with_moved_or_broken_links(): void
     {
         Http::fake([
             'example.com/okay' => Http::response(),
@@ -77,19 +77,19 @@ class CheckLinksCommandTest extends TestCase
         Notification::assertSentTo(
             $user,
             LinkCheckNotification::class,
-            fn(LinkCheckNotification $notification, $channels) => count($notification->movedLinks) === 1
+            fn (LinkCheckNotification $notification, $channels) => count($notification->movedLinks) === 1
                 && count($notification->brokenLinks) === 1
         );
 
         Notification::assertSentTo(
             $anotherUser,
             LinkCheckNotification::class,
-            fn(LinkCheckNotification $notification, $channels) => count($notification->movedLinks) === 2
+            fn (LinkCheckNotification $notification, $channels) => count($notification->movedLinks) === 2
                 && count($notification->brokenLinks) === 2
         );
     }
 
-    public function testCheckWithoutLinks(): void
+    public function test_check_without_links(): void
     {
         Notification::fake();
 
@@ -98,7 +98,7 @@ class CheckLinksCommandTest extends TestCase
         Notification::assertNothingSent();
     }
 
-    public function testCheckWithException(): void
+    public function test_check_with_exception(): void
     {
         Http::fake([
             '*' => function () {
@@ -116,11 +116,11 @@ class CheckLinksCommandTest extends TestCase
         Notification::assertSentTo(
             $user,
             LinkCheckNotification::class,
-            fn(LinkCheckNotification $notification, $channels) => count($notification->brokenLinks) === 1
+            fn (LinkCheckNotification $notification, $channels) => count($notification->brokenLinks) === 1
         );
     }
 
-    public function testCheckWithLimit(): void
+    public function test_check_with_limit(): void
     {
         Http::fake([
             '*' => Http::response(status: 404),
@@ -136,7 +136,7 @@ class CheckLinksCommandTest extends TestCase
         Notification::assertSentTo(
             $user,
             LinkCheckNotification::class,
-            fn(LinkCheckNotification $notification, $channels) => count($notification->brokenLinks) === 5
+            fn (LinkCheckNotification $notification, $channels) => count($notification->brokenLinks) === 5
         );
     }
 }

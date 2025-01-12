@@ -23,7 +23,7 @@ class SystemSettingsControllerTest extends TestCase
         $this->user->assignRole(Role::ADMIN);
     }
 
-    public function testSettingsAccessForUsers(): void
+    public function test_settings_access_for_users(): void
     {
         // No access for regular users
         $this->user->syncRoles(Role::USER);
@@ -38,7 +38,7 @@ class SystemSettingsControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testValidSettingsResponse(): void
+    public function test_valid_settings_response(): void
     {
         $response = $this->get('settings/system');
 
@@ -47,7 +47,7 @@ class SystemSettingsControllerTest extends TestCase
             ->assertSee('System Settings');
     }
 
-    public function testValidSettingsUpdateResponse(): void
+    public function test_valid_settings_update_response(): void
     {
         $response = $this->get('dashboard');
         $response->assertDontSee('Begin of custom header scripts');
@@ -80,7 +80,7 @@ class SystemSettingsControllerTest extends TestCase
             ->assertSee('<strong>Example</strong> with <a href="https://kovah.de">link</a>', false);
     }
 
-    public function testValidGuestSettingsUpdateResponse(): void
+    public function test_valid_guest_settings_update_response(): void
     {
         $response = $this->get('dashboard');
         $response->assertDontSee('Begin of custom header scripts');
@@ -100,7 +100,7 @@ class SystemSettingsControllerTest extends TestCase
         $response->assertSee('Listen');
     }
 
-    public function testValidCronGeneratonResponse(): void
+    public function test_valid_cron_generaton_response(): void
     {
         $response = $this->post('settings/generate-cron-token');
 

@@ -27,7 +27,7 @@ class UserManagementControllerTest extends TestCase
         $this->user->assignRole(Role::ADMIN);
     }
 
-    public function testManagementAccessForUsers(): void
+    public function test_management_access_for_users(): void
     {
         // No access for regular users
         $this->user->syncRoles(Role::USER);
@@ -42,7 +42,7 @@ class UserManagementControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function testValidSettingsResponse(): void
+    public function test_valid_settings_response(): void
     {
         $response = $this->get('system/users');
 
@@ -50,7 +50,7 @@ class UserManagementControllerTest extends TestCase
             ->assertSee($this->user->name);
     }
 
-    public function testUserBlocking(): void
+    public function test_user_blocking(): void
     {
         $otherUser = User::factory()->create();
 
@@ -72,7 +72,7 @@ class UserManagementControllerTest extends TestCase
         $this->assertFalse($otherUser->refresh()->isBlocked());
     }
 
-    public function testUserDeletion(): void
+    public function test_user_deletion(): void
     {
         $otherUser = User::factory()->create();
 
@@ -87,7 +87,7 @@ class UserManagementControllerTest extends TestCase
         $this->assertFalse($otherUser->refresh()->trashed());
     }
 
-    public function testUserInvitation(): void
+    public function test_user_invitation(): void
     {
         Notification::fake();
 
@@ -123,7 +123,7 @@ class UserManagementControllerTest extends TestCase
         $this->assertDatabaseCount('user_invitations', 2);
     }
 
-    public function testInviteDeletion(): void
+    public function test_invite_deletion(): void
     {
         Notification::fake();
 
@@ -136,7 +136,7 @@ class UserManagementControllerTest extends TestCase
         $this->assertDatabaseCount('user_invitations', 0);
     }
 
-    public function testUserEditing(): void
+    public function test_user_editing(): void
     {
         $otherUser = User::factory()->create(['name' => 'MrTestUser']);
 

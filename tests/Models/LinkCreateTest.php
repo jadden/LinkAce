@@ -32,7 +32,7 @@ class LinkCreateTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function testValidLinkCreation(): void
+    public function test_valid_link_creation(): void
     {
         $this->be($this->user);
 

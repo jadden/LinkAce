@@ -24,7 +24,7 @@ class TagDeleteTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function testValidCategoryCreation(): void
+    public function test_valid_category_creation(): void
     {
         $this->be($this->user);
 

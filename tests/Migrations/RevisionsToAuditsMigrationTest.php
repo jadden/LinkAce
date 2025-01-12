@@ -31,7 +31,7 @@ class RevisionsToAuditsMigrationTest extends TestCase
         });
     }
 
-    public function testRevisionMigration(): void
+    public function test_revision_migration(): void
     {
         $date = now()->subDay()->startOfSecond();
 
@@ -69,7 +69,7 @@ class RevisionsToAuditsMigrationTest extends TestCase
         );
     }
 
-    public function testRevisionMigrationWithUser(): void
+    public function test_revision_migration_with_user(): void
     {
         DB::table('revisions')->insert([
             'revisionable_type' => Link::class,
@@ -91,7 +91,7 @@ class RevisionsToAuditsMigrationTest extends TestCase
         $this->assertEquals(7, $audit->user_id);
     }
 
-    public function testRevisionMigrationWithoutOldValue(): void
+    public function test_revision_migration_without_old_value(): void
     {
         DB::table('revisions')->insert([
             'revisionable_type' => Link::class,
@@ -113,7 +113,7 @@ class RevisionsToAuditsMigrationTest extends TestCase
         $this->assertArrayHasKey('new', $audit->getModified()['url']);
     }
 
-    public function testRevisionMigrationWithRelations(): void
+    public function test_revision_migration_with_relations(): void
     {
         DB::table('revisions')->insert([
             'revisionable_type' => Link::class,
@@ -135,7 +135,7 @@ class RevisionsToAuditsMigrationTest extends TestCase
         $this->assertEquals([4, 8, 12], $audit->getModified()['revtags']['new']);
     }
 
-    public function testRevisionMigrationWithDeletion(): void
+    public function test_revision_migration_with_deletion(): void
     {
         Link::factory()->createQuietly(['url' => 'https://deleted.com']);
 
@@ -160,7 +160,7 @@ class RevisionsToAuditsMigrationTest extends TestCase
         $this->assertEquals('https://deleted.com', $audit->getModified()['url']['old']);
     }
 
-    public function testRevisionMigrationWithRestore(): void
+    public function test_revision_migration_with_restore(): void
     {
         Link::factory()->createQuietly(['url' => 'https://restored.com']);
 

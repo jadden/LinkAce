@@ -22,7 +22,7 @@ class ExampleSeedingTest extends TestCase
         $this->seed('ExampleSeeder');
     }
 
-    public function testSeedingResults(): void
+    public function test_seeding_results(): void
     {
         $this->assertEquals(2, User::count());
         $this->assertEquals(10, LinkList::count());

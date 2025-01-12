@@ -21,7 +21,7 @@ class AuditControllerTest extends TestCase
         $this->actingAs($this->user);
     }
 
-    public function testAuditPage(): void
+    public function test_audit_page(): void
     {
         $this->user->assignRole(Role::ADMIN);
 
@@ -30,7 +30,7 @@ class AuditControllerTest extends TestCase
         $response->assertOk()->assertSee('System Events');
     }
 
-    public function testAuditPageWithEntries(): void
+    public function test_audit_page_with_entries(): void
     {
         $this->user->assignRole(Role::ADMIN);
 

@@ -30,7 +30,7 @@ class BulkEditControllerTest extends TestCase
         Queue::fake();
     }
 
-    public function testBulkEditForm(): void
+    public function test_bulk_edit_form(): void
     {
         $this->post('bulk-edit', [
             'type' => 'links',
@@ -38,7 +38,7 @@ class BulkEditControllerTest extends TestCase
         ])->assertOk()->assertSee('You want to edit 3 Links.');
     }
 
-    public function testLinksEdit(): void
+    public function test_links_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $links = $this->prepareLinkTestData();
@@ -57,7 +57,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('links')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Links out of 4 selected ones.');
 
-        array_walk($links, fn($link) => $link->refresh());
+        array_walk($links, fn ($link) => $link->refresh());
 
         $this->assertEqualsCanonicalizing([3, 1], $links[0]->lists()->pluck('id')->toArray());
         $this->assertEqualsCanonicalizing([1, 2, 3], $links[1]->lists()->pluck('id')->toArray());
@@ -73,7 +73,7 @@ class BulkEditControllerTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherLink->visibility);
     }
 
-    public function testAlternativeLinksEdit(): void
+    public function test_alternative_links_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $links = $this->prepareLinkTestData();
@@ -92,7 +92,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('links')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Links out of 4 selected ones.');
 
-        array_walk($links, fn($link) => $link->refresh());
+        array_walk($links, fn ($link) => $link->refresh());
 
         $this->assertEqualsCanonicalizing([3], $links[0]->lists()->pluck('id')->sort()->toArray());
         $this->assertEqualsCanonicalizing([3], $links[1]->lists()->pluck('id')->sort()->toArray());
@@ -108,7 +108,7 @@ class BulkEditControllerTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherLink->visibility);
     }
 
-    public function testListsEdit(): void
+    public function test_lists_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $lists = $this->createTestLists($this->user);
@@ -123,7 +123,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('lists')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Lists out of 4 selected ones.');
 
-        array_walk($lists, fn($list) => $list->refresh());
+        array_walk($lists, fn ($list) => $list->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_PUBLIC, $lists[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $lists[1]->visibility);
@@ -131,7 +131,7 @@ class BulkEditControllerTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherList->visibility);
     }
 
-    public function testAlternativeListsEdit(): void
+    public function test_alternative_lists_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $lists = $this->createTestLists($this->user);
@@ -146,7 +146,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('lists')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Lists out of 4 selected ones.');
 
-        array_walk($lists, fn($list) => $list->refresh());
+        array_walk($lists, fn ($list) => $list->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $lists[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $lists[1]->visibility);
@@ -154,7 +154,7 @@ class BulkEditControllerTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherList->visibility);
     }
 
-    public function testTagsEdit(): void
+    public function test_tags_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $tags = $this->createTestTags($this->user);
@@ -169,7 +169,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('tags')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Tags out of 4 selected ones.');
 
-        array_walk($tags, fn($tag) => $tag->refresh());
+        array_walk($tags, fn ($tag) => $tag->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_PUBLIC, $tags[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $tags[1]->visibility);
@@ -177,7 +177,7 @@ class BulkEditControllerTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherTag->visibility);
     }
 
-    public function testAlternativeTagsEdit(): void
+    public function test_alternative_tags_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $tags = $this->createTestTags($this->user);
@@ -192,7 +192,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('tags')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Tags out of 4 selected ones.');
 
-        array_walk($tags, fn($tag) => $tag->refresh());
+        array_walk($tags, fn ($tag) => $tag->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $tags[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $tags[1]->visibility);
@@ -200,7 +200,7 @@ class BulkEditControllerTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherTag->visibility);
     }
 
-    public function testDeletion()
+    public function test_deletion()
     {
         Log::shouldReceive('warning')->times(3);
         $otherUser = User::factory()->create();
@@ -219,7 +219,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('links')
             ->assertSessionHas('flash_notification.0.message', 'Successfully moved 2 Links out of 3 selected ones to the trash.');
 
-        array_walk($links, fn($link) => $link->refresh());
+        array_walk($links, fn ($link) => $link->refresh());
         $this->assertNotNull($links[0]->deleted_at);
         $this->assertNotNull($links[1]->deleted_at);
         $this->assertNull($otherLink->deleted_at);
@@ -231,7 +231,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('lists')
             ->assertSessionHas('flash_notification.1.message', 'Successfully moved 2 Lists out of 3 selected ones to the trash.');
 
-        array_walk($lists, fn($list) => $list->refresh());
+        array_walk($lists, fn ($list) => $list->refresh());
         $this->assertNotNull($lists[0]->deleted_at);
         $this->assertNotNull($lists[1]->deleted_at);
         $this->assertNull($otherList->deleted_at);
@@ -243,7 +243,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('tags')
             ->assertSessionHas('flash_notification.2.message', 'Successfully moved 2 Tags out of 3 selected ones to the trash.');
 
-        array_walk($tags, fn($tag) => $tag->refresh());
+        array_walk($tags, fn ($tag) => $tag->refresh());
         $this->assertNotNull($tags[0]->deleted_at);
         $this->assertNotNull($tags[1]->deleted_at);
         $this->assertNull($otherTag->deleted_at);

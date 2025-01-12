@@ -26,7 +26,7 @@ class NoteControllerTest extends TestCase
         $this->actingAs($this->user);
     }
 
-    public function testMinimalStoreRequest(): void
+    public function test_minimal_store_request(): void
     {
         $this->createTestLinks();
 
@@ -53,7 +53,7 @@ class NoteControllerTest extends TestCase
         ])->assertForbidden();
     }
 
-    public function testInternalStoreRequest(): void
+    public function test_internal_store_request(): void
     {
         $link = Link::factory()->create();
 
@@ -70,7 +70,7 @@ class NoteControllerTest extends TestCase
             ->assertSee('Internal Note');
     }
 
-    public function testPrivateStoreRequest(): void
+    public function test_private_store_request(): void
     {
         $link = Link::factory()->create();
 
@@ -87,7 +87,7 @@ class NoteControllerTest extends TestCase
             ->assertSee('Private Note');
     }
 
-    public function testStoreRequestWithMarkdown(): void
+    public function test_store_request_with_markdown(): void
     {
         UserSettings::fake([
             'markdown_for_text' => true,
@@ -104,7 +104,7 @@ class NoteControllerTest extends TestCase
         $this->get('links/1')->assertSee('Lorem <em>ipsum dolor</em>', false);
     }
 
-    public function testValidationErrorForCreate(): void
+    public function test_validation_error_for_create(): void
     {
         $link = Link::factory()->create();
 
@@ -115,7 +115,7 @@ class NoteControllerTest extends TestCase
         ])->assertSessionHasErrors(['note']);
     }
 
-    public function testStoreRequestForForeignPrivateLink(): void
+    public function test_store_request_for_foreign_private_link(): void
     {
         $this->createTestLinks();
 
@@ -126,7 +126,7 @@ class NoteControllerTest extends TestCase
         ])->assertForbidden();
     }
 
-    public function testStoreRequestForMissingLink(): void
+    public function test_store_request_for_missing_link(): void
     {
         $this->post('notes', [
             'link_id' => '1',
@@ -135,7 +135,7 @@ class NoteControllerTest extends TestCase
         ])->assertForbidden();
     }
 
-    public function testEditView(): void
+    public function test_edit_view(): void
     {
         $this->createTestNotes();
 
@@ -144,12 +144,12 @@ class NoteControllerTest extends TestCase
             ->assertSee('Edit Note');
     }
 
-    public function testInvalidEditRequest(): void
+    public function test_invalid_edit_request(): void
     {
         $this->get('notes/1/edit')->assertNotFound();
     }
 
-    public function testUpdateResponse(): void
+    public function test_update_response(): void
     {
         $note = Note::factory()->create();
 
@@ -162,7 +162,7 @@ class NoteControllerTest extends TestCase
         $this->assertEquals('Lorem ipsum dolor est updated', $note->refresh()->note);
     }
 
-    public function testMissingModelErrorForUpdate(): void
+    public function test_missing_model_error_for_update(): void
     {
         $this->patch('notes/1', [
             'link_id' => 1,
@@ -171,7 +171,7 @@ class NoteControllerTest extends TestCase
         ])->assertNotFound();
     }
 
-    public function testValidationErrorForUpdate(): void
+    public function test_validation_error_for_update(): void
     {
         $this->createTestNotes();
 
@@ -181,7 +181,7 @@ class NoteControllerTest extends TestCase
         ])->assertSessionHasErrors(['note']);
     }
 
-    public function testDeleteResponse(): void
+    public function test_delete_response(): void
     {
         $this->createTestNotes();
 
@@ -194,7 +194,7 @@ class NoteControllerTest extends TestCase
         $this->assertEquals(2, Note::count());
     }
 
-    public function testMissingModelErrorForDelete(): void
+    public function test_missing_model_error_for_delete(): void
     {
         $this->deleteJson('notes/1')->assertNotFound();
     }

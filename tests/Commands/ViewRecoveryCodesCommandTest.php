@@ -10,7 +10,7 @@ class ViewRecoveryCodesCommandTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCommandWith2FaDisabled(): void
+    public function test_command_with2_fa_disabled(): void
     {
         User::factory()->create(['email' => 'test@linkace.org']);
 
@@ -22,7 +22,7 @@ class ViewRecoveryCodesCommandTest extends TestCase
             ->assertExitCode(0);
     }
 
-    public function testCommand(): void
+    public function test_command(): void
     {
         $user = User::factory()->create(['email' => 'test@linkace.org']);
 

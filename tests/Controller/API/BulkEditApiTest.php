@@ -30,7 +30,7 @@ class BulkEditApiTest extends TestCase
         Queue::fake();
     }
 
-    public function testLinksEdit(): void
+    public function test_links_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $links = $this->prepareLinkTestData();
@@ -47,7 +47,7 @@ class BulkEditApiTest extends TestCase
             'visibility' => null,
         ])->assertJsonCount(4);
 
-        array_walk($links, fn($link) => $link->refresh());
+        array_walk($links, fn ($link) => $link->refresh());
 
         $this->assertEqualsCanonicalizing([1, 3], $links[0]->lists()->pluck('id')->toArray());
         $this->assertEqualsCanonicalizing([1, 2, 3], $links[1]->lists()->pluck('id')->toArray());
@@ -63,7 +63,7 @@ class BulkEditApiTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherLink->visibility);
     }
 
-    public function testAlternativeLinksEdit(): void
+    public function test_alternative_links_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $links = $this->prepareLinkTestData();
@@ -80,7 +80,7 @@ class BulkEditApiTest extends TestCase
             'visibility' => ModelAttribute::VISIBILITY_INTERNAL,
         ])->assertJsonCount(4);
 
-        array_walk($links, fn($link) => $link->refresh());
+        array_walk($links, fn ($link) => $link->refresh());
 
         $this->assertEqualsCanonicalizing([3], $links[0]->lists()->pluck('id')->sort()->toArray());
         $this->assertEqualsCanonicalizing([3], $links[1]->lists()->pluck('id')->sort()->toArray());
@@ -96,7 +96,7 @@ class BulkEditApiTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherLink->visibility);
     }
 
-    public function testListsEdit(): void
+    public function test_lists_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $lists = $this->createTestLists($this->user);
@@ -109,7 +109,7 @@ class BulkEditApiTest extends TestCase
             'visibility' => null,
         ])->assertJsonCount(4);
 
-        array_walk($lists, fn($list) => $list->refresh());
+        array_walk($lists, fn ($list) => $list->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_PUBLIC, $lists[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $lists[1]->visibility);
@@ -117,7 +117,7 @@ class BulkEditApiTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherList->visibility);
     }
 
-    public function testAlternativeListsEdit(): void
+    public function test_alternative_lists_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $lists = $this->createTestLists($this->user);
@@ -130,7 +130,7 @@ class BulkEditApiTest extends TestCase
             'visibility' => 2,
         ])->assertJsonCount(4);
 
-        array_walk($lists, fn($list) => $list->refresh());
+        array_walk($lists, fn ($list) => $list->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $lists[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $lists[1]->visibility);
@@ -138,7 +138,7 @@ class BulkEditApiTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherList->visibility);
     }
 
-    public function testTagsEdit(): void
+    public function test_tags_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $tags = $this->createTestTags($this->user);
@@ -151,7 +151,7 @@ class BulkEditApiTest extends TestCase
             'visibility' => null,
         ])->assertJsonCount(4);
 
-        array_walk($tags, fn($tag) => $tag->refresh());
+        array_walk($tags, fn ($tag) => $tag->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_PUBLIC, $tags[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $tags[1]->visibility);
@@ -159,7 +159,7 @@ class BulkEditApiTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherTag->visibility);
     }
 
-    public function testAlternativeTagsEdit(): void
+    public function test_alternative_tags_edit(): void
     {
         Log::shouldReceive('warning')->once();
         $tags = $this->createTestTags($this->user);
@@ -172,7 +172,7 @@ class BulkEditApiTest extends TestCase
             'visibility' => 2,
         ])->assertJsonCount(4);
 
-        array_walk($tags, fn($tag) => $tag->refresh());
+        array_walk($tags, fn ($tag) => $tag->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $tags[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $tags[1]->visibility);
@@ -180,7 +180,7 @@ class BulkEditApiTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherTag->visibility);
     }
 
-    public function testDeletion()
+    public function test_deletion()
     {
         Log::shouldReceive('warning')->times(3);
         $otherUser = User::factory()->create();
@@ -201,7 +201,7 @@ class BulkEditApiTest extends TestCase
             4 => false,
         ]);
 
-        array_walk($links, fn($link) => $link->refresh());
+        array_walk($links, fn ($link) => $link->refresh());
         $this->assertNotNull($links[0]->deleted_at);
         $this->assertNotNull($links[1]->deleted_at);
         $this->assertNull($otherLink->deleted_at);
@@ -215,7 +215,7 @@ class BulkEditApiTest extends TestCase
             4 => false,
         ]);
 
-        array_walk($lists, fn($list) => $list->refresh());
+        array_walk($lists, fn ($list) => $list->refresh());
         $this->assertNotNull($lists[0]->deleted_at);
         $this->assertNotNull($lists[1]->deleted_at);
         $this->assertNull($otherList->deleted_at);
@@ -229,7 +229,7 @@ class BulkEditApiTest extends TestCase
             4 => false,
         ]);
 
-        array_walk($tags, fn($tag) => $tag->refresh());
+        array_walk($tags, fn ($tag) => $tag->refresh());
         $this->assertNotNull($tags[0]->deleted_at);
         $this->assertNotNull($tags[1]->deleted_at);
         $this->assertNull($otherTag->deleted_at);

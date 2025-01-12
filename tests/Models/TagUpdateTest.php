@@ -24,7 +24,7 @@ class TagUpdateTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function testValidTagUpdate(): void
+    public function test_valid_tag_update(): void
     {
         $this->be($this->user);
 

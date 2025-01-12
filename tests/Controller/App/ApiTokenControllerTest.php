@@ -18,12 +18,12 @@ class ApiTokenControllerTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testTokenOverview(): void
+    public function test_token_overview(): void
     {
         $this->get('settings/api-tokens')->assertOk()->assertSee('API Tokens');
     }
 
-    public function testTokenCreation(): void
+    public function test_token_creation(): void
     {
         $this->post('settings/api-tokens', [
             'token_name' => 'invalid name',
@@ -46,7 +46,7 @@ class ApiTokenControllerTest extends TestCase
         ])->assertSessionHasErrors(['token_name']);
     }
 
-    public function testTokenDeletion(): void
+    public function test_token_deletion(): void
     {
         $this->post('settings/api-tokens', [
             'token_name' => 'validToken',
@@ -57,7 +57,7 @@ class ApiTokenControllerTest extends TestCase
         $this->assertDatabaseCount('personal_access_tokens', 0);
     }
 
-    public function testTokenDeletionForForeignToken(): void
+    public function test_token_deletion_for_foreign_token(): void
     {
         $user = User::factory()->create();
         $user->createToken('foreignToken');

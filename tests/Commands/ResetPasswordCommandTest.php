@@ -11,7 +11,7 @@ class ResetPasswordCommandTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCommand(): void
+    public function test_command(): void
     {
         User::factory()->create(['email' => 'test@linkace.org']);
 

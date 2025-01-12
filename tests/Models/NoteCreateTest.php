@@ -24,7 +24,7 @@ class NoteCreateTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function testValidNoteCreation(): void
+    public function test_valid_note_creation(): void
     {
         $this->be($this->user);
 

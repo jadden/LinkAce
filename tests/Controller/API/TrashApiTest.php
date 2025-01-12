@@ -21,12 +21,12 @@ class TrashApiTest extends ApiTestCase
         $this->setupTrashTestData();
     }
 
-    public function testUnauthorizedRequest(): void
+    public function test_unauthorized_request(): void
     {
         $this->getJson('api/v2/trash/links')->assertUnauthorized();
     }
 
-    public function testGetLinks(): void
+    public function test_get_links(): void
     {
         $response = $this->getJsonAuthorized('api/v2/trash/links');
         $response->assertOk();
@@ -35,7 +35,7 @@ class TrashApiTest extends ApiTestCase
         $this->assertEquals('Very special site title', $result[0]->title);
     }
 
-    public function testGetLists(): void
+    public function test_get_lists(): void
     {
         $response = $this->getJsonAuthorized('api/v2/trash/lists');
         $response->assertOk();
@@ -44,7 +44,7 @@ class TrashApiTest extends ApiTestCase
         $this->assertEquals('A Tests List', $result[0]->name);
     }
 
-    public function testGetTags(): void
+    public function test_get_tags(): void
     {
         $response = $this->getJsonAuthorized('api/v2/trash/tags');
         $response->assertOk();
@@ -53,7 +53,7 @@ class TrashApiTest extends ApiTestCase
         $this->assertEquals('Examples', $result[0]->name);
     }
 
-    public function testGetNotes(): void
+    public function test_get_notes(): void
     {
         $response = $this->getJsonAuthorized('api/v2/trash/notes');
         $response->assertOk();
@@ -66,7 +66,7 @@ class TrashApiTest extends ApiTestCase
      * Tests for clearing the trash
      */
 
-    public function testValidTrashClearLinksResponse(): void
+    public function test_valid_trash_clear_links_response(): void
     {
         $this->setupTrashTestData();
 
@@ -77,7 +77,7 @@ class TrashApiTest extends ApiTestCase
         $this->assertEquals(0, DB::table('links')->count());
     }
 
-    public function testValidTrashClearTagsResponse(): void
+    public function test_valid_trash_clear_tags_response(): void
     {
         $this->setupTrashTestData();
 
@@ -88,7 +88,7 @@ class TrashApiTest extends ApiTestCase
         $this->assertEquals(0, DB::table('tags')->count());
     }
 
-    public function testValidTrashClearListsResponse(): void
+    public function test_valid_trash_clear_lists_response(): void
     {
         $this->setupTrashTestData();
 
@@ -99,7 +99,7 @@ class TrashApiTest extends ApiTestCase
         $this->assertEquals(0, DB::table('lists')->count());
     }
 
-    public function testValidTrashClearNotesResponse(): void
+    public function test_valid_trash_clear_notes_response(): void
     {
         $this->setupTrashTestData();
 
@@ -110,7 +110,7 @@ class TrashApiTest extends ApiTestCase
         $this->assertEquals(0, DB::table('notes')->count());
     }
 
-    public function testInvalidTrashClearRequest(): void
+    public function test_invalid_trash_clear_request(): void
     {
         $this->setupTrashTestData();
 
@@ -121,7 +121,7 @@ class TrashApiTest extends ApiTestCase
         ]);
     }
 
-    public function testClearRequestWithInvalidModel(): void
+    public function test_clear_request_with_invalid_model(): void
     {
         $this->setupTrashTestData();
 
@@ -136,7 +136,7 @@ class TrashApiTest extends ApiTestCase
      * Tests for restoring items
      */
 
-    public function testValidRestoreLinkResponse(): void
+    public function test_valid_restore_link_response(): void
     {
         $this->setupTrashTestData();
 
@@ -148,7 +148,7 @@ class TrashApiTest extends ApiTestCase
         $this->assertEquals(null, Link::find(1)->deleted_at);
     }
 
-    public function testValidRestoreTagResponse(): void
+    public function test_valid_restore_tag_response(): void
     {
         $this->setupTrashTestData();
 
@@ -160,7 +160,7 @@ class TrashApiTest extends ApiTestCase
         $this->assertEquals(null, Tag::find(1)->deleted_at);
     }
 
-    public function testValidRestoreListResponse(): void
+    public function test_valid_restore_list_response(): void
     {
         $this->setupTrashTestData();
 
@@ -172,7 +172,7 @@ class TrashApiTest extends ApiTestCase
         $this->assertEquals(null, LinkList::find(1)->deleted_at);
     }
 
-    public function testValidRestoreNoteResponse(): void
+    public function test_valid_restore_note_response(): void
     {
         $this->setupTrashTestData();
 
@@ -184,7 +184,7 @@ class TrashApiTest extends ApiTestCase
         $this->assertEquals(null, Note::find(1)->deleted_at);
     }
 
-    public function testInvalidRestoreResponse(): void
+    public function test_invalid_restore_response(): void
     {
         $this->setupTrashTestData();
 
@@ -197,7 +197,7 @@ class TrashApiTest extends ApiTestCase
         ]);
     }
 
-    public function testRestoreWithMissingModel(): void
+    public function test_restore_with_missing_model(): void
     {
         $this->setupTrashTestData();
 

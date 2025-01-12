@@ -16,7 +16,7 @@ class UserControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testPublicUserProfile(): void
+    public function test_public_user_profile(): void
     {
         SystemSettings::fake(['setup_completed' => true, 'guest_access_enabled' => true]);
 
@@ -53,7 +53,7 @@ class UserControllerTest extends TestCase
             ->assertDontSee('Private Tag');
     }
 
-    public function testPrivateUserProfile(): void
+    public function test_private_user_profile(): void
     {
         SystemSettings::fake(['setup_completed' => true, 'guest_access_enabled' => true]);
 

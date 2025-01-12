@@ -14,7 +14,7 @@ class WaybackMachineTest extends TestCase
      *
      * @return void
      */
-    public function testValidWaybackAdding(): void
+    public function test_valid_wayback_adding(): void
     {
         Http::fake([
             'web.archive.org/*' => Http::response([], 200),
@@ -33,7 +33,7 @@ class WaybackMachineTest extends TestCase
      *
      * @return void
      */
-    public function testValidWaybackAddingWithNetworkError(): void
+    public function test_valid_wayback_adding_with_network_error(): void
     {
         Http::fake([
             'web.archive.org/*' => Http::response([], 404),
@@ -52,7 +52,7 @@ class WaybackMachineTest extends TestCase
      *
      * @return void
      */
-    public function testInvalidWaybackAdding(): void
+    public function test_invalid_wayback_adding(): void
     {
         $url = 'not an URL';
 
@@ -67,7 +67,7 @@ class WaybackMachineTest extends TestCase
      *
      * @return void
      */
-    public function testValidWaybackLink(): void
+    public function test_valid_wayback_link(): void
     {
         $url = 'https://google.com';
 
@@ -82,7 +82,7 @@ class WaybackMachineTest extends TestCase
      *
      * @return void
      */
-    public function testInvalidWaybackLink(): void
+    public function test_invalid_wayback_link(): void
     {
         $url = 'not an URL';
 

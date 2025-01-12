@@ -39,7 +39,7 @@ class LinkControllerTest extends TestCase
         Queue::fake();
     }
 
-    public function testIndexView(): void
+    public function test_index_view(): void
     {
         $this->createTestLinks();
 
@@ -67,12 +67,12 @@ class LinkControllerTest extends TestCase
             ]);
     }
 
-    public function testCreateView(): void
+    public function test_create_view(): void
     {
         $this->get('links/create')->assertOk()->assertSee('Add Link');
     }
 
-    public function testMinimalStoreRequest(): void
+    public function test_minimal_store_request(): void
     {
         $this->post('links', [
             'url' => 'https://example.com',
@@ -84,7 +84,7 @@ class LinkControllerTest extends TestCase
         $this->assertEquals('Example Title', $databaseLink->title);
     }
 
-    public function testFullStoreRequest(): void
+    public function test_full_store_request(): void
     {
         $tag = Tag::factory()->create();
         $list = LinkList::factory()->create();
@@ -107,7 +107,7 @@ class LinkControllerTest extends TestCase
         $this->assertEquals($tag->name, $databaseLink->tags->first()->name);
     }
 
-    public function testStoreRequestWithDuplicate(): void
+    public function test_store_request_with_duplicate(): void
     {
         Link::factory()->create([
             'url' => 'https://example.com/',
@@ -126,7 +126,7 @@ class LinkControllerTest extends TestCase
         $flashMessages->contains('message', trans('link.duplicates_found'));
     }
 
-    public function testStoreRequestWithExistingPrivateLink(): void
+    public function test_store_request_with_existing_private_link(): void
     {
         Link::factory()->create(['url' => 'https://example.com', 'user_id' => 2, 'visibility' => 3]);
 
@@ -148,7 +148,7 @@ class LinkControllerTest extends TestCase
         ]);
     }
 
-    public function testStoreRequestWithBrokenUrl(): void
+    public function test_store_request_with_broken_url(): void
     {
         Http::fake([
             'example.com' => Http::response('', 500),
@@ -170,7 +170,7 @@ class LinkControllerTest extends TestCase
         $this->assertEquals('example.com', $databaseLink->title);
     }
 
-    public function testStoreRequestWithHugeThumbnail(): void
+    public function test_store_request_with_huge_thumbnail(): void
     {
         $img = 'https://picsum.photos/1000/500';
 
@@ -190,7 +190,7 @@ class LinkControllerTest extends TestCase
         $this->assertEquals($img, $databaseLink->thumbnail);
     }
 
-    public function testStoreRequestWithContinue(): void
+    public function test_store_request_with_continue(): void
     {
         $this->post('links', [
             'url' => 'https://example.com',
@@ -202,7 +202,7 @@ class LinkControllerTest extends TestCase
         $this->assertEquals('https://example.com', $databaseLink->url);
     }
 
-    public function testStoreRequestWithoutArchiveBackup(): void
+    public function test_store_request_without_archive_backup(): void
     {
         UserSettings::fake([
             'archive_backups_enabled' => false,
@@ -220,7 +220,7 @@ class LinkControllerTest extends TestCase
         Queue::assertNotPushed(SaveLinkToWaybackmachine::class);
     }
 
-    public function testStoreRequestWithoutPrivateArchiveBackup(): void
+    public function test_store_request_without_private_archive_backup(): void
     {
         UserSettings::fake([
             'archive_backups_enabled' => true,
@@ -239,7 +239,7 @@ class LinkControllerTest extends TestCase
         Queue::assertNotPushed(SaveLinkToWaybackmachine::class);
     }
 
-    public function testValidationErrorForCreate(): void
+    public function test_validation_error_for_create(): void
     {
         $this->post('links', [
             'url' => null,
@@ -248,7 +248,7 @@ class LinkControllerTest extends TestCase
         ]);
     }
 
-    public function testDetailView(): void
+    public function test_detail_view(): void
     {
         $this->createTestLinks();
 
@@ -257,7 +257,7 @@ class LinkControllerTest extends TestCase
         $this->get('links/3')->assertForbidden();
     }
 
-    public function testInternalDetailView(): void
+    public function test_internal_detail_view(): void
     {
         Link::factory()->create(['url' => 'https://public-link.com', 'visibility' => 2]);
 
@@ -267,7 +267,7 @@ class LinkControllerTest extends TestCase
             ->assertSee('https://public-link.com');
     }
 
-    public function testPrivateDetailView(): void
+    public function test_private_detail_view(): void
     {
         Link::factory()->create(['url' => 'https://public-link.com', 'visibility' => 3]);
 
@@ -277,7 +277,7 @@ class LinkControllerTest extends TestCase
             ->assertSee('https://public-link.com');
     }
 
-    public function testEditView(): void
+    public function test_edit_view(): void
     {
         $this->createTestLinks();
 
@@ -286,7 +286,7 @@ class LinkControllerTest extends TestCase
         $this->get('links/3/edit')->assertForbidden();
     }
 
-    public function testUpdateResponse(): void
+    public function test_update_response(): void
     {
         $this->createTestLinks();
 
@@ -335,7 +335,7 @@ class LinkControllerTest extends TestCase
         ])->assertForbidden();
     }
 
-    public function testMissingModelErrorForUpdate(): void
+    public function test_missing_model_error_for_update(): void
     {
         $this->patch('links/1', [
             'link_id' => '1',
@@ -348,7 +348,7 @@ class LinkControllerTest extends TestCase
         ])->assertNotFound();
     }
 
-    public function testUniquePropertyValidation(): void
+    public function test_unique_property_validation(): void
     {
         Link::factory()->create(['url' => 'https://old-example.com']);
         $baseLink = Link::factory()->create();
@@ -366,7 +366,7 @@ class LinkControllerTest extends TestCase
         ]);
     }
 
-    public function testValidationErrorForUpdate(): void
+    public function test_validation_error_for_update(): void
     {
         $baseLink = Link::factory()->create();
 
@@ -383,7 +383,7 @@ class LinkControllerTest extends TestCase
         ]);
     }
 
-    public function testDeleteResponse(): void
+    public function test_delete_response(): void
     {
         $this->createTestLinks();
 
@@ -396,12 +396,12 @@ class LinkControllerTest extends TestCase
         $this->delete('links/3')->assertForbidden();
     }
 
-    public function testMissingModelErrorForDelete(): void
+    public function test_missing_model_error_for_delete(): void
     {
         $this->delete('links/1')->assertNotFound();
     }
 
-    public function testCheckToggleRequest(): void
+    public function test_check_toggle_request(): void
     {
         $this->createTestLinks();
         $link = Link::first();
@@ -420,7 +420,7 @@ class LinkControllerTest extends TestCase
         $this->post('links/toggle-check/3', ['toggle' => '1'])->assertForbidden();
     }
 
-    public function testInvalidCheckToggleRequest(): void
+    public function test_invalid_check_toggle_request(): void
     {
         Link::factory()->create();
 
@@ -431,7 +431,7 @@ class LinkControllerTest extends TestCase
         ]);
     }
 
-    public function testMarkWorkingRequest(): void
+    public function test_mark_working_request(): void
     {
         $this->createTestLinks();
         $link = Link::first();
@@ -443,7 +443,7 @@ class LinkControllerTest extends TestCase
         $this->assertEquals(Link::STATUS_OK, $link->refresh()->status);
     }
 
-    public function testLinkDisplayToggle(): void
+    public function test_link_display_toggle(): void
     {
         $this->createTestLinks();
 

@@ -24,7 +24,7 @@ class SettingsEntryTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testStringSettingsChange(): void
+    public function test_string_settings_change(): void
     {
         $settings = app(SystemSettings::class);
         $settings->page_title = 'A new Page Title';
@@ -40,7 +40,7 @@ class SettingsEntryTest extends TestCase
         );
     }
 
-    public function testBooleanSettingsChange(): void
+    public function test_boolean_settings_change(): void
     {
         $settings = app(UserSettings::class);
         $settings->archive_backups_enabled = false;
@@ -53,7 +53,7 @@ class SettingsEntryTest extends TestCase
         $this->assertStringContainsString('Changed Enable backups for User 1 from <code>Yes</code> to <code>No</code>', $output);
     }
 
-    public function testDarkmodeSettingsChange(): void
+    public function test_darkmode_settings_change(): void
     {
         $settings = app(UserSettings::class);
         $settings->darkmode_setting = 0;
@@ -69,7 +69,7 @@ class SettingsEntryTest extends TestCase
         );
     }
 
-    public function testLocaleSettingsChange(): void
+    public function test_locale_settings_change(): void
     {
         $settings = app(UserSettings::class);
         $settings->locale = 'de_DE';
@@ -85,7 +85,7 @@ class SettingsEntryTest extends TestCase
         );
     }
 
-    public function testSharingSettingsChange(): void
+    public function test_sharing_settings_change(): void
     {
         $settings = app(UserSettings::class);
         $settings->share_email = false;
@@ -101,7 +101,7 @@ class SettingsEntryTest extends TestCase
         );
     }
 
-    public function testGuestSettingsChange(): void
+    public function test_guest_settings_change(): void
     {
         $settings = app(GuestSettings::class);
         $settings->listitem_count = 60;
@@ -117,7 +117,7 @@ class SettingsEntryTest extends TestCase
         );
     }
 
-    public function testUserSettingsChange(): void
+    public function test_user_settings_change(): void
     {
         $settings = app(UserSettings::class);
         $settings->locale = 'de_DE';

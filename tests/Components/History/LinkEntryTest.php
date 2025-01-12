@@ -22,7 +22,7 @@ class LinkEntryTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testAddedChange(): void
+    public function test_added_change(): void
     {
         $link = Link::factory()->create([
             'description' => null,
@@ -37,7 +37,7 @@ class LinkEntryTest extends TestCase
         $this->assertStringContainsString('Added <code>Test Description</code> to Description', $output);
     }
 
-    public function testRegularChange(): void
+    public function test_regular_change(): void
     {
         $link = Link::factory()->create([
             'description' => 'Test Description',
@@ -56,7 +56,7 @@ class LinkEntryTest extends TestCase
         );
     }
 
-    public function testRemoveChange(): void
+    public function test_remove_change(): void
     {
         $link = Link::factory()->create([
             'description' => 'Test Description',
@@ -72,7 +72,7 @@ class LinkEntryTest extends TestCase
         $this->assertStringContainsString('Removed <code>Test Description</code> from Description', $output);
     }
 
-    public function testModelDeletion(): void
+    public function test_model_deletion(): void
     {
         $link = Link::factory()->create();
 
@@ -89,7 +89,7 @@ class LinkEntryTest extends TestCase
         $this->assertStringContainsString('Link was restored', $output);
     }
 
-    public function testTagsAddedChange(): void
+    public function test_tags_added_change(): void
     {
         $link = Link::factory()->create();
 
@@ -111,7 +111,7 @@ class LinkEntryTest extends TestCase
         $this->assertStringContainsString('Added <code>newtag</code> to Tags', $output);
     }
 
-    public function testTagsChange(): void
+    public function test_tags_change(): void
     {
         $startTag = Tag::factory()->create();
         $link = Link::factory()->create();
@@ -139,7 +139,7 @@ class LinkEntryTest extends TestCase
         );
     }
 
-    public function testTagsRemoveChange(): void
+    public function test_tags_remove_change(): void
     {
         $startTag = Tag::factory()->create();
         $link = Link::factory()->create();
@@ -167,7 +167,7 @@ class LinkEntryTest extends TestCase
         );
     }
 
-    public function testLinksAddedChange(): void
+    public function test_links_added_change(): void
     {
         $link = Link::factory()->create();
 
@@ -189,7 +189,7 @@ class LinkEntryTest extends TestCase
         $this->assertStringContainsString('Added <code>Example List, New List</code> to Lists', $output);
     }
 
-    public function testLinksChange(): void
+    public function test_links_change(): void
     {
         $startList = LinkList::factory()->create();
         $link = Link::factory()->create();
@@ -217,7 +217,7 @@ class LinkEntryTest extends TestCase
         );
     }
 
-    public function testLinksRemoveChange(): void
+    public function test_links_remove_change(): void
     {
         $startList = LinkList::factory()->create();
         $link = Link::factory()->create();
@@ -245,7 +245,7 @@ class LinkEntryTest extends TestCase
         );
     }
 
-    public function testVisibilityChange(): void
+    public function test_visibility_change(): void
     {
         $link = Link::factory()->create([
             'visibility' => 1,

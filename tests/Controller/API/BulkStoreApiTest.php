@@ -24,7 +24,7 @@ class BulkStoreApiTest extends TestCase
         Queue::fake();
     }
 
-    public function testStoreLinks(): void
+    public function test_store_links(): void
     {
         $testHtml = '<!DOCTYPE html><head>' .
             '<title>Example Title</title>' .
@@ -76,7 +76,7 @@ class BulkStoreApiTest extends TestCase
         ]);
     }
 
-    public function testStoreLists(): void
+    public function test_store_lists(): void
     {
         $response = $this->postJson('api/v2/bulk/lists', [
             'models' => [
@@ -112,7 +112,7 @@ class BulkStoreApiTest extends TestCase
         ]);
     }
 
-    public function testStoreTags(): void
+    public function test_store_tags(): void
     {
         $response = $this->postJson('api/v2/bulk/tags', [
             'models' => [

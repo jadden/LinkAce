@@ -11,7 +11,7 @@ class NoteApiTest extends ApiTestCase
     use PreparesTestData;
     use RefreshDatabase;
 
-    public function testMinimalCreateRequest(): void
+    public function test_minimal_create_request(): void
     {
         $this->createTestLinks();
 
@@ -48,7 +48,7 @@ class NoteApiTest extends ApiTestCase
         ])->assertForbidden();
     }
 
-    public function testInvalidCreateRequest(): void
+    public function test_invalid_create_request(): void
     {
         $this->postJsonAuthorized('api/v2/notes', [
             'link_id' => null,
@@ -56,7 +56,7 @@ class NoteApiTest extends ApiTestCase
         ])->assertForbidden(); // A valid link cannot be determined, thus it's unauthorized
     }
 
-    public function testUpdateRequest(): void
+    public function test_update_request(): void
     {
         $this->createTestLinks();
         Note::factory()->create(['link_id' => 1]);
@@ -91,7 +91,7 @@ class NoteApiTest extends ApiTestCase
         ])->assertForbidden();
     }
 
-    public function testInvalidUpdateRequest(): void
+    public function test_invalid_update_request(): void
     {
         Note::factory()->create();
 
@@ -102,7 +102,7 @@ class NoteApiTest extends ApiTestCase
         ]);
     }
 
-    public function testUpdateRequestNotFound(): void
+    public function test_update_request_not_found(): void
     {
         $this->patchJsonAuthorized('api/v2/notes/1', [
             'note' => 'Sed haec quis possit intrepidus aestimare tellus.',
@@ -110,7 +110,7 @@ class NoteApiTest extends ApiTestCase
         ])->assertNotFound();
     }
 
-    public function testDeleteRequest(): void
+    public function test_delete_request(): void
     {
         $this->createTestNotes();
 
@@ -123,7 +123,7 @@ class NoteApiTest extends ApiTestCase
         $this->assertEquals(2, Note::count());
     }
 
-    public function testDeleteRequestNotFound(): void
+    public function test_delete_request_not_found(): void
     {
         $this->deleteJsonAuthorized('api/v2/notes/1')->assertNotFound();
     }

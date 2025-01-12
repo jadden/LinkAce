@@ -22,7 +22,7 @@ class FetchControllerTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testTagsQuery(): void
+    public function test_tags_query(): void
     {
         Tag::factory()->create(['name' => 'testTag']); // must be found
         Tag::factory()->create(['name' => 'test*Tag']); // must be found
@@ -41,7 +41,7 @@ class FetchControllerTest extends TestCase
             ->assertJsonMissing(['text' => 'blablaTag']);
     }
 
-    public function testListsQuery(): void
+    public function test_lists_query(): void
     {
         LinkList::factory()->create(['name' => 'testList']); // must be found
         LinkList::factory()->create(['name' => 'test*List']); // must be found
@@ -60,7 +60,7 @@ class FetchControllerTest extends TestCase
             ->assertJsonMissing(['text' => 'blablaList']);
     }
 
-    public function testExistingUrlSearch(): void
+    public function test_existing_url_search(): void
     {
         Link::factory()->create(['url' => 'https://duckduckgo.com']);
 
@@ -71,7 +71,7 @@ class FetchControllerTest extends TestCase
         $response->assertOk()->assertJson(['linkFound' => true]);
     }
 
-    public function testExistingUrlSearchWithoutResult(): void
+    public function test_existing_url_search_without_result(): void
     {
         Link::factory()->create(['url' => 'https://duckduckgo.com']);
 
@@ -82,7 +82,7 @@ class FetchControllerTest extends TestCase
         $response->assertOk()->assertJson(['linkFound' => false]);
     }
 
-    public function testGetHtmlKeywordsForUrl(): void
+    public function test_get_html_keywords_for_url(): void
     {
         $testHtml = '<!DOCTYPE html><head>' .
             '<title>Example Title</title>' .
@@ -106,7 +106,7 @@ class FetchControllerTest extends TestCase
         $this->assertEquals('javascript', $keywords[2]);
     }
 
-    public function testGetKeywordsForInvalidUrl(): void
+    public function test_get_keywords_for_invalid_url(): void
     {
         $response = $this->post('fetch/keywords-for-url', [
             'url' => 'not a url',
@@ -115,7 +115,7 @@ class FetchControllerTest extends TestCase
         $response->assertSessionHasErrors('url');
     }
 
-    public function testGetKeywordsForUrlWithFailure(): void
+    public function test_get_keywords_for_url_with_failure(): void
     {
         Http::fake([
             'example.com' => Http::response('', 500),

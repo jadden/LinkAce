@@ -11,7 +11,7 @@ class VariousAuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testConfirmPasswordView(): void
+    public function test_confirm_password_view(): void
     {
         $user = User::factory()->create();
 

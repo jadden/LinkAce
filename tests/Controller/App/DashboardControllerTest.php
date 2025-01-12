@@ -10,7 +10,7 @@ class DashboardControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testValidDashboardResponse(): void
+    public function test_valid_dashboard_response(): void
     {
         $user = User::factory()->create(['name' => 'MrTestUser']);
         $this->actingAs($user);

@@ -23,7 +23,7 @@ class ExportControllerTest extends TestCase
         $this->actingAs($this->user);
     }
 
-    public function testValidExportResponse(): void
+    public function test_valid_export_response(): void
     {
         $response = $this->get('export');
 
@@ -31,7 +31,7 @@ class ExportControllerTest extends TestCase
             ->assertSee('Export');
     }
 
-    public function testValidHtmlExportGeneration(): void
+    public function test_valid_html_export_generation(): void
     {
         $response = $this->post('export/html');
         $response->assertOk();
@@ -44,7 +44,7 @@ class ExportControllerTest extends TestCase
         );
     }
 
-    public function testValidCsvExportGeneration(): void
+    public function test_valid_csv_export_generation(): void
     {
         /** @var Link $link */
         $link = Link::inRandomOrder()->first();

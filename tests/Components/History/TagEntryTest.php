@@ -22,7 +22,7 @@ class TagEntryTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testRegularChange(): void
+    public function test_regular_change(): void
     {
         $tag = Tag::factory()->create([
             'name' => 'Test Tag',
@@ -40,7 +40,7 @@ class TagEntryTest extends TestCase
         );
     }
 
-    public function testModelDeletion(): void
+    public function test_model_deletion(): void
     {
         $tag = Tag::factory()->create();
 

@@ -34,7 +34,7 @@ class SharingTest extends TestCase
         'linkedin' => 'https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fexample.com%2F&title=Example%20Website&summary=&source=AddToAny',
     ];
 
-    public function testCorrectShareLinkForServices(): void
+    public function test_correct_share_link_for_services(): void
     {
         $testLink = Link::factory()->create([
             'url' => 'https://example.com/',

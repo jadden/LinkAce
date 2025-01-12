@@ -24,7 +24,7 @@ class LinkUpdateTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function testValidLinkUpdate(): void
+    public function test_valid_link_update(): void
     {
         $this->be($this->user);
 

@@ -11,7 +11,7 @@ class TagLinksTest extends ApiTestCase
     use PreparesTestData;
     use RefreshDatabase;
 
-    public function testLinksRequest(): void
+    public function test_links_request(): void
     {
         $this->createTestTags();
         [$link, $link2, $link3] = $this->createTestLinks();
@@ -51,7 +51,7 @@ class TagLinksTest extends ApiTestCase
             ->assertForbidden();
     }
 
-    public function testLinksRequestWithoutLinks(): void
+    public function test_links_request_without_links(): void
     {
         Tag::factory()->create();
 
@@ -62,7 +62,7 @@ class TagLinksTest extends ApiTestCase
             ]);
     }
 
-    public function testShowRequestNotFound(): void
+    public function test_show_request_not_found(): void
     {
         $this->getJsonAuthorized('api/v2/tags/1/links')->assertNotFound();
     }

@@ -11,7 +11,7 @@ class GuestControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testGuestModeEnabled(): void
+    public function test_guest_mode_enabled(): void
     {
         SystemSettings::fake([
             'guest_access_enabled' => true,
@@ -23,14 +23,14 @@ class GuestControllerTest extends TestCase
         $response->assertRedirect('guest/links');
     }
 
-    public function testGuestModeDisabledWithSplashpage(): void
+    public function test_guest_mode_disabled_with_splashpage(): void
     {
         $response = $this->get('/');
 
         $response->assertRedirect('login');
     }
 
-    public function testGuestModeDisabledWithLogin(): void
+    public function test_guest_mode_disabled_with_login(): void
     {
         $response = $this->get('links');
 

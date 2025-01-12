@@ -24,7 +24,7 @@ class FeedControllerTest extends TestCase
         ]);
     }
 
-    public function testLinkFeed(): void
+    public function test_link_feed(): void
     {
         $linkPublic = Link::factory()->create(['visibility' => 1]);
         $linkPrivate = Link::factory()->create(['visibility' => 3]);
@@ -36,7 +36,7 @@ class FeedControllerTest extends TestCase
             ->assertDontSee($linkPrivate->url);
     }
 
-    public function testListFeed(): void
+    public function test_list_feed(): void
     {
         LinkList::factory()->create(['name' => 'public list', 'visibility' => 1]);
         LinkList::factory()->create(['name' => 'private list', 'visibility' => 3]);
@@ -48,7 +48,7 @@ class FeedControllerTest extends TestCase
             ->assertDontSee('private list');
     }
 
-    public function testListLinkFeed(): void
+    public function test_list_link_feed(): void
     {
         $link = LinkList::factory()->create(['name' => 'test link', 'visibility' => 1]);
         $listLink = Link::factory()->create(['visibility' => 1]);
@@ -66,7 +66,7 @@ class FeedControllerTest extends TestCase
             ->assertDontSee($unrelatedLink->url);
     }
 
-    public function testPrivateListLinkFeed(): void
+    public function test_private_list_link_feed(): void
     {
         LinkList::factory()->create(['visibility' => 3]);
 
@@ -75,7 +75,7 @@ class FeedControllerTest extends TestCase
         $response->assertNotFound();
     }
 
-    public function testTagsFeed(): void
+    public function test_tags_feed(): void
     {
         Tag::factory()->create(['name' => 'public tag', 'visibility' => 1]);
         Tag::factory()->create(['name' => 'private tag', 'visibility' => 3]);
@@ -87,7 +87,7 @@ class FeedControllerTest extends TestCase
             ->assertDontSee('private tag');
     }
 
-    public function testTagLinkFeed(): void
+    public function test_tag_link_feed(): void
     {
         $tag = Tag::factory()->create(['name' => 'test tag', 'visibility' => 1]);
         $tagLink = Link::factory()->create(['visibility' => 1]);
@@ -105,7 +105,7 @@ class FeedControllerTest extends TestCase
             ->assertDontSee($unrelatedLink->url);
     }
 
-    public function testPrivateTagLinkFeed(): void
+    public function test_private_tag_link_feed(): void
     {
         Tag::factory()->create(['visibility' => 3]);
 

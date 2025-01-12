@@ -13,7 +13,7 @@ class CronControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testValidCronTokenResponse(): void
+    public function test_valid_cron_token_response(): void
     {
         Artisan::shouldReceive('call')->with('schedule:run');
 
@@ -30,7 +30,7 @@ class CronControllerTest extends TestCase
             ->assertSee('Cron successfully executed');
     }
 
-    public function testInvalidCronTokenResponse(): void
+    public function test_invalid_cron_token_response(): void
     {
         $cronToken = Str::random(32);
         $invalidCronToken = Str::random(32);
@@ -46,7 +46,7 @@ class CronControllerTest extends TestCase
             ->assertSee('The provided cron token is invalid');
     }
 
-    public function testMissingCronTokenResponse(): void
+    public function test_missing_cron_token_response(): void
     {
         $response = $this->get('cron');
 

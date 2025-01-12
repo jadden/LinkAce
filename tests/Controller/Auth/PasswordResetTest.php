@@ -13,13 +13,13 @@ class PasswordResetTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testForgotPasswordView(): void
+    public function test_forgot_password_view(): void
     {
         $confirmView = $this->get('forgot-password');
         $confirmView->assertSee('forgot-password');
     }
 
-    public function testForgotPasswordRequest(): void
+    public function test_forgot_password_request(): void
     {
         Notification::fake();
 
@@ -36,7 +36,7 @@ class PasswordResetTest extends TestCase
         Notification::assertSentTo($user, ResetPassword::class);
     }
 
-    public function testPasswordResetView(): void
+    public function test_password_reset_view(): void
     {
         $user = User::factory()->create([
             'email' => 'reset@linkace.org',
@@ -48,7 +48,7 @@ class PasswordResetTest extends TestCase
         $confirmView->assertSee('reset-password');
     }
 
-    public function testPasswordResetRequest(): void
+    public function test_password_reset_request(): void
     {
         $user = User::factory()->create([
             'email' => 'reset@linkace.org',

@@ -11,9 +11,9 @@ class TwoFactorTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testValidLoginWith2FA(): void
+    public function test_valid_login_with2_fa(): void
     {
-        $secretKey = (new Google2FA)->generateSecretKey();
+        $secretKey = (new Google2FA())->generateSecretKey();
 
         $user = User::factory()->create([
             'two_factor_secret' => encrypt($secretKey),
@@ -29,7 +29,7 @@ class TwoFactorTest extends TestCase
         $otpView = $this->get('two-factor-challenge');
         $otpView->assertSee('Two Factor Authentication');
 
-        $otp = (new Google2FA)->getCurrentOtp($secretKey);
+        $otp = (new Google2FA())->getCurrentOtp($secretKey);
 
         $otpResponse = $this->post('two-factor-challenge', [
             'code' => $otp,
@@ -38,9 +38,9 @@ class TwoFactorTest extends TestCase
         $otpResponse->assertRedirect('dashboard');
     }
 
-    public function testInvalidLoginWith2FA(): void
+    public function test_invalid_login_with2_fa(): void
     {
-        $secretKey = (new Google2FA)->generateSecretKey();
+        $secretKey = (new Google2FA())->generateSecretKey();
 
         $user = User::factory()->create([
             'two_factor_secret' => encrypt($secretKey),

@@ -28,14 +28,14 @@ class ImportControllerTest extends TestCase
         $this->actingAs($this->user);
     }
 
-    public function testValidImportResponse(): void
+    public function test_valid_import_response(): void
     {
         $response = $this->get('import');
 
         $response->assertOk()->assertSee('Import');
     }
 
-    public function testValidImportActionResponse(): void
+    public function test_valid_import_action_response(): void
     {
         Queue::fake();
 
@@ -49,7 +49,7 @@ class ImportControllerTest extends TestCase
         Queue::assertPushed(ImportLinkJob::class, 5);
     }
 
-    public function testQueuePage(): void
+    public function test_queue_page(): void
     {
         $exampleData = file_get_contents(__DIR__ . '/data/import_example.html');
         $file = UploadedFile::fake()->createWithContent('import_example.html', $exampleData);
@@ -66,7 +66,7 @@ class ImportControllerTest extends TestCase
         ]);
     }
 
-    public function testLinkImportJob(): void
+    public function test_link_import_job(): void
     {
         UserSettings::fake([
             'links_default_visibility' => ModelAttribute::VISIBILITY_INTERNAL,
@@ -129,7 +129,7 @@ class ImportControllerTest extends TestCase
         ]);
     }
 
-    public function testLinkImportWithMeta(): void
+    public function test_link_import_with_meta(): void
     {
         UserSettings::fake([
             'links_default_visibility' => ModelAttribute::VISIBILITY_INTERNAL,
@@ -172,7 +172,7 @@ class ImportControllerTest extends TestCase
         ]);
     }
 
-    public function testPublicLinkImport(): void
+    public function test_public_link_import(): void
     {
         UserSettings::fake([
             'links_default_visibility' => ModelAttribute::VISIBILITY_INTERNAL,
@@ -210,7 +210,7 @@ class ImportControllerTest extends TestCase
         ]);
     }
 
-    public function testLinkImportWithoutVisibility(): void
+    public function test_link_import_without_visibility(): void
     {
         UserSettings::fake([
             'links_default_visibility' => ModelAttribute::VISIBILITY_INTERNAL,
@@ -248,7 +248,7 @@ class ImportControllerTest extends TestCase
         ]);
     }
 
-    public function testLinkImportWithoutDate(): void
+    public function test_link_import_without_date(): void
     {
         $this->travelTo(Carbon::create(2024, 6, 24, 12, 30));
 

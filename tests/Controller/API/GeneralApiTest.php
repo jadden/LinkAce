@@ -14,7 +14,7 @@ class GeneralApiTest extends ApiTestCase
         parent::setUp();
     }
 
-    public function testCustomRateLimit(): void
+    public function test_custom_rate_limit(): void
     {
         $response = $this->getJsonAuthorized('api/v2/links');
 

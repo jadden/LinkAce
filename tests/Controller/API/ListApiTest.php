@@ -11,12 +11,12 @@ class ListApiTest extends ApiTestCase
     use RefreshDatabase;
     use PreparesTestData;
 
-    public function testUnauthorizedRequest(): void
+    public function test_unauthorized_request(): void
     {
         $this->getJson('api/v2/lists')->assertUnauthorized();
     }
 
-    public function testIndexRequest(): void
+    public function test_index_request(): void
     {
         $this->createTestLists();
 
@@ -34,7 +34,7 @@ class ListApiTest extends ApiTestCase
             ]);
     }
 
-    public function testMinimalCreateRequest(): void
+    public function test_minimal_create_request(): void
     {
         $this->postJsonAuthorized('api/v2/lists', [
             'name' => 'Test List',
@@ -49,7 +49,7 @@ class ListApiTest extends ApiTestCase
         $this->assertEquals('Test List', $databaseList->name);
     }
 
-    public function testFullCreateRequest(): void
+    public function test_full_create_request(): void
     {
         $this->postJsonAuthorized('api/v2/lists', [
             'name' => 'Test List',
@@ -67,7 +67,7 @@ class ListApiTest extends ApiTestCase
         $this->assertEquals('Test List', $databaseList->name);
     }
 
-    public function testInvalidCreateRequest(): void
+    public function test_invalid_create_request(): void
     {
         $this->postJsonAuthorized('api/v2/lists', [
             'name' => null,
@@ -80,7 +80,7 @@ class ListApiTest extends ApiTestCase
         ]);
     }
 
-    public function testShowRequest(): void
+    public function test_show_request(): void
     {
         $this->createTestLists();
 
@@ -97,12 +97,12 @@ class ListApiTest extends ApiTestCase
         $this->getJsonAuthorized('api/v2/lists/3')->assertForbidden();
     }
 
-    public function testShowRequestNotFound(): void
+    public function test_show_request_not_found(): void
     {
         $this->getJsonAuthorized('api/v2/lists/1')->assertNotFound();
     }
 
-    public function testUpdateRequest(): void
+    public function test_update_request(): void
     {
         $this->createTestLists();
 
@@ -137,7 +137,7 @@ class ListApiTest extends ApiTestCase
         ])->assertForbidden();
     }
 
-    public function testInvalidUpdateRequest(): void
+    public function test_invalid_update_request(): void
     {
         LinkList::factory()->create();
 
@@ -152,7 +152,7 @@ class ListApiTest extends ApiTestCase
         ]);
     }
 
-    public function testUpdateRequestNotFound(): void
+    public function test_update_request_not_found(): void
     {
         $this->patchJsonAuthorized('api/v2/lists/1', [
             'name' => 'Updated List Title',
@@ -161,7 +161,7 @@ class ListApiTest extends ApiTestCase
         ])->assertNotFound();
     }
 
-    public function testDeleteRequest(): void
+    public function test_delete_request(): void
     {
         $this->createTestLists();
 
@@ -174,7 +174,7 @@ class ListApiTest extends ApiTestCase
         $this->assertEquals(2, LinkList::count());
     }
 
-    public function testDeleteRequestNotFound(): void
+    public function test_delete_request_not_found(): void
     {
         $this->deleteJsonAuthorized('api/v2/lists/1')->assertNotFound();
     }

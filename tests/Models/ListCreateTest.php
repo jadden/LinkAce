@@ -23,7 +23,7 @@ class ListCreateTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function testValidListCreation(): void
+    public function test_valid_list_creation(): void
     {
         $this->be($this->user);
 

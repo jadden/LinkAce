@@ -9,19 +9,19 @@ class SearchTagsTest extends ApiTestCase
 {
     use RefreshDatabase;
 
-    public function testUnauthorizedRequest(): void
+    public function test_unauthorized_request(): void
     {
         $this->getJson('api/v2/search/tags')->assertUnauthorized();
     }
 
-    public function testWithoutQuery(): void
+    public function test_without_query(): void
     {
         $this->getJsonAuthorized('api/v2/search/tags')
             ->assertOk()
             ->assertExactJson([]);
     }
 
-    public function testWithEmptyQuery(): void
+    public function test_with_empty_query(): void
     {
         // This tag must not be present in the results
         Tag::factory()->create([
@@ -34,7 +34,7 @@ class SearchTagsTest extends ApiTestCase
             ->assertExactJson([]);
     }
 
-    public function testWithMultipleResults(): void
+    public function test_with_multiple_results(): void
     {
         $tag = Tag::factory()->create([
             'user_id' => $this->user->id,
@@ -67,7 +67,7 @@ class SearchTagsTest extends ApiTestCase
             ]);
     }
 
-    public function testWithShortQuery(): void
+    public function test_with_short_query(): void
     {
         $tag = Tag::factory()->create([
             'user_id' => $this->user->id,

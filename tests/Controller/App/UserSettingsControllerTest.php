@@ -21,7 +21,7 @@ class UserSettingsControllerTest extends TestCase
         $this->actingAs($this->user);
     }
 
-    public function testValidSettingsResponse(): void
+    public function test_valid_settings_response(): void
     {
         $response = $this->get('settings');
 
@@ -33,7 +33,7 @@ class UserSettingsControllerTest extends TestCase
             ->assertSee('User Settings');
     }
 
-    public function testValidUpdateAccountSettingsResponse(): void
+    public function test_valid_update_account_settings_response(): void
     {
         $response = $this->post('settings/account', [
             'name' => 'New Name',
@@ -48,7 +48,7 @@ class UserSettingsControllerTest extends TestCase
         $this->assertEquals('test@linkace.org', $updatedUser->email);
     }
 
-    public function testValidUpdateApplicationSettingsResponse(): void
+    public function test_valid_update_application_settings_response(): void
     {
         $response = $this->post('settings/app', [
             'locale' => 'en_US',
@@ -79,7 +79,7 @@ class UserSettingsControllerTest extends TestCase
         $this->assertEquals(0, usersettings('darkmode_setting'));
     }
 
-    public function testValidUpdatePasswordResponse(): void
+    public function test_valid_update_password_response(): void
     {
         $response = $this->post('settings/change-password', [
             'current_password' => 'secretpassword',

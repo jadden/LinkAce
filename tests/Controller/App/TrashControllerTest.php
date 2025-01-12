@@ -28,7 +28,7 @@ class TrashControllerTest extends TestCase
         $this->actingAs($this->user);
     }
 
-    public function testValidTrashResponse(): void
+    public function test_valid_trash_response(): void
     {
         $response = $this->get('trash');
 
@@ -40,7 +40,7 @@ class TrashControllerTest extends TestCase
      * Tests for clearing the trash
      */
 
-    public function testValidTrashClearLinksResponse(): void
+    public function test_valid_trash_clear_links_response(): void
     {
         $this->setupTrashTestData();
 
@@ -53,7 +53,7 @@ class TrashControllerTest extends TestCase
         $this->assertEquals(0, DB::table('links')->count());
     }
 
-    public function testValidTrashClearTagsResponse(): void
+    public function test_valid_trash_clear_tags_response(): void
     {
         $this->setupTrashTestData();
 
@@ -66,7 +66,7 @@ class TrashControllerTest extends TestCase
         $this->assertEquals(0, DB::table('tags')->count());
     }
 
-    public function testValidTrashClearListsResponse(): void
+    public function test_valid_trash_clear_lists_response(): void
     {
         $this->setupTrashTestData();
 
@@ -79,7 +79,7 @@ class TrashControllerTest extends TestCase
         $this->assertEquals(0, DB::table('lists')->count());
     }
 
-    public function testValidTrashClearNotesResponse(): void
+    public function test_valid_trash_clear_notes_response(): void
     {
         $this->setupTrashTestData();
 
@@ -96,7 +96,7 @@ class TrashControllerTest extends TestCase
      * Tests for restoring items
      */
 
-    public function testValidRestoreLinkResponse(): void
+    public function test_valid_restore_link_response(): void
     {
         $this->setupTrashTestData();
 
@@ -110,7 +110,7 @@ class TrashControllerTest extends TestCase
         $this->assertEquals(null, Link::find(1)->deleted_at);
     }
 
-    public function testValidRestoreTagResponse(): void
+    public function test_valid_restore_tag_response(): void
     {
         $this->setupTrashTestData();
 
@@ -124,7 +124,7 @@ class TrashControllerTest extends TestCase
         $this->assertEquals(null, Tag::find(1)->deleted_at);
     }
 
-    public function testValidRestoreListResponse(): void
+    public function test_valid_restore_list_response(): void
     {
         $this->setupTrashTestData();
 
@@ -138,7 +138,7 @@ class TrashControllerTest extends TestCase
         $this->assertEquals(null, LinkList::find(1)->deleted_at);
     }
 
-    public function testValidRestoreNoteResponse(): void
+    public function test_valid_restore_note_response(): void
     {
         $this->setupTrashTestData();
 
@@ -152,7 +152,7 @@ class TrashControllerTest extends TestCase
         $this->assertEquals(null, Note::find(1)->deleted_at);
     }
 
-    public function testInvalidRestoreResponse(): void
+    public function test_invalid_restore_response(): void
     {
         $this->setupTrashTestData();
 
@@ -167,7 +167,7 @@ class TrashControllerTest extends TestCase
         ]);
     }
 
-    public function testRestoreWithMissingModel(): void
+    public function test_restore_with_missing_model(): void
     {
         $this->setupTrashTestData();
 

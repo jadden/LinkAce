@@ -10,7 +10,7 @@ class ListUsersCommandTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCommand(): void
+    public function test_command(): void
     {
         $this->artisan('users:list')
             ->expectsOutput('Searching for all registered users...')

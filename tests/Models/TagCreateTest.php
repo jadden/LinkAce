@@ -23,7 +23,7 @@ class TagCreateTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function testValidTagCreation(): void
+    public function test_valid_tag_creation(): void
     {
         $this->be($this->user);
 

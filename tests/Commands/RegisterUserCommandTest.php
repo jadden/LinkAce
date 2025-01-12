@@ -10,7 +10,7 @@ class RegisterUserCommandTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCommandWithInput(): void
+    public function test_command_with_input(): void
     {
         User::factory()->create(); // Create admin dummy user
 
@@ -28,7 +28,7 @@ class RegisterUserCommandTest extends TestCase
         $this->assertEquals('test@linkace.org', $databaseUser->email);
     }
 
-    public function testCommandWithoutInput(): void
+    public function test_command_without_input(): void
     {
         User::factory()->create(); // Create admin dummy user
 
@@ -45,7 +45,7 @@ class RegisterUserCommandTest extends TestCase
         $this->assertEquals('test@linkace.org', $databaseUser->email);
     }
 
-    public function testCommandWithDuplicateUser(): void
+    public function test_command_with_duplicate_user(): void
     {
         User::factory()->create(['name' => 'Test', 'email' => 'test@linkace.org']);
 

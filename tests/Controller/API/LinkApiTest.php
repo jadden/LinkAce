@@ -33,12 +33,12 @@ class LinkApiTest extends ApiTestCase
         Queue::fake();
     }
 
-    public function testUnauthorizedRequest(): void
+    public function test_unauthorized_request(): void
     {
         $this->getJson('api/v2/links')->assertUnauthorized();
     }
 
-    public function testIndexRequest(): void
+    public function test_index_request(): void
     {
         $this->createTestLinks();
 
@@ -57,7 +57,7 @@ class LinkApiTest extends ApiTestCase
             ]);
     }
 
-    public function testForbiddenIndexRequestFromSystem(): void
+    public function test_forbidden_index_request_from_system(): void
     {
         $this->createTestLinks();
         $this->createSystemToken();
@@ -66,7 +66,7 @@ class LinkApiTest extends ApiTestCase
             ->assertForbidden();
     }
 
-    public function testIndexRequestFromSystem(): void
+    public function test_index_request_from_system(): void
     {
         $this->createTestLinks();
         $this->createSystemToken([ApiToken::ABILITY_LINKS_READ]);
@@ -86,7 +86,7 @@ class LinkApiTest extends ApiTestCase
             ]);
     }
 
-    public function testIndexRequestFromSystemWithPrivate(): void
+    public function test_index_request_from_system_with_private(): void
     {
         $this->createTestLinks();
         $this->createSystemToken([ApiToken::ABILITY_LINKS_READ, ApiToken::ABILITY_SYSTEM_ACCESS_PRIVATE]);
@@ -102,7 +102,7 @@ class LinkApiTest extends ApiTestCase
             ]);
     }
 
-    public function testMinimalCreateRequest(): void
+    public function test_minimal_create_request(): void
     {
         $this->postJsonAuthorized('api/v2/links', [
             'url' => 'https://example.com',
@@ -114,7 +114,7 @@ class LinkApiTest extends ApiTestCase
             ]);
     }
 
-    public function testCreateRequestBySystem(): void
+    public function test_create_request_by_system(): void
     {
         $this->createSystemToken();
         $this->postJsonAuthorized('api/v2/links', [
@@ -122,7 +122,7 @@ class LinkApiTest extends ApiTestCase
         ], useSystemToken: true)->assertForbidden();
     }
 
-    public function testFullCreateRequest(): void
+    public function test_full_create_request(): void
     {
         $list = LinkList::factory()->create(['name' => 'Test List 1']);
         $tag = Tag::factory()->create(['name' => 'a test 1']);
@@ -152,7 +152,7 @@ class LinkApiTest extends ApiTestCase
             ]);
     }
 
-    public function testCreateRequestWithList(): void
+    public function test_create_request_with_list(): void
     {
         $list = LinkList::factory()->create(['name' => 'Test List 1']);
 
@@ -180,7 +180,7 @@ class LinkApiTest extends ApiTestCase
         ]);
     }
 
-    public function testCreateRequestWithTag(): void
+    public function test_create_request_with_tag(): void
     {
         $tag = Tag::factory()->create(['name' => 'a test 1']);
 
@@ -208,7 +208,7 @@ class LinkApiTest extends ApiTestCase
         ]);
     }
 
-    public function testCreateRequestWithTagsAsString(): void
+    public function test_create_request_with_tags_as_string(): void
     {
         $this->postJsonAuthorized('api/v2/links', [
             'url' => 'https://example.com',
@@ -230,7 +230,7 @@ class LinkApiTest extends ApiTestCase
         $this->assertEquals('tag 1', $databaseTag->name);
     }
 
-    public function testCreateRequestWithTagsAsArray(): void
+    public function test_create_request_with_tags_as_array(): void
     {
         $this->postJsonAuthorized('api/v2/links', [
             'url' => 'https://example.com',
@@ -252,7 +252,7 @@ class LinkApiTest extends ApiTestCase
         $this->assertEquals('tag 1', $databaseTag->name);
     }
 
-    public function testCreateRequestWithUnicodeTags(): void
+    public function test_create_request_with_unicode_tags(): void
     {
         $this->postJsonAuthorized('api/v2/links', [
             'url' => 'https://example.com',
@@ -278,7 +278,7 @@ class LinkApiTest extends ApiTestCase
         $this->assertEquals('उत्तेजित करनेवाला', $databaseTag2->name);
     }
 
-    public function testInvalidCreateRequest(): void
+    public function test_invalid_create_request(): void
     {
         $this->postJsonAuthorized('api/v2/links', [
             'url' => null,
@@ -293,7 +293,7 @@ class LinkApiTest extends ApiTestCase
         ]);
     }
 
-    public function testShowRequest(): void
+    public function test_show_request(): void
     {
         $this->createTestLinks();
 
@@ -302,7 +302,7 @@ class LinkApiTest extends ApiTestCase
         $this->getJsonAuthorized('api/v2/links/3')->assertForbidden();
     }
 
-    public function testShowRequestBySystem(): void
+    public function test_show_request_by_system(): void
     {
         $this->createSystemToken([ApiToken::ABILITY_LINKS_READ]);
         $this->createTestLinks();
@@ -315,7 +315,7 @@ class LinkApiTest extends ApiTestCase
             ->assertForbidden();
     }
 
-    public function testShowRequestBySystemWithPrivateAccess(): void
+    public function test_show_request_by_system_with_private_access(): void
     {
         $this->createSystemToken([ApiToken::ABILITY_LINKS_READ, ApiToken::ABILITY_SYSTEM_ACCESS_PRIVATE]);
         $this->createTestLinks();
@@ -328,7 +328,7 @@ class LinkApiTest extends ApiTestCase
             ->assertOk()->assertJson(['url' => 'https://private-link.com']);
     }
 
-    public function testShowRequestWithRelations(): void
+    public function test_show_request_with_relations(): void
     {
         $this->setupLinkWithRelations();
 
@@ -353,7 +353,7 @@ class LinkApiTest extends ApiTestCase
             ]);
     }
 
-    public function testShowRequestWithRelationsBySystem(): void
+    public function test_show_request_with_relations_by_system(): void
     {
         $this->createSystemToken([
             ApiToken::ABILITY_LINKS_READ,
@@ -384,7 +384,7 @@ class LinkApiTest extends ApiTestCase
             ]);
     }
 
-    public function testShowRequestWithRelationsBySystemWithPrivateAccess(): void
+    public function test_show_request_with_relations_by_system_with_private_access(): void
     {
         $this->createSystemToken([
             ApiToken::ABILITY_LINKS_READ,
@@ -410,12 +410,12 @@ class LinkApiTest extends ApiTestCase
             ]);
     }
 
-    public function testShowRequestNotFound(): void
+    public function test_show_request_not_found(): void
     {
         $this->getJsonAuthorized('api/v2/links/1')->assertNotFound();
     }
 
-    public function testUpdateRequest(): void
+    public function test_update_request(): void
     {
         $list = LinkList::factory()->create();
         $this->createTestLinks();
@@ -448,7 +448,7 @@ class LinkApiTest extends ApiTestCase
         ])->assertForbidden();
     }
 
-    public function testInvalidUpdateRequest(): void
+    public function test_invalid_update_request(): void
     {
         Link::factory()->create();
 
@@ -465,7 +465,7 @@ class LinkApiTest extends ApiTestCase
         ]);
     }
 
-    public function testUpdateRequestNotFound(): void
+    public function test_update_request_not_found(): void
     {
         $this->patchJsonAuthorized('api/v2/links/1', [
             'url' => 'https://new-public-link.com',
@@ -478,7 +478,7 @@ class LinkApiTest extends ApiTestCase
         ])->assertNotFound();
     }
 
-    public function testDeleteRequest(): void
+    public function test_delete_request(): void
     {
         $this->createTestLinks();
 
@@ -491,7 +491,7 @@ class LinkApiTest extends ApiTestCase
         $this->assertEquals(2, Link::count());
     }
 
-    public function testDeleteRequestNotFound(): void
+    public function test_delete_request_not_found(): void
     {
         $this->deleteJsonAuthorized('api/v2/links/1')->assertNotFound();
     }

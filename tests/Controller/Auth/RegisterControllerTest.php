@@ -24,7 +24,7 @@ class RegisterControllerTest extends TestCase
         $this->actingAs($admin);
     }
 
-    public function testInvitationLink(): void
+    public function test_invitation_link(): void
     {
         // Create user invitation and logout admin
         $invitation = CreateUserInvitation::run('invitation@linkace.org');
@@ -63,7 +63,7 @@ class RegisterControllerTest extends TestCase
         $response->assertStatus(401)->assertSee('The invitation link is invalid or the invitation was deleted.');
     }
 
-    public function testRegistrationForUser(): void
+    public function test_registration_for_user(): void
     {
         // Create user invitation and logout admin
         $invitation = CreateUserInvitation::run('invitation@linkace.org');

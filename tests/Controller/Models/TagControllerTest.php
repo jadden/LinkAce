@@ -24,7 +24,7 @@ class TagControllerTest extends TestCase
         $this->actingAs($this->user);
     }
 
-    public function testIndexView(): void
+    public function test_index_view(): void
     {
         $this->createTestTags();
 
@@ -51,7 +51,7 @@ class TagControllerTest extends TestCase
             ]);
     }
 
-    public function testIndexViewWithValidFilterResult(): void
+    public function test_index_view_with_valid_filter_result(): void
     {
         Tag::factory()->create([
             'name' => 'Test Tag',
@@ -64,7 +64,7 @@ class TagControllerTest extends TestCase
             ->assertDontSee('No Tags found');
     }
 
-    public function testIndexViewWithNoFilterResult(): void
+    public function test_index_view_with_no_filter_result(): void
     {
         Tag::factory()->create([
             'name' => 'Test Tag',
@@ -76,12 +76,12 @@ class TagControllerTest extends TestCase
             ->assertSee('No Tags found');
     }
 
-    public function testCreateView(): void
+    public function test_create_view(): void
     {
         $this->get('tags/create')->assertOk()->assertSee('Add Tag');
     }
 
-    public function testMinimalStoreRequest(): void
+    public function test_minimal_store_request(): void
     {
         $this->post('tags', [
             'name' => 'Test Tag',
@@ -93,7 +93,7 @@ class TagControllerTest extends TestCase
         $this->assertEquals('Test Tag', $databaseList->name);
     }
 
-    public function testStoreRequestWithContinue(): void
+    public function test_store_request_with_continue(): void
     {
         $this->post('tags', [
             'name' => 'Test Tag',
@@ -106,7 +106,7 @@ class TagControllerTest extends TestCase
         $this->assertEquals('Test Tag', $databaseList->name);
     }
 
-    public function testValidationErrorForCreate(): void
+    public function test_validation_error_for_create(): void
     {
         $response = $this->post('tags', [
             'name' => null,
@@ -116,7 +116,7 @@ class TagControllerTest extends TestCase
         ]);
     }
 
-    public function testDetailView(): void
+    public function test_detail_view(): void
     {
         $this->createTestTags();
 
@@ -125,7 +125,7 @@ class TagControllerTest extends TestCase
         $this->get('tags/3')->assertForbidden();
     }
 
-    public function testInternalDetailView(): void
+    public function test_internal_detail_view(): void
     {
         $tag = Tag::factory()->create([
             'user_id' => $this->user->id,
@@ -139,7 +139,7 @@ class TagControllerTest extends TestCase
             ->assertSee($tag->name);
     }
 
-    public function testPrivateDetailView(): void
+    public function test_private_detail_view(): void
     {
         $tag = Tag::factory()->create([
             'user_id' => $this->user->id,
@@ -153,7 +153,7 @@ class TagControllerTest extends TestCase
             ->assertSee($tag->name);
     }
 
-    public function testEditView(): void
+    public function test_edit_view(): void
     {
         $this->createTestTags();
 
@@ -162,12 +162,12 @@ class TagControllerTest extends TestCase
         $this->get('tags/3/edit')->assertForbidden();
     }
 
-    public function testInvalidEditRequest(): void
+    public function test_invalid_edit_request(): void
     {
         $this->get('tags/1/edit')->assertNotFound();
     }
 
-    public function testUpdateResponse(): void
+    public function test_update_response(): void
     {
         $this->createTestTags();
 
@@ -194,7 +194,7 @@ class TagControllerTest extends TestCase
         ])->assertForbidden();
     }
 
-    public function testMissingModelErrorForUpdate(): void
+    public function test_missing_model_error_for_update(): void
     {
         $this->patch('tags/1', [
             'tag_id' => '1',
@@ -203,7 +203,7 @@ class TagControllerTest extends TestCase
         ])->assertNotFound();
     }
 
-    public function testUniquePropertyValidation(): void
+    public function test_unique_property_validation(): void
     {
         Tag::factory()->create([
             'name' => 'taken-tag-name',
@@ -223,7 +223,7 @@ class TagControllerTest extends TestCase
         $response->assertSessionHasErrors(['name']);
     }
 
-    public function testValidationErrorForUpdate(): void
+    public function test_validation_error_for_update(): void
     {
         $baseTag = Tag::factory()->create([
             'user_id' => $this->user->id,
@@ -238,7 +238,7 @@ class TagControllerTest extends TestCase
         $response->assertSessionHasErrors(['name']);
     }
 
-    public function testDeleteResponse(): void
+    public function test_delete_response(): void
     {
         $this->createTestTags();
 
@@ -251,7 +251,7 @@ class TagControllerTest extends TestCase
         $this->assertEquals(2, Tag::count());
     }
 
-    public function testMissingModelErrorForDelete(): void
+    public function test_missing_model_error_for_delete(): void
     {
         $this->delete('tags/1')->assertNotFound();
     }

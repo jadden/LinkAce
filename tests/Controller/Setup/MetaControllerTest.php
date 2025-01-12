@@ -11,7 +11,7 @@ class MetaControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testSetupCheckRedirect(): void
+    public function test_setup_check_redirect(): void
     {
         SystemSettings::fake([
             'setup_completed' => false,
@@ -22,21 +22,21 @@ class MetaControllerTest extends TestCase
         $response->assertRedirect('setup/start');
     }
 
-    public function testSetupCheckWithoutRedirect(): void
+    public function test_setup_check_without_redirect(): void
     {
         $response = $this->get('/');
 
         $response->assertRedirect('login');
     }
 
-    public function testRedirectIfSetupCompleted(): void
+    public function test_redirect_if_setup_completed(): void
     {
         $response = $this->get('setup/start');
 
         $response->assertRedirect('/');
     }
 
-    public function testSetupWelcomeView(): void
+    public function test_setup_welcome_view(): void
     {
         SystemSettings::fake([
             'setup_completed' => false,

@@ -9,19 +9,19 @@ class SearchListsTest extends ApiTestCase
 {
     use RefreshDatabase;
 
-    public function testUnauthorizedRequest(): void
+    public function test_unauthorized_request(): void
     {
         $this->getJson('api/v2/search/lists')->assertUnauthorized();
     }
 
-    public function testWithoutQuery(): void
+    public function test_without_query(): void
     {
         $this->getJsonAuthorized('api/v2/search/lists')
             ->assertOk()
             ->assertExactJson([]);
     }
 
-    public function testWithEmptyQuery(): void
+    public function test_with_empty_query(): void
     {
         // This list must not be present in the results
         LinkList::factory()->create([
@@ -34,7 +34,7 @@ class SearchListsTest extends ApiTestCase
             ->assertExactJson([]);
     }
 
-    public function testWithMultipleResults(): void
+    public function test_with_multiple_results(): void
     {
         $list = LinkList::factory()->create([
             'user_id' => $this->user->id,
@@ -61,7 +61,7 @@ class SearchListsTest extends ApiTestCase
             ]);
     }
 
-    public function testWithShortQuery(): void
+    public function test_with_short_query(): void
     {
         $list = LinkList::factory()->create([
             'user_id' => $this->user->id,
