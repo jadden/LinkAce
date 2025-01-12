@@ -67,6 +67,7 @@ class Link extends Model implements Auditable
         'visibility',
         'status',
         'check_disabled',
+        'last_checked_at',
         'thumbnail',
     ];
 
@@ -75,6 +76,7 @@ class Link extends Model implements Auditable
         'visibility' => 'integer',
         'status' => 'integer',
         'check_disabled' => 'boolean',
+        'last_checked_at' => 'datetime',
     ];
 
     public static array $allowOrderBy = [

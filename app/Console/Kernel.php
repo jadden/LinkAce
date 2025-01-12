@@ -11,7 +11,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('queue:work --queue=default,import')->withoutOverlapping();
 
-        $schedule->command('links:check')->hourly();
+        $schedule->command('links:check')->everyTwoHours()->withoutOverlapping();
 
         if (config('backup.backup.enabled')) {
             $notificationsDisabled = config('backup.notifications.enabled') === false;

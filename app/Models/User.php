@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -93,12 +94,27 @@ class User extends Authenticatable implements Auditable
 
     /*
      * ========================================================================
+     * RELATIONSHIPS
+     */
+
+    public function links(): HasMany
+    {
+        return $this->hasMany(Link::class);
+    }
+
+    /*
+     * ========================================================================
      * SCOPES
      */
 
     public function scopeNotSystem(Builder $query): Builder
     {
         return $query->whereNot('id', 0);
+    }
+
+    public function scopeNotBlocked(Builder $query): Builder
+    {
+        return $query->whereNull('blocked_at');
     }
 
     /*

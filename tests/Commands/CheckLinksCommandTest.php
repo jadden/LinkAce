@@ -6,6 +6,7 @@ use App\Models\Link;
 use App\Models\User;
 use App\Notifications\LinkCheckNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
@@ -13,16 +14,6 @@ use Tests\TestCase;
 class CheckLinksCommandTest extends TestCase
 {
     use RefreshDatabase;
-
-    /** @var User */
-    protected $user;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->user = User::factory()->create();
-    }
 
     public function testCheckWith200Response(): void
     {
@@ -54,74 +45,98 @@ class CheckLinksCommandTest extends TestCase
         Notification::assertNothingSent();
     }
 
-    public function testCheckWithMovedLinks(): void
+    public function testCheckWithMovedOrBrokenLinks(): void
     {
         Http::fake([
-            '*' => Http::response('', 302),
+            'example.com/okay' => Http::response(),
+            'example.com/moved' => Http::response(status: 300),
+            'example.com/failed' => Http::response(status: 503),
+            'test.com/okay' => Http::response(),
+            'test.com/moved1' => Http::response(status: 302),
+            'test.com/moved2' => Http::response(status: 302),
+            'test.com/failed1' => Http::response(status: 503),
+            'test.com/failed2' => Http::response(status: 503),
         ]);
 
         Notification::fake();
 
-        Link::factory()->create();
+        $user = User::factory()->create();
+        Link::factory()->for($user)->create(['url' => 'https://example.com/okay']);
+        Link::factory()->for($user)->create(['url' => 'https://example.com/moved']);
+        Link::factory()->for($user)->create(['url' => 'https://example.com/failed']);
+
+        $anotherUser = User::factory()->create();
+        Link::factory()->for($anotherUser)->create(['url' => 'https://test.com/okay']);
+        Link::factory()->for($anotherUser)->create(['url' => 'https://test.com/moved1']);
+        Link::factory()->for($anotherUser)->create(['url' => 'https://test.com/moved2']);
+        Link::factory()->for($anotherUser)->create(['url' => 'https://test.com/failed1']);
+        Link::factory()->for($anotherUser)->create(['url' => 'https://test.com/failed2']);
 
         $this->artisan('links:check');
 
         Notification::assertSentTo(
-            $this->user,
+            $user,
             LinkCheckNotification::class,
             fn(LinkCheckNotification $notification, $channels) => count($notification->movedLinks) === 1
+                && count($notification->brokenLinks) === 1
+        );
+
+        Notification::assertSentTo(
+            $anotherUser,
+            LinkCheckNotification::class,
+            fn(LinkCheckNotification $notification, $channels) => count($notification->movedLinks) === 2
+                && count($notification->brokenLinks) === 2
         );
     }
 
-    public function testCheckWithBrokenLinks(): void
+    public function testCheckWithoutLinks(): void
+    {
+        Notification::fake();
+
+        $this->artisan('links:check');
+
+        Notification::assertNothingSent();
+    }
+
+    public function testCheckWithException(): void
     {
         Http::fake([
-            '*' => Http::response('', 500),
+            '*' => function () {
+                throw new ConnectionException('Unable to connect to host');
+            },
         ]);
 
         Notification::fake();
 
-        Link::factory()->create();
+        $user = User::factory()->create();
+        Link::factory()->for($user)->create();
 
         $this->artisan('links:check');
 
         Notification::assertSentTo(
-            $this->user,
+            $user,
             LinkCheckNotification::class,
             fn(LinkCheckNotification $notification, $channels) => count($notification->brokenLinks) === 1
         );
     }
 
-    public function testCheckWithOffset(): void
+    public function testCheckWithLimit(): void
     {
         Http::fake([
-            '*' => Http::response('', 500),
+            '*' => Http::response(status: 404),
         ]);
 
         Notification::fake();
 
-        Link::factory()->count(10)->create();
+        $user = User::factory()->create();
+        Link::factory()->for($user)->count(10)->create();
 
-        $this->artisan('links:check', [
-            '--limit' => 5,
-            '--noWait' => true,
-        ]);
+        $this->artisan('links:check', ['--limit' => 5]);
 
-        $this->assertEquals(5, cache()->get('command_links:check_checked_count'));
-
-        $this->artisan('links:check', [
-            '--limit' => 5,
-            '--noWait' => true,
-        ]);
-
-        $this->assertEquals(10, cache()->get('command_links:check_checked_count'));
-    }
-
-    public function testCheckWithoutLinks(): void
-    {
-        $this->artisan('links:check');
-
-        $this->assertEquals(null, cache()->get('command_links:check_offset'));
-        $this->assertEquals(null, cache()->get('command_links:check_skip_timestamp'));
+        Notification::assertSentTo(
+            $user,
+            LinkCheckNotification::class,
+            fn(LinkCheckNotification $notification, $channels) => count($notification->brokenLinks) === 5
+        );
     }
 }

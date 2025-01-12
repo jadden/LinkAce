@@ -8,113 +8,65 @@ use App\Notifications\LinkCheckNotification;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Sleep;
 
 class CheckLinksCommand extends Command
 {
     protected $signature = 'links:check {--limit=} {--noWait}';
     protected $description = 'This command checks the current status of a chunk of links. It is intended to be run on a schedule.';
 
-    // Check a maximum of 100 links at once
-    public int $limit = 100;
-
-    protected int $offset;
-
-    protected int $total;
-
-    protected int $checkedLinkCount;
-
-    protected string $cacheKeyOffset = 'command_links:check_offset';
-
-    protected string $cacheKeySkipTimestamp = 'command_links:check_skip_timestamp';
-
-    protected string $cacheKeyCheckedCount = 'command_links:check_checked_count';
+    // Check a maximum of 20 links per user
+    public int $limit = 20;
 
     protected array $movedLinks = [];
 
     protected array $brokenLinks = [];
 
-    protected array $validUrlSchemes = ['http', 'https'];
-
     public function handle(): void
     {
-        // Check if the command should skip the execution
-        $skipTimestamp = Cache::get($this->cacheKeySkipTimestamp);
-        $this->offset = Cache::get($this->cacheKeyOffset, 0);
-        $this->checkedLinkCount = Cache::get($this->cacheKeyCheckedCount, 0);
-
-        if (now()->timestamp < $skipTimestamp) {
-            return;
-        }
-
         if ($this->option('limit')) {
             $this->limit = $this->option('limit');
         }
 
-        $links = $this->getLinks();
+        User::query()->notBlocked()->get()->each(function (User $user) {
+            $this->movedLinks = [];
+            $this->brokenLinks = [];
 
-        // Cancel if there are no links to check
-        if ($links->isEmpty()) {
-            Cache::forget($this->cacheKeyOffset);
-            Cache::forget($this->cacheKeySkipTimestamp);
+            $links = $this->getLinks($user);
 
-            $this->comment('No links found, aborting...');
-            return;
-        }
+            foreach ($links as $link) {
+                $this->checkLink($link);
 
-        // Check all provided links
-        $this->comment('Checking ' . $links->count() . ' links now.');
-
-        $links->each(function ($link) {
-            $this->checkLink($link);
-
-            // Prevent spam-ish behaviour by throttling outgoing HTTP requests
-            if ($this->option('noWait') === null) {
-                sleep(1);
+                // Prevent spam-ish behaviour by throttling outgoing HTTP requests
+                if ($this->option('noWait') === null) {
+                    Sleep::for(1);
+                }
             }
+
+            $this->sendNotification($user);
         });
-
-        $this->sendNotification();
-
-        $checkedCount = $this->checkedLinkCount + $links->count();
-        Cache::forever($this->cacheKeyCheckedCount, $checkedCount);
-
-        if ($this->total > $checkedCount) {
-            // If yes, simply save the offset to the cache.
-            // The next link check will pick it up and continue the check.
-            $nextOffset = $this->offset + $this->limit;
-            Cache::forever($this->cacheKeyOffset, $nextOffset);
-
-            $this->comment('Saving offset for next link check.');
-        } else {
-            // If not, all links have been successfully checked.
-            // Save a cache flag that prevents link checks for the next days.
-            $nextCheck = now()->addDays(20)->timestamp;
-            Cache::forever($this->cacheKeySkipTimestamp, $nextCheck);
-
-            $this->comment(
-                'All existing links checked, next link check scheduled for ' . now()->addDays(5)->toDateTimeString()
-            );
-        }
     }
 
     /**
-     * Get links but limit the results to a fixed number of links.
-     * If there is an offset saved, use this instead of beginning from the first entry.
+     * Get links of the current users that
+     * - don't have checks disabled
+     * - were last checked more than 2 months ago or never checked
+     * - begin with http, as other protocols are not supported
      *
-     * @return Collection
+     * @param User $user
+     * @return Collection<Link>
      */
-    protected function getLinks(): Collection
+    protected function getLinks(User $user): Collection
     {
-        // Get the total amount of remaining links
-        $this->total = Link::count();
-
-        // Get a portion of the remaining links based on the limit
-        return Link::where('check_disabled', false)
+        return $user->links()
+            ->where('check_disabled', false)
+            ->where(function ($query) {
+                $query->where('last_checked_at', '<', now()->subMonths(2))
+                    ->orWhereNull('last_checked_at');
+            })
+            ->where('url', 'LIKE', 'http%')
             ->oldest('id')
-            ->offset($this->offset)
             ->limit($this->limit)
             ->get();
     }
@@ -129,21 +81,16 @@ class CheckLinksCommand extends Command
     {
         $this->output->write('Checking link ' . $link->url . ' ');
 
-        $urlScheme = parse_url($link->url, PHP_URL_SCHEME);
-        if (in_array($urlScheme, $this->validUrlSchemes) === false) {
-            $this->warn('› Invalid scheme [' . $urlScheme . '], skipping Link.');
-            return;
-        }
-
         try {
-            $request = setupHttpRequest(20);
+            $request = setupHttpRequest(timeout: 20);
             $response = $request->head($link->url);
             $statusCode = $response->status();
         } catch (Exception $e) {
             // Set status code to null so the link will be marked as broken
-            $statusCode = 0;
+            $statusCode = 999;
         }
 
+        $link->last_checked_at = now();
         if ($statusCode >= 400) {
             $this->processBrokenLink($link);
         } elseif ($statusCode >= 300) {
@@ -182,16 +129,15 @@ class CheckLinksCommand extends Command
         $this->info('› Link looks okay.');
     }
 
-    protected function sendNotification(): void
+    protected function sendNotification(User $user): void
     {
         if (empty($this->movedLinks) && empty($this->brokenLinks)) {
             // Do not send a notification if there are no errors
             return;
         }
 
-        // @TODO The user should be defined elsewhere, maybe in the config
         Notification::send(
-            User::find(1),
+            $user,
             new LinkCheckNotification($this->movedLinks, $this->brokenLinks)
         );
 
