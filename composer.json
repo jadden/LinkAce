@@ -4,7 +4,7 @@
   "license": "GPL-3.0-or-later",
   "type": "project",
   "require": {
-    "php": "^8.1 | ^8.2 | ^8.3",
+    "php": "^8.1",
     "ext-dom": "*",
     "ext-ftp": "*",
     "ext-pdo": "*",
