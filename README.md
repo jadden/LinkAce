@@ -68,6 +68,9 @@ LinkAce provides multiple ways of installing it on your server. The complete doc
 * [Setup without Docker](https://www.linkace.org/docs/v2/setup/setup-without-docker/)
 * [Official managed Hosting](https://hosting.linkace.org) (_Beta Waitlist_)
 
+&nbsp;
+
+> **LinkAce 2.0 was just released!** This is a big upgrade to the application. Please read the [upgrade guide](https://www.linkace.org/docs/v2/upgrade/from-v1/) if you are still using LinkAce 1 and want to use version 2.
 
 &nbsp;
 
