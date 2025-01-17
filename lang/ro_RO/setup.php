@@ -13,7 +13,7 @@ return [
 
     'setup_requirements' => 'Cerințe de configurare',
     'check_requirements' => 'Verificare cerințe',
-    'requirements.php_version' => 'Versiune PHP >= 7.4.0',
+    'requirements.php_version' => 'Versiune PHP >= 8.1',
     'requirements.extension_bcmath' => 'Extensie PHP: BCMath',
     'requirements.extension_ctype' => 'Extensie PHP: Ctype',
     'requirements.extension_json' => 'Extensie PHP: JSON',

@@ -33,6 +33,10 @@ class SetupCheckMiddleware
 
         $setupCompleted = setupCompleted();
 
+        if ($request->is('_health')) {
+            return $next($request);
+        }
+
         if ($request->is('setup/*')) {
             if ($setupCompleted) {
                 // Do not allow access to the setup after it was completed

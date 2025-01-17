@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "linkace.fullname" . }}-cronjob
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          volumes:
+            - name: {{ .Release.Name }}-app-logs
+              persistentVolumeClaim:
+                claimName: {{ .Release.Name }}-app-logs-pvc
+            - name: {{ .Release.Name }}-app-backups
+              persistentVolumeClaim:
+                claimName: {{ .Release.Name }}-app-backups-pvc
+          containers:
+            - name: {{ .Release.Name }}-cron
+              image: "{{ .Values.linkace.repository }}:{{ .Values.linkace.tag }}"
+              command: ["php", "artisan", "schedule:run"]
+              envFrom:
+                - secretRef:
+                    name: {{ .Release.Name }}-env
+              volumeMounts:
+                - name: {{ .Release.Name }}-app-logs
+                  mountPath: "/app/storage/logs"
+                - name: {{ .Release.Name }}-app-backups
+                  mountPath: "/app/storage/app/backups/LinkAce"

@@ -39,6 +39,7 @@ use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
 // Frontpage
 Route::get('/', FrontController::class)->name('front');
+Route::get('/_health', fn() => 'Ok');
 
 // Setup routes
 Route::prefix('setup')->group(function () {

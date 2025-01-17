@@ -13,7 +13,7 @@ return [
 
     'setup_requirements' => 'セットアップ要件',
     'check_requirements' => '要件の確認',
-    'requirements.php_version' => 'PHPバージョン >= 7.4.0',
+    'requirements.php_version' => 'PHPバージョン >= 8.1',
     'requirements.extension_bcmath' => 'PHP拡張モジュール：BCMath',
     'requirements.extension_ctype' => 'PHP拡張モジュール：Ctype',
     'requirements.extension_json' => 'PHP拡張モジュール：JSON',

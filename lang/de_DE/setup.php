@@ -13,7 +13,7 @@ return [
 
     'setup_requirements' => 'Setup-Anforderungen',
     'check_requirements' => 'Anforderungen prüfen',
-    'requirements.php_version' => 'PHP-Version >= 7.4.0',
+    'requirements.php_version' => 'PHP-Version >= 8.1',
     'requirements.extension_bcmath' => 'PHP Extension: BCMath',
     'requirements.extension_ctype' => 'PHP Extension: Ctype',
     'requirements.extension_json' => 'PHP Extension: JSON',

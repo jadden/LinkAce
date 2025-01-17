@@ -12,7 +12,7 @@ return [
     'intro.step3' => 'Tạo tài khoản của bạn.',
 
     'check_requirements' => 'Kiểm tra tương thích',
-    'requirements.php_version' => 'Phiên bản PHP >= 7.4.0',
+    'requirements.php_version' => 'Phiên bản PHP >= 8.1',
     'requirements.extension_bcmath' => 'PHP Extension: BCMath',
     'requirements.extension_ctype' => 'PHP Extension: Ctype',
     'requirements.extension_json' => 'PHP Extension: JSON',

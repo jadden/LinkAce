@@ -1,0 +1,178 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "linkace.fullname" . }}
+  labels:
+    {{- include "linkace.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "linkace.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        deploymentRevisionId: "{{ .Release.Revision }}"
+        {{- include "linkace.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "linkace.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: {{ .Release.Name }}-app-logs
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-app-logs-pvc
+        - name: {{ .Release.Name }}-app-backups
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-app-backups-pvc
+
+      containers:
+        # LinkAce application container
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.linkace.repository }}:{{ .Values.linkace.tag }}"
+          imagePullPolicy: {{ .Values.linkace.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+          envFrom:
+            - secretRef:
+                name: {{ .Release.Name }}-env
+          livenessProbe:
+            httpGet:
+              path: /_health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /_health
+              port: http
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: {{ .Release.Name }}-app-logs
+              mountPath: "/app/storage/logs"
+            - name: {{ .Release.Name }}-app-backups
+              mountPath: "/app/storage/app/backups/LinkAce"
+
+{{- if or .Values.database.enabled .Values.redis.enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "linkace.fullname" . }}-services
+  labels:
+    {{- include "linkace.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "linkace.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        deploymentRevisionId: "{{ .Release.Revision }}"
+        {{- include "linkace.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "linkace.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        {{- if .Values.database.enabled }}
+        - name: mariadb-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-mariadb-pvc
+        {{- end }}
+        {{- if .Values.redis.enabled }}
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-redis-pvc
+        {{- end }}
+
+      containers:
+        {{- if .Values.database.enabled }}
+        # Database container
+        - name: mariadb
+          image: {{ .Values.database.repository }}:{{ .Values.database.tag }}
+          imagePullPolicy: {{ .Values.database.pullPolicy }}
+          ports:
+            - name: mariadb
+              containerPort: 3306
+          env:
+            - name: MARIADB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-env
+                  key: DB_DATABASE
+            - name: MARIADB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-env
+                  key: DB_USERNAME
+            - name: MARIADB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-env
+                  key: DB_PASSWORD
+            - name: MARIADB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-env
+                  key: DB_PASSWORD
+          volumeMounts:
+            - name: mariadb-data
+              mountPath: "/var/lib/mysql"
+        {{- end }}
+
+        {{- if .Values.redis.enabled }}
+        # Redis container
+        - name: redis
+          image: {{ .Values.redis.repository }}:{{ .Values.redis.tag }}
+          ports:
+            - name: redis
+              containerPort: 6379
+          command:
+            - "redis-server"
+            - "--requirepass"
+            - "$(REDIS_PASSWORD)"
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-env
+                  key: REDIS_PASSWORD
+          volumeMounts:
+            - name: redis-data
+              mountPath: "/data"
+        {{- end }}
+
+{{- end }}
+
