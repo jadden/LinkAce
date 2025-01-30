@@ -22,13 +22,8 @@ class ImportController extends Controller
 
     public function queue(): View
     {
-        $jobs = DB::table('jobs')
-            ->where('payload', 'LIKE', '%"displayName":' . json_encode(ImportLinkJob::class) . '%')
-            ->paginate(50);
-
-        $failedJobs = DB::table('failed_jobs')
-            ->where('payload', 'LIKE', '%"displayName":' . json_encode(ImportLinkJob::class) . '%')
-            ->paginate(50);
+        $jobs = DB::table('jobs')->where('queue', 'import')->paginate(50);
+        $failedJobs = DB::table('failed_jobs')->where('queue', 'import')->paginate(50);
 
         return view('app.import.queue', [
             'pageTitle' => trans('import.import'),
