@@ -9,7 +9,11 @@ class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('queue:work --queue=default,import --max-jobs=30')->withoutOverlapping();
+        $schedule->command('queue:work', [
+            '--queue' => 'default,import',
+            '--max-jobs' => '30',
+            '--stop-when-empty',
+        ])->withoutOverlapping();
 
         $schedule->command('links:check')->everyTwoHours()->withoutOverlapping();
 
