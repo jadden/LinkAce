@@ -21,7 +21,7 @@ return [
     'name' => 'Nom Étiquette',
     'visibility' => 'Statut de la visibilité',
 
-    'history_deleted' => 'L\'étiquette a été supprimée',
+    'history_deleted' => 'Le tag a été déplacé dans la corbeille',
     'history_restored' => 'L\'étiquette a été restaurée',
     'history_created' => 'L\'étiquette a été créée',
 
@@ -38,6 +38,6 @@ return [
 
     'added_successfully' => 'Étiquette ajoutée avec succès.',
     'updated_successfully' => 'Étiquette mise à jour avec succès.',
-    'deleted_successfully' => 'Étiquette supprimée avec succès.',
-    'deletion_error' => 'L\'Étiquette n\'a pas pu être supprimée.',
+    'deleted_successfully' => 'Le tag a été déplacé avec succès dans la corbeille.',
+    'deletion_error' => 'Le tag n\'a pas pu être déplacé dans la corbeille.',
 ];

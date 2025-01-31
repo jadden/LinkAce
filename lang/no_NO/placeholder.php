@@ -16,5 +16,4 @@ return [
 
     'two_factor_otp' => 'Engangspassord',
     'two_factor_recovery_code' => 'Gjenopprettings kode',
-
 ];

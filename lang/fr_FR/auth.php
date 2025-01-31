@@ -18,6 +18,7 @@ return [
 
     'failed' => 'Ces identifiants ne correspondent pas à nos enregistrements.',
     'throttle' => 'Trop de tentatives de connexion. Veuillez réessayer dans :seconds secondes.',
+    'unauthorized' => 'Connexion non autorisée. Veuillez contacter votre administrateur.',
 
     'confirm_title' => 'Confirmation requise',
     'confirm' => 'Veuillez confirmer cette action en utilisant votre mot de passe actuel.',
@@ -51,4 +52,24 @@ return [
     'api_tokens.revoke_confirm' => 'Voulez-vous vraiment révoquer ce Jeton ? Cette étape ne peut pas être annulée et le jeton ne peut pas être récupéré.',
     'api_tokens.revoke_successful' => 'Le Jeton a été révoqué avec succès.',
 
+    'sso' => 'SSO',
+    'sso_account_provider' => 'Fournisseur SSO',
+    'sso_account_id' => 'ID SSO',
+    'sso_provider_disabled' => 'Le fournisseur SSO sélectionné n\'est pas disponible. Veuillez en choisir un autre.',
+    'sso_wrong_provider' => 'Impossible de se connecter avec :currentProvider. Veuillez utiliser :userProvider pour vous connecter, ou contactez votre administrateur pour obtenir de l\'aide.',
+
+    'sso_provider' => [
+        'auth0' => 'Auth0',
+        'authentik' => 'Authentik',
+        'azure' => 'Azure',
+        'cognito' => 'Cognito',
+        'fusionauth' => 'FusionAuth',
+        'google' => 'Google',
+        'github' => 'GitHub',
+        'gitlab' => 'GitLab',
+        'keycloak' => 'Keycloak',
+        'oidc' => 'OIDC',
+        'okta' => 'Okta',
+        'zitadel' => 'Zitadel',
+    ],
 ];

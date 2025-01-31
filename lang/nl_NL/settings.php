@@ -74,10 +74,21 @@ return [
     'two_factor_regenerate_recovery_codes' => 'Nieuwe herstelcodes genereren',
 
     'page_title' => 'Paginatitel',
+    'logo_text' => 'Aangepaste logo tekst',
     'guest_access' => 'Gastgebruiker inschakelen',
     'guest_access_help' => 'Indien ingeschakeld, kunnen gasten alle koppelingen zien die niet privé zijn.',
     'custom_header_content' => 'Aangepaste header-inhoud',
     'custom_header_content_help' => 'Inhoud die hier is ingevoerd zal voor de &lt;/head&gt; tag op alle LinkAce sites worden geplaatst. Nuttig om analytics of aanpassingsscripts te plaatsen. Let op: de inhoud wordt letterlijk overgenomen en kan de site kapotmaken!',
+
+    'additional_footer_link' => 'Extra link in de voettekst',
+    'additional_footer_link_url' => 'Link URL',
+    'additional_footer_link_text' => 'Link tekst',
+
+    'contact_page' => 'Contact/Over pagina',
+    'contact_page_info' => 'De contact/over pagina kan worden gebruikt om extra informatie over uw bladwijzers weer te geven. De link is zichtbaar in de voettekst. Markdown wordt ondersteund.',
+    'contact_page_enabled' => 'Schakel contact/over pagina in',
+    'contact_page_title' => 'Aangepaste titel voor de pagina',
+    'contact_page_content' => 'Inhoud van de pagina',
 
     'cron_token' => 'Cron-token',
     'cron_token_generate' => 'Token genereren',

@@ -19,7 +19,7 @@ return [
     'internal' => 'Interne koppeling',
     'private' => 'Privékoppeling',
 
-    'history_deleted' => 'De koppeling is verwijderd',
+    'history_deleted' => 'Link is verplaatst naar de prullenbak',
     'history_restored' => 'De koppeling is hersteld',
     'history_created' => 'De koppeling is aangemaakt',
 
@@ -41,6 +41,7 @@ return [
 
     'external_link' => 'Externe koppeling',
     'wayback' => 'Link archiveren bij Wayback Machine',
+    'open_in_tabs' => 'Open links in tabbladen',
 
     'check_disable' => 'Controle uitschakelen',
     'check_disabled' => 'De controle is uitgeschakeld',
@@ -59,8 +60,8 @@ return [
     'added_connection_error' => 'De koppeling is toegevoegd, maar er is een verbindingsfout opgetreden bij het openen van het webadres. Details kunnen worden gevonden in de logs.',
     'added_request_error' => 'De koppeling is toegevoegd, maar er is een fout opgetreden bij het opvragen van het webadres (bijvoorbeeld een ongeldig certificaat). Details kunnen worden gevonden in de logs.',
     'updated_successfully' => 'De koppeling is succesvol toegevoegd.',
-    'deleted_successfully' => 'De koppeling is succesvol verwijderd.',
-    'deletion_error' => 'De koppeling kon niet worden verwijderd.',
+    'deleted_successfully' => 'Koppeling met succes verplaatst naar de prullenmand.',
+    'deletion_error' => 'Link kon niet naar de prullenbak worden verplaatst.',
 
     'duplicates_found' => 'LinkAce heeft mogelijke duplicaten van het opgegeven webadres gevonden:',
     'existing_found' => 'Een koppeling met het opgegeven webadres bestaat al.',

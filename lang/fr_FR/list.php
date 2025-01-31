@@ -22,7 +22,7 @@ return [
     'description' => 'Description Liste',
     'visibility' => 'Statut de la visibilité',
 
-    'history_deleted' => 'La liste a été supprimée',
+    'history_deleted' => 'La liste a été déplacée vers la corbeille',
     'history_restored' => 'La liste a été restaurée',
     'history_created' => 'La liste a été créée',
 
@@ -41,6 +41,6 @@ return [
 
     'added_successfully' => 'Liste ajoutée avec succès.',
     'updated_successfully' => 'Liste mise à jour avec succès.',
-    'deleted_successfully' => 'Liste supprimée avec succès.',
-    'deletion_error' => 'La liste n\'a pas pu être supprimée.',
+    'deleted_successfully' => 'La liste a été déplacée vers la corbeille.',
+    'deletion_error' => 'La liste n\'a pas pu être déplacée dans la corbeille.',
 ];

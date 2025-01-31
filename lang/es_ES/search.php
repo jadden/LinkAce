@@ -8,7 +8,7 @@ return [
     'query' => 'Buscar...',
     'search_title' => 'Buscar título',
     'search_description' => 'Buscar descripción',
-    'private_only' => 'Sólo enlaces privados',
+    'visibility' => 'Buscar por visibilidad...',
     'broken_links' => 'Sólo enlaces rotos',
     'empty_tags' => 'sin etiquetas',
     'empty_lists' => 'sin listas',
@@ -25,6 +25,7 @@ return [
     'order_by.random' => 'Aleatorio',
 
     'no_results' => 'No se han encontrado resultados.',
+    'results_for' => 'Resultados de búsqueda para',
 
     'validation_query_missing' => 'Debe introducir una consulta de búsqueda, o seleccionar una lista, una etiqueta o permitir la búsqueda de enlaces rotos.',
 ];

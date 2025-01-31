@@ -8,7 +8,7 @@ return [
     'query' => 'Căutare după...',
     'search_title' => 'Căutare titlu',
     'search_description' => 'Căutare descriere',
-    'private_only' => 'Doar legături private',
+    'visibility' => 'Căutare după vizibilitate...',
     'broken_links' => 'Doar legături nefuncționale',
     'empty_tags' => 'fără etichete',
     'empty_lists' => 'fără liste',

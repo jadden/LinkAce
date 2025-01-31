@@ -125,8 +125,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'egenvalgt melding',
+        'visibility' => [
+            'visibility' => 'Synligheten må være i enten 1 (offentlig), 2 (intern) eller 3 (privat).',
+        ],
+        'api_token_ability' => [
+            'api_token_ability' => 'API-tokenet må minst ha en evne fra de forhåndsdefinerte nøklene.',
         ],
     ],
 

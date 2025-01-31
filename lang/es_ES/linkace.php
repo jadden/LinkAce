@@ -8,9 +8,11 @@ return [
     'password' => 'Contraseña',
     'password_confirm' => 'Confirme la contraseña',
     'login' => 'Iniciar sesión',
+    'login_with' => 'Iniciar sesión con',
     'logout' => 'Salir',
     'remember_me' => 'Recuérdame',
     'go_to_dashboard' => 'Ir al panel de control',
+    'dashboard' => 'Panel de control',
     'system_logs' => 'Registros del sistema',
 
     'reset_password' => 'Restablecer contraseña',
@@ -19,8 +21,16 @@ return [
 
     'added' => 'Añadido',
     'added_at' => 'Añadido el',
+    'added_by' => 'Añadido por',
+    'created' => 'Creado',
+    'created_at' => 'Creado el',
     'updated_at' => 'Actualizado el',
     'last_update' => 'Última actualización',
+    'last_used' => 'Usado por última vez',
+    'never_used' => 'Nunca usado',
+    'blocked' => 'Bloqueado',
+    'blocked_at' => 'Bloqueado en',
+    'deleted' => 'Eliminado',
     'deleted_at' => 'Eliminado el',
 
     'add' => 'Añadir',
@@ -28,15 +38,27 @@ return [
     'edit' => 'Editar',
     'update' => 'Actualizar',
     'delete' => 'Eliminar',
+    'restore' => 'Restaurar',
+    'block' => 'Bloquear',
+    'unblock' => 'Desbloquear',
+    'unblocked' => 'Desbloqueado',
+    'details' => 'Detalles',
 
     'menu' => 'Menú',
     'entries' => 'Entradas',
     'feed' => 'Feed',
+    'contact' => 'Contacto',
 
     'continue_adding' => 'Continuar añadiendo',
 
-    'private' => 'Privado',
-    'is_private' => 'Es privado',
+    'visibility' => 'Visibilidad',
+    'change_visibility' => 'Cambiar visibilidad',
+    'dont_change_visibility' => 'No cambiar visibilidad',
+
+    'history' => 'Historial',
+    'history_added' => 'Añadido <code>:newvalue</code> a :fieldname.',
+    'history_changed' => 'Modificado :fieldname de <code>:oldvalue</code> a <code>:newvalue</code>',
+    'history_removed' => 'Eliminado <code>:oldvalue</code> de :fieldname.',
 
     'yes' => 'Sí',
     'no' => 'No',

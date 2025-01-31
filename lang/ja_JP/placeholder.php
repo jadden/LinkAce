@@ -16,5 +16,4 @@ return [
 
     'two_factor_otp' => 'ワンタイムパスワード',
     'two_factor_recovery_code' => 'リカバリーコード',
-
 ];

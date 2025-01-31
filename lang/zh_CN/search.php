@@ -8,7 +8,7 @@ return [
     'query' => '搜索......',
     'search_title' => '搜索标题',
     'search_description' => '搜索描述',
-    'private_only' => '仅私有链接',
+    'visibility' => '按可见度搜索...',
     'broken_links' => '仅失效的链接',
     'empty_tags' => '没有标签',
     'empty_lists' => '没有列表',
@@ -25,6 +25,7 @@ return [
     'order_by.random' => '随机',
 
     'no_results' => '未找到任何结果。',
+    'results_for' => 'Search results for',
 
     'validation_query_missing' => '您必须输入一个搜索查询，或者选择一个列表、一个标签或者启用搜索已失效的链接。',
 ];

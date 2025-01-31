@@ -4,6 +4,7 @@ return [
     'links' => 'Enllaços',
     'all_links' => 'Tots els enllaços',
     'recent_links' => 'Enllaços recents',
+    'update_links' => 'Update Links',
     'no_links' => 'Sense enllaços',
 
     'add' => 'Afegeix un enllaç',
@@ -12,15 +13,13 @@ return [
     'details' => 'Detalls de l\'enllaç',
     'edit' => 'Edita l’enllaç',
     'update' => 'Actualitza l\'enllaç',
-    'delete' => 'Esborrar l\'enllaç',
+    'delete' => 'Delete Link|Delete Links',
 
+    'public' => 'Public Link',
+    'internal' => 'Internal Link',
     'private' => 'Enllaç privat',
 
-    'history' => 'Historial',
-    'history_added' => 'Afegit <code>:newvalue</code> a :fieldname.',
-    'history_changed' => 'S\'ha modificat :fieldname de <code>:oldvalue</code> a <code>:newvalue</code>',
-    'history_removed' => 'Esborrat <code>:newvalue</code> a :fieldname.',
-    'history_deleted' => 'L\'enllaç ha estat esborrat',
+    'history_deleted' => 'Link was moved to the trash',
     'history_restored' => 'L\'enllaç ha estat restaurat',
     'history_created' => 'L\'enllaç ha estat creat',
 
@@ -29,7 +28,7 @@ return [
     'description' => 'Descripció',
     'revtags' => 'Etiquetes',
     'revlists' => 'Llistes',
-    'is_private' => 'Notes privades',
+    'visibility' => 'Visibility Status',
 
     'status' => 'Estat',
     'stati' => [
@@ -42,6 +41,7 @@ return [
 
     'external_link' => 'Enllaç extern',
     'wayback' => 'Arxivar l\'enllaç a @ Wayback Machine',
+    'open_in_tabs' => 'Open Links in Tabs',
 
     'check_disable' => 'Deshabilitar comprovació',
     'check_disabled' => 'Comprovació deshabilitada',
@@ -51,12 +51,17 @@ return [
     'status_is_broken' => 'L\'enllaç està marcat com a trencat',
     'status_mark_working' => 'Marca com a treballant',
 
+    'bulk_title' => 'You want to edit :count Link.|You want to edit :count Links.',
+    'bulk_edit_add' => 'Add Link to bulk edit',
+    'bulk_edit_success' => 'Successfully updated :success Links out of :selected selected ones.',
+    'bulk_delete_success' => 'Successfully moved :success Links out of :selected selected ones to the trash.',
+
     'added_successfully' => 'Enllaç afegit amb èxit.',
     'added_connection_error' => 'S\'ha afegit l\'enllaç, però s\'ha produït un error de connexió al intentar accedir a l\'adreça URL. Els detalls es poden trobar als registres.',
     'added_request_error' => 'S\'ha afegit l\'enllaç, però s\'ha produït un error de connexió al intentar accedir a l\'adreça URL, per exemple per certificat invalid. Els detalls es poden trobar als registres.',
     'updated_successfully' => 'Enllaç actualitzat correctament.',
-    'deleted_successfully' => 'Enllaç esborrat correctament.',
-    'deletion_error' => 'L\'enllaç no s\'ha pogut suprimir.',
+    'deleted_successfully' => 'Link successfully moved to the trash.',
+    'deletion_error' => 'Link could not be moved to the trash.',
 
     'duplicates_found' => 'LinkAce ha trobat possibles duplicitats per l\'URL enviada:',
     'existing_found' => 'Ja existeix un enllaç amb aquest URL.',

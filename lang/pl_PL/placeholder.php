@@ -16,5 +16,4 @@ return [
 
     'two_factor_otp' => 'Jednorazowe hasło',
     'two_factor_recovery_code' => 'Kod odzyskiwania',
-
 ];

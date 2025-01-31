@@ -16,5 +16,4 @@ return [
 
     'two_factor_otp' => 'Contrasenya de un sol ús',
     'two_factor_recovery_code' => 'Codi de recuperació',
-
 ];

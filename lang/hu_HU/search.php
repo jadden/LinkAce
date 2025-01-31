@@ -8,7 +8,7 @@ return [
     'query' => 'Keresés...',
     'search_title' => 'Cím keresése',
     'search_description' => 'Leírás keresése',
-    'private_only' => 'Csak privát hivatkozások',
+    'visibility' => 'Keresés láthatóság szerint...',
     'broken_links' => 'Csak megszakadt hivatkozások',
     'empty_tags' => 'címke nélkül',
     'empty_lists' => 'lista nélkül',
@@ -25,6 +25,7 @@ return [
     'order_by.random' => 'Véletlen',
 
     'no_results' => 'Nincs találat.',
+    'results_for' => 'Keresés eredményei a következő témában',
 
     'validation_query_missing' => 'Vagy meg kell adnia egy keresési lekérdezést, vagy ki kell választania egy listát, egy címkét, vagy engedélyeznie kell a megszakadt hivatkozások keresését.',
 ];

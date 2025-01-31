@@ -16,5 +16,4 @@ return [
 
     'two_factor_otp' => 'Egyszeri jelszó',
     'two_factor_recovery_code' => 'Helyreállítási kód',
-
 ];

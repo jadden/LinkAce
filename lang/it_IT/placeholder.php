@@ -16,5 +16,4 @@ return [
 
     'two_factor_otp' => 'Password monouso',
     'two_factor_recovery_code' => 'Codice di Recupero',
-
 ];

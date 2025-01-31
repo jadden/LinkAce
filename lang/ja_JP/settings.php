@@ -74,10 +74,21 @@ return [
     'two_factor_regenerate_recovery_codes' => '新しいリカバリーコードを生成する',
 
     'page_title' => 'ページタイトル',
+    'logo_text' => 'カスタムロゴテキスト',
     'guest_access' => 'ゲストアクセスを有効化',
     'guest_access_help' => '有効にすると、ゲストは非公開ではないすべてのリンクを見ることができます。',
     'custom_header_content' => 'カスタムヘッダーコンテンツ',
     'custom_header_content_help' => 'ここに入力したコンテンツはすべてのLinkAceサイトの &lt;/head&gt; タグの前に配置されます。 分析やカスタムスクリプトを配置するのに便利です。注意：コンテンツはエスケープされていないと、サイトが壊れる可能性があります！',
+
+    'additional_footer_link' => 'フッターの追加リンク',
+    'additional_footer_link_url' => 'リンクURL',
+    'additional_footer_link_text' => 'リンクテキスト',
+
+    'contact_page' => '連絡先/概要ページ',
+    'contact_page_info' => '連絡先/概要ページはブックマークに関する追加情報を表示するために使用できます。リンクはフッターに表示されます。マークダウン表記をサポートしています。',
+    'contact_page_enabled' => '連絡先/概要ページを有効にする',
+    'contact_page_title' => 'ページのカスタムタイトル',
+    'contact_page_content' => 'ページの内容',
 
     'cron_token' => 'Cronトークン',
     'cron_token_generate' => 'トークンを生成',

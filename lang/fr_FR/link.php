@@ -19,7 +19,7 @@ return [
     'internal' => 'Lien interne',
     'private' => 'Lien Privé',
 
-    'history_deleted' => 'Le lien a été supprimé',
+    'history_deleted' => 'Le lien a été déplacé vers la corbeille',
     'history_restored' => 'Le lien a été restauré',
     'history_created' => 'Le lien a été créé',
 
@@ -41,6 +41,7 @@ return [
 
     'external_link' => 'Lien Externe',
     'wayback' => 'Lien archivé @ Wayback Machine',
+    'open_in_tabs' => 'Ouvrir les liens dans des onglets',
 
     'check_disable' => 'Désactiver Vérification',
     'check_disabled' => 'La vérification est désactivée',
@@ -59,8 +60,8 @@ return [
     'added_connection_error' => 'Le lien a été ajouté mais une erreur de connexion s\'est produite lors de la tentative d\'accès à l\'URL. Des détails peuvent être trouvés dans les journaux.',
     'added_request_error' => 'Le lien a été ajouté mais une erreur est survenue lors de la tentative de requête de l\'URL, à cause par exemple d\'un certificat invalide. Des détails peuvent être trouvés dans les logs.',
     'updated_successfully' => 'Lien mis à jour avec succès.',
-    'deleted_successfully' => 'Lien supprimé avec succès.',
-    'deletion_error' => 'Le lien n\'a pas pu être supprimé.',
+    'deleted_successfully' => 'Lien déplacé avec succès vers la corbeille.',
+    'deletion_error' => 'Le lien n\'a pas pu être déplacé vers la corbeille.',
 
     'duplicates_found' => 'LinkAce a trouvé des doublons possibles de l\'URL soumise :',
     'existing_found' => 'Un lien avec cette URL existe déjà.',

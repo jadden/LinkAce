@@ -125,8 +125,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'visibility' => [
+            'visibility' => 'La visibilidad debe ser 1 (público), 2 (interno) o 3 (privado).',
+        ],
+        'api_token_ability' => [
+            'api_token_ability' => 'El token de API debe tener al menos una capacidad de las habilidades de token predefinidas.',
         ],
     ],
 

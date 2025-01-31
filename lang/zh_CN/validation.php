@@ -125,8 +125,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => '自定义消息',
+        'visibility' => [
+            'visibility' => '可见性必须为 1（公共）、2（内部）或 3（私有）。',
+        ],
+        'api_token_ability' => [
+            'api_token_ability' => 'API 令牌必须至少具备预定义令牌能力中的一种能力。',
         ],
     ],
 

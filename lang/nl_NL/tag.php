@@ -21,7 +21,7 @@ return [
     'name' => 'Tagnaam',
     'visibility' => 'Zichtbaarheid',
 
-    'history_deleted' => 'De tag is verwijderd',
+    'history_deleted' => 'Tag is verplaatst naar de prullenbak',
     'history_restored' => 'De tag is hersteld',
     'history_created' => 'De tag is aangemaakt',
 
@@ -38,6 +38,6 @@ return [
 
     'added_successfully' => 'De tag is succesvol toegevoegd.',
     'updated_successfully' => 'De tag is succesvol bijgewerkt.',
-    'deleted_successfully' => 'De tag is succesvol verwijderd.',
-    'deletion_error' => 'De tag kon niet worden verwijderd.',
+    'deleted_successfully' => 'Tag succesvol verplaatst naar de prullenbak.',
+    'deletion_error' => 'Tag kon niet naar de prullenbak worden verplaatst.',
 ];

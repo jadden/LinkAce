@@ -1,0 +1,110 @@
+<?php
+return [
+    'settings' => 'Inställningar',
+    'user_settings' => 'Användarinsällningar',
+    'account_settings' => 'Kontoinställningar',
+    'app_settings' => 'Applikationsinställningar',
+    'system_settings' => 'Systeminställningar',
+    'guest_settings' => 'Inställningar för gäster',
+
+    'locale' => 'Språk',
+    'timezone' => 'Tidszon',
+    'date_format' => 'Datumformat',
+    'time_format' => 'Tidsformat',
+    'listitem_count' => 'Antal objekt i listorna',
+
+    'links_new_tab' => 'Öppna externa länkar i nya flikar',
+
+    'markdown_for_text' => 'Aktivera Markdown för beskrivningar och anteckningar',
+
+    'privacy' => 'Integritet',
+    'profile_privacy' => 'Följande inställningar gäller för din användarprofil som är synlig för gäster.',
+    'profile_is_public' => 'Profilen är offentlig',
+    'default_visibility_help' => 'Följande inställningar definierar standardvisningen för länkar, listor, anteckningar och taggar när nya läggs till.',
+    'links_default_visibility' => 'Synlighet för standardlänkar',
+    'notes_default_visibility' => 'Standard synlighet för anteckningar',
+    'lists_default_visibility' => 'Synlighet för standardlistor',
+    'tags_default_visibility' => 'Synlighet för standardtaggar',
+
+    'archive_backups' => 'Wayback Machine säkerhetskopior',
+    'archive_backups_help' => 'Om det är aktiverat kommer LinkAce att berätta för <a href="https://archive.org/">Wayback Machine</a> att säkerhetskopiera dina länkar. Wayback Machine drivs av Internet Archive, en icke-vinstdrivande organisation. Vänligen överväg <a href="https://archive.org/donate/">att donera till Internet Archive</a>.',
+    'archive_backups_enabled' => 'Aktivera säkerhetskopiering',
+    'archive_backups_enabled_help' => 'Om den är aktiverad sparas icke-privata länkar av Internet Archive.',
+    'archive_private_backups_enabled' => 'Aktivera säkerhetskopior för privata länkar',
+    'archive_private_backups_enabled_help' => 'Om detta är aktiverat sparas även privata länkar. Säkerhetskopiering måste vara aktiverad.',
+
+    'link_display_mode' => 'Visningsläge för länk',
+    'display_mode' => 'Visa länkar som',
+    'display_mode_list_simple' => 'Visa länkar som en enkel lista',
+    'display_mode_list_detailed' => 'Visa länkar som detaljerad lista',
+    'display_mode_cards' => 'Visa länkar som kort',
+
+    'sharing' => 'Delning av länkar',
+    'guest_sharing' => 'Delning av gästlänkar',
+    'sharing_help' => 'Aktivera alla tjänster som du vill visa för länkar, så att du enkelt kan dela dem med ett klick.',
+    'sharing_toggle' => 'Växla på/av',
+
+    'darkmode_setting' => 'Mörkläge',
+    'darkmode_help' => 'Du kan antingen välja att slå på permanent eller automatiskt baserat på dina enhetsinställningar.<small>(Kontrollera <a href="https://caniuse.com/#search=prefers-color-scheme">här</a> om din webbläsare stöder automatisk detektering</small>)',
+    'darkmode_disabled' => 'Inaktiverad',
+    'darkmode_auto' => 'Automatiskt',
+    'darkmode_permanent' => 'Permanent',
+
+    'save_settings' => 'Spara inställningar',
+    'settings_saved' => 'Inställningarna har uppdaterats!',
+
+    'bookmarklet' => 'Bookmarklet',
+    'bookmarklet_button' => 'Dra detta till dina bokmärken eller högerklicka och spara det som ett bokmärke',
+    'bookmarklet_help' => 'Lägg till denna Bookmarklet i din webbläsare för att snabbt lägga till länkar från de webbplatser du besöker utan att behöva öppna LinkAce manuellt.',
+
+    'change_password' => 'Ändra lösenord',
+    'old_password' => 'Gammalt lösenord',
+    'new_password' => 'Nytt lösenord',
+    'new_password2' => 'Upprepa nytt lösenord',
+    'password_updated' => 'Lösenordet har ändrats!',
+    'old_password_invalid' => 'Det gamla lösenordet är inte giltigt!',
+
+    'two_factor_auth' => 'Tvåfaktorsautentisering',
+    'two_factor_enable' => 'Aktivera tvåfaktorsautentisering',
+    'two_factor_disable' => 'Inaktivera tvåfaktorsautentisering',
+    'two_factor_setup_app' => 'Tvåfaktorsautentisering är aktiverad. Vänligen konfigurera din autentiseringsenhet nu genom att skanna följande QR-kod.',
+    'two_factor_setup_url' => 'Fungerar inte QR-koden? Du kan också använda den här URL:en direkt.',
+    'two_factor_recovery_codes' => 'Förvara dessa återställningskoder i en säker lösenordshanterare. De kan användas för att återställa åtkomsten till ditt konto om din enhet för tvåfaktorsautentisering förloras.',
+    'two_factor_recovery_codes_view' => 'Visa återställningskoder',
+    'two_factor_regenerate_recovery_codes' => 'Generera nya återställningskoder',
+
+    'page_title' => 'Sidans titel',
+    'logo_text' => 'Anpassad logotyptext',
+    'guest_access' => 'Aktivera gäståtkomst',
+    'guest_access_help' => 'Om den är aktiverad kan gästen se alla länkar som inte är privata.',
+    'custom_header_content' => 'Anpassat innehåll i sidhuvudet',
+    'custom_header_content_help' => 'Innehåll som anges här kommer att placeras före taggen &lt;/head&gt; på alla LinkAce-webbplatser. Användbart för att placera analys- eller anpassningsskript. Varning: innehållet escapas inte och kan förstöra webbplatsen!',
+
+    'additional_footer_link' => 'Ytterligare länk i sidfoten',
+    'additional_footer_link_url' => 'Länk URL',
+    'additional_footer_link_text' => 'Länktext',
+
+    'contact_page' => 'Kontakt/About Page',
+    'contact_page_info' => 'Kontakt/om-sidan kan användas för att visa ytterligare information om dina bokmärken. Länken är synlig i sidfoten. Markdown stöds.',
+    'contact_page_enabled' => 'Aktivera sidan för kontakt/om oss',
+    'contact_page_title' => 'Anpassad titel för sidan',
+    'contact_page_content' => 'Innehåll på sidan',
+
+    'cron_token' => 'Cron Token',
+    'cron_token_generate' => 'Generera Token',
+    'cron_token_generate_confirm' => 'Vill du verkligen generera en ny token?',
+    'cron_token_help' => 'Cron-token behövs för att köra cron-tjänsten som kontrollerar döda länkar eller kör säkerhetskopior.',
+    'cron_token_url' => 'Rikta din cron till följande URL: <span class="cron-token-url">:rutt</span>',
+    'cron_token_generate_info' => 'Varning för detta: Om du redan har en cron-token kommer det befintliga cron-jobbet att brytas om du genererar en ny!',
+    'cron_token_generate_failure' => 'En ny cron-token kunde inte genereras. Kontrollera webbläsarkonsolen och programloggarna för mer information.',
+    'cron_token_auth_failure' => 'Den angivna cron-token är ogiltig',
+    'cron_execute_successful' => 'Cron framgångsrikt utförd',
+
+    'update_check' => 'Uppdateringskontroll',
+    'update_check_running' => 'Söker efter uppdateringar...',
+    'update_check_version_found' => 'Uppdatering hittades. Version #VERSION# är tillgänglig.',
+    'update_check_success' => 'Ingen uppdatering hittades.',
+    'update_check_failed' => 'Kunde inte söka efter uppdateringar.',
+
+    'guest_settings_info' => 'Följande inställningar gäller för gäster som besöker din webbplats, om gäståtkomst är aktiverad.',
+];

@@ -41,6 +41,7 @@ return [
 
     'external_link' => 'Внешняя ссылка',
     'wayback' => 'Архив ссылок @ Wayback Machine',
+    'open_in_tabs' => 'Открывать ссылки во вкладках',
 
     'check_disable' => 'Отключить проверку',
     'check_disabled' => 'Проверка отключена',

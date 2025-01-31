@@ -16,5 +16,4 @@ return [
 
     'two_factor_otp' => 'Одноразовый пароль',
     'two_factor_recovery_code' => 'Код восстановления',
-
 ];

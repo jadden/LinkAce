@@ -4,6 +4,7 @@ return [
     'links' => 'Legături',
     'all_links' => 'Toate legăturile',
     'recent_links' => 'Legături recente',
+    'update_links' => 'Actualizare linkuri',
     'no_links' => 'Nicio legătură',
 
     'add' => 'Adăugare legătură',
@@ -12,15 +13,13 @@ return [
     'details' => 'Detalii legătură',
     'edit' => 'Editare legătură',
     'update' => 'Actualizare legătură',
-    'delete' => 'Ștergere legătură',
+    'delete' => 'Ștergeți legătura|Ștergeți legăturile',
 
+    'public' => 'Legătură publică',
+    'internal' => 'Legătură internă',
     'private' => 'Legătură privată',
 
-    'history' => 'Istoric',
-    'history_added' => 'S-a adăugat <code>:newvalue</code> la :fieldname.',
-    'history_changed' => 'S-a modificat :fieldname de la <code>:oldvalue</code> la <code>:newvalue</code>',
-    'history_removed' => 'S-a eliminat <code>:oldvalue</code> de la :fieldname.',
-    'history_deleted' => 'Legătura a fost ștearsă',
+    'history_deleted' => 'Linkul a fost mutat în coșul de gunoi',
     'history_restored' => 'Legătura a fost restaurată',
     'history_created' => 'Legătura a fost creată',
 
@@ -29,7 +28,7 @@ return [
     'description' => 'Descriere',
     'revtags' => 'Etichete',
     'revlists' => 'Liste',
-    'is_private' => 'Stare privată',
+    'visibility' => 'Starea vizibilității',
 
     'status' => 'Stare',
     'stati' => [
@@ -42,6 +41,7 @@ return [
 
     'external_link' => 'Legătură externă',
     'wayback' => 'Arhiva legăturilor la Wayback Machine',
+    'open_in_tabs' => 'Deschideți linkuri în file',
 
     'check_disable' => 'Dezactivare verificare',
     'check_disabled' => 'Verificarea este dezactivată',
@@ -49,14 +49,19 @@ return [
     'check_enabled' => 'Verificarea este activată',
 
     'status_is_broken' => 'Legătura este marcată ca fiind nefuncțională',
-    'status_mark_working' => 'Marchează ca în lucru',
+    'status_mark_working' => 'Marchează ca funcțional',
+
+    'bulk_title' => 'Doriți să editați :count Link.|Doriți să editați :count Links.',
+    'bulk_edit_add' => 'Adăugați link la editarea în bloc',
+    'bulk_edit_success' => 'A actualizat cu succes :success Links din :selected selected ones.',
+    'bulk_delete_success' => 'Am mutat cu succes :success Links din :selected selected ones la coșul de gunoi.',
 
     'added_successfully' => 'Legătura a fost adăugată.',
     'added_connection_error' => 'Legătura a fost adăugată, dar a apărut o eroare de conexiune la accesarea URL-ului. Detaliile se regăsesc în jurnale.',
     'added_request_error' => 'Legătura a fost adăugată, dar a apărut o eroare de conexiune la solicitarea URL-ului, de exemplu, un certificat invalid. Detaliile se regăsesc în jurnale.',
     'updated_successfully' => 'Legătura a fost actualizată.',
-    'deleted_successfully' => 'Legătura a fost ștearsă.',
-    'deletion_error' => 'Legătura nu a putut fi ștearsă.',
+    'deleted_successfully' => 'Linkul a fost mutat în coșul de gunoi.',
+    'deletion_error' => 'Linkul nu a putut fi mutat în coșul de gunoi.',
 
     'duplicates_found' => 'LinkAce a găsit dubluri posibile ale URL-ului trimis:',
     'existing_found' => 'Există deja o legătură cu acel URL.',

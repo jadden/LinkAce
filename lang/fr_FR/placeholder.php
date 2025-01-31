@@ -16,5 +16,4 @@ return [
 
     'two_factor_otp' => 'Mot de passe à usage unique',
     'two_factor_recovery_code' => 'Code de récupération',
-
 ];

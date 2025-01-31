@@ -8,7 +8,7 @@ return [
     'query' => 'Søk etter...',
     'search_title' => 'Søk i tittel',
     'search_description' => 'Søk i beskrivelse',
-    'private_only' => 'Kun private lenker',
+    'visibility' => 'Søk med synlighet...',
     'broken_links' => 'Kun ødelagte lenker',
     'empty_tags' => 'uten etikketer',
     'empty_lists' => 'uten lister',

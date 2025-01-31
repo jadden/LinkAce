@@ -41,6 +41,7 @@ return [
 
     'external_link' => '外部リンク',
     'wayback' => 'リンクアーカイブ @ Wayback Machine',
+    'open_in_tabs' => 'リンクをタブで開く',
 
     'check_disable' => 'チェックを無効化',
     'check_disabled' => 'チェックは無効です',

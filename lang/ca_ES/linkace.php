@@ -8,9 +8,11 @@ return [
     'password' => 'Contrasenya',
     'password_confirm' => 'Confirma la contrasenya',
     'login' => 'Iniciar Sessió',
+    'login_with' => 'Login with',
     'logout' => 'Tancar sessió',
     'remember_me' => 'Recorda`m',
     'go_to_dashboard' => 'Ves al Tauler',
+    'dashboard' => 'Dashboard',
     'system_logs' => 'Registres del sistema',
 
     'reset_password' => 'Restableix la contrasenya',
@@ -19,8 +21,16 @@ return [
 
     'added' => 'Afegit',
     'added_at' => 'Afegit a',
+    'added_by' => 'Added by',
+    'created' => 'Created',
+    'created_at' => 'Created at',
     'updated_at' => 'Actualitzat a',
     'last_update' => 'Darrera actualització',
+    'last_used' => 'Last used',
+    'never_used' => 'Never used',
+    'blocked' => 'Blocked',
+    'blocked_at' => 'Blocked at',
+    'deleted' => 'Deleted',
     'deleted_at' => 'Suprimit',
 
     'add' => 'Afegir',
@@ -28,15 +38,27 @@ return [
     'edit' => 'Editar',
     'update' => 'Actualitza',
     'delete' => 'Suprimeix',
+    'restore' => 'Restore',
+    'block' => 'Block',
+    'unblock' => 'Unblock',
+    'unblocked' => 'Unblocked',
+    'details' => 'Details',
 
     'menu' => 'Menú',
     'entries' => 'Entrades',
     'feed' => 'Feed',
+    'contact' => 'Contact',
 
     'continue_adding' => 'Continua Afegint',
 
-    'private' => 'Privat',
-    'is_private' => 'És privat',
+    'visibility' => 'Visibility',
+    'change_visibility' => 'Change Visibility',
+    'dont_change_visibility' => 'Do not change Visibility',
+
+    'history' => 'Historial',
+    'history_added' => 'Afegit <code>:newvalue</code> a :fieldname.',
+    'history_changed' => 'S\'ha modificat :fieldname de <code>:oldvalue</code> a <code>:newvalue</code>',
+    'history_removed' => 'Esborrat <code>:newvalue</code> a :fieldname.',
 
     'yes' => 'Si',
     'no' => 'No',

@@ -4,6 +4,7 @@ return [
     'links' => 'Link',
     'all_links' => 'Tutti i link',
     'recent_links' => 'Link Recenti',
+    'update_links' => 'Aggiorna Link',
     'no_links' => 'Nessun Link',
 
     'add' => 'Aggiungi Link',
@@ -12,15 +13,13 @@ return [
     'details' => 'Dettagli Link',
     'edit' => 'Modifica Link',
     'update' => 'Aggiorna Link',
-    'delete' => 'Elimina Link',
+    'delete' => 'Elimina Collegamenti',
 
+    'public' => 'Link pubblico',
+    'internal' => 'Link Interno',
     'private' => 'Link Privato',
 
-    'history' => 'Cronologia',
-    'history_added' => 'Aggiunto <code>:newvalue</code> a :fieldname.',
-    'history_changed' => 'Modificato :fieldname da <code>:oldvalue</code> a <code>:newvalue</code>',
-    'history_removed' => 'Rimosso <code>:oldvalue</code> da :fieldname.',
-    'history_deleted' => 'Link eliminato',
+    'history_deleted' => 'Il collegamento è stato spostato nel cestino',
     'history_restored' => 'Link ripristinato',
     'history_created' => 'Link creato',
 
@@ -29,7 +28,7 @@ return [
     'description' => 'Descrizione',
     'revtags' => 'Tag',
     'revlists' => 'Liste',
-    'is_private' => 'Stato Privato',
+    'visibility' => 'Stato Visibilità',
 
     'status' => 'Stato',
     'stati' => [
@@ -42,6 +41,7 @@ return [
 
     'external_link' => 'Link Esterno',
     'wayback' => 'Archivio Link @ Wayback Machine',
+    'open_in_tabs' => 'Apri link nelle schede',
 
     'check_disable' => 'Disabilita Il Controllo',
     'check_disabled' => 'Il controllo è disabilitato',
@@ -51,12 +51,17 @@ return [
     'status_is_broken' => 'Il link è contrassegnato come non funzionante',
     'status_mark_working' => 'Contrassegna come funzionante',
 
+    'bulk_title' => 'Vuoi modificare :count Link.|Vuoi modificare :count Links.',
+    'bulk_edit_add' => 'Aggiungi collegamento alla modifica in blocco',
+    'bulk_edit_success' => 'Link :success aggiornati con successo su :selected quelli selezionati.',
+    'bulk_delete_success' => 'Spostato con successo :Successo Collegamenti di :selected selezionati al cestino.',
+
     'added_successfully' => 'Link aggiunto correttamente.',
     'added_connection_error' => 'Il link è stato aggiunto ma si è verificato un errore di connessione durante il tentativo di accedere all\'URL. Per ulteriori dettagli consultare i log.',
     'added_request_error' => 'Il link è stato aggiunto ma si è verificato un errore durante il tentativo di richiesta dell\'URL, ad esempio un certificato non valido. Per ulteriori dettagli consultare i log.',
     'updated_successfully' => 'Link aggiornato correttamente.',
-    'deleted_successfully' => 'Link eliminato correttamente.',
-    'deletion_error' => 'Il link non può essere eliminato.',
+    'deleted_successfully' => 'Link spostato con successo nel cestino.',
+    'deletion_error' => 'Il collegamento non può essere spostato nel cestino.',
 
     'duplicates_found' => 'LinkAce ha trovato possibili duplicati dell\'URL inviato:',
     'existing_found' => 'Esiste già un link con lo stesso URL.',

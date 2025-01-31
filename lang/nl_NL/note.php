@@ -17,6 +17,6 @@ return [
 
     'added_successfully' => 'De notitie is succesvol toegevoegd.',
     'updated_successfully' => 'De notitie is succesvol bijgewerkt.',
-    'deleted_successfully' => 'De notitie is succesvol verwijderd.',
-    'deletion_error' => 'De notitie kon niet worden verwijderd.',
+    'deleted_successfully' => 'Opmerking succesvol verplaatst naar de prullenbak.',
+    'deletion_error' => 'Notitie kon niet verplaatst worden naar de prullenbak.',
 ];

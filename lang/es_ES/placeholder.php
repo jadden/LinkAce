@@ -16,5 +16,4 @@ return [
 
     'two_factor_otp' => 'Contraseña de un solo uso',
     'two_factor_recovery_code' => 'Código de recuperación',
-
 ];

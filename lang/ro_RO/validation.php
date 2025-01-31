@@ -125,8 +125,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'mesaj-personalizat',
+        'visibility' => [
+            'visibility' => 'Vizibilitatea trebuie să fie fie 1 (publică), 2 (internă) sau 3 (privată).',
+        ],
+        'api_token_ability' => [
+            'api_token_ability' => 'Jetonul API trebuie să aibă cel puțin o abilitate dintre abilitățile predefinite ale jetonului.',
         ],
     ],
 

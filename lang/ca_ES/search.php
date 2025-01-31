@@ -8,7 +8,7 @@ return [
     'query' => 'Cerca per...',
     'search_title' => 'Cerca per títol',
     'search_description' => 'Cerca per Descripció',
-    'private_only' => 'Només Enllaços Privats',
+    'visibility' => 'Search by visibility...',
     'broken_links' => 'Només Enllaços trencats',
     'empty_tags' => 'sense etiquetes',
     'empty_lists' => 'sense Llistes',
@@ -25,6 +25,7 @@ return [
     'order_by.random' => 'Aleatori',
 
     'no_results' => 'No s\'han trobat resultats.',
+    'results_for' => 'Search results for',
 
     'validation_query_missing' => 'Has d\'introduir una cerca, o seleccionar un llista, una etiqueta o permetre la cerca d\'enllaços trencats.',
 ];

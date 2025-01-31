@@ -8,9 +8,11 @@ return [
     'password' => 'Hasło',
     'password_confirm' => 'Potwierdź hasło',
     'login' => 'Zaloguj się',
+    'login_with' => 'Zaloguj się za pomocą',
     'logout' => 'Wyloguj się',
     'remember_me' => 'Pozostań zalogowany',
     'go_to_dashboard' => 'Przejdź do Panelu',
+    'dashboard' => 'Pulpit',
     'system_logs' => 'Logi systemowe',
 
     'reset_password' => 'Zresetuj hasło',
@@ -19,8 +21,16 @@ return [
 
     'added' => 'Dodano',
     'added_at' => 'Dodano o',
+    'added_by' => 'Dodany przez',
+    'created' => 'Utworzony',
+    'created_at' => 'Utworzono na stronie',
     'updated_at' => 'Zaktualizowano o',
     'last_update' => 'Ostatnia aktualizacja',
+    'last_used' => 'Ostatnio używany',
+    'never_used' => 'Nigdy nie używany',
+    'blocked' => 'Zablokowany',
+    'blocked_at' => 'Zablokowany na',
+    'deleted' => 'Usunięto',
     'deleted_at' => 'Usunięto o',
 
     'add' => 'Dodaj',
@@ -28,15 +38,27 @@ return [
     'edit' => 'Edytuj',
     'update' => 'Aktualizuj',
     'delete' => 'Usuń',
+    'restore' => 'Przywróć',
+    'block' => 'Blok',
+    'unblock' => 'Odblokuj',
+    'unblocked' => 'Odblokowany',
+    'details' => 'Szczegóły',
 
     'menu' => 'Menu',
     'entries' => 'Wpisy',
     'feed' => 'Feed',
+    'contact' => 'Kontakt',
 
     'continue_adding' => 'Kontynuuj dodawanie',
 
-    'private' => 'Prywatny',
-    'is_private' => 'Jest prywatny',
+    'visibility' => 'Widoczność',
+    'change_visibility' => 'Zmień widoczność',
+    'dont_change_visibility' => 'Nie zmieniaj widoczności',
+
+    'history' => 'Historia',
+    'history_added' => 'Dodano <code>:newvalue</code> do :fieldname.',
+    'history_changed' => 'Zmieniono :fieldname z <code>:oldvalue</code> na <code>:newvalue</code>',
+    'history_removed' => 'Usunięto <code>:oldvalue</code> z :fieldname.',
 
     'yes' => 'Tak',
     'no' => 'Nie',

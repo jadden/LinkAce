@@ -8,7 +8,7 @@ return [
     'query' => 'Szukaj...',
     'search_title' => 'Wyszukaj tytuł',
     'search_description' => 'Opis wyszukiwania',
-    'private_only' => 'Tylko linki prywatne',
+    'visibility' => 'Szukaj według widoczności...',
     'broken_links' => 'Tylko uszkodzone linki',
     'empty_tags' => 'bez tagów',
     'empty_lists' => 'bez list',
@@ -25,6 +25,7 @@ return [
     'order_by.random' => 'Losowo',
 
     'no_results' => 'Nie znaleziono wyników.',
+    'results_for' => 'Wyniki wyszukiwania dla',
 
     'validation_query_missing' => 'Musisz wprowadzić zapytanie, wybrać listę, tag lub włączyć wyszukiwanie uszkodzonych linków.',
 ];

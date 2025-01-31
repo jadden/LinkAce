@@ -1,0 +1,110 @@
+<?php
+return [
+    'settings' => 'Definições',
+    'user_settings' => 'Definições do utilizador',
+    'account_settings' => 'Definições da conta',
+    'app_settings' => 'Definições da aplicação',
+    'system_settings' => 'Definições do sistema',
+    'guest_settings' => 'Definições de convidados',
+
+    'locale' => 'Língua',
+    'timezone' => 'Fuso horário',
+    'date_format' => 'Formato da data',
+    'time_format' => 'Formato da hora',
+    'listitem_count' => 'Número de itens nas listas',
+
+    'links_new_tab' => 'Abre links externos em novos separadores',
+
+    'markdown_for_text' => 'Ativar Markdown para descrições e notas',
+
+    'privacy' => 'Privacidade',
+    'profile_privacy' => 'As seguintes definições aplicam-se ao teu perfil de utilizador, que é visível para os convidados.',
+    'profile_is_public' => 'O teu perfil é público',
+    'default_visibility_help' => 'As definições seguintes definem a visibilidade predefinida para Hiperligações, Listas, Notas e Etiquetas quando adicionas novas.',
+    'links_default_visibility' => 'Visibilidade das ligações por defeito',
+    'notes_default_visibility' => 'Visibilidade das notas por defeito',
+    'lists_default_visibility' => 'Visibilidade das listas por defeito',
+    'tags_default_visibility' => 'Visibilidade das etiquetas por defeito',
+
+    'archive_backups' => 'Cópias de segurança do Wayback Machine',
+    'archive_backups_help' => 'Se ativado, o LinkAce dirá à <a href="https://archive.org/">Wayback Machine</a> para fazer cópias de segurança dos teus links. O Wayback Machine é alimentado pelo Internet Archive, uma organização sem fins lucrativos. Por favor, considera <a href="https://archive.org/donate/">fazer um donativo ao Internet Archive</a>.',
+    'archive_backups_enabled' => 'Ativar as cópias de segurança',
+    'archive_backups_enabled_help' => 'Se ativado, as ligações não privadas serão guardadas pelo Internet Archive.',
+    'archive_private_backups_enabled' => 'Ativar cópias de segurança para ligações privadas',
+    'archive_private_backups_enabled_help' => 'Se estiveres ativado, as ligações privadas também serão guardadas. As cópias de segurança têm de estar activadas.',
+
+    'link_display_mode' => 'Modo de visualização de ligações',
+    'display_mode' => 'Apresenta as ligações como',
+    'display_mode_list_simple' => 'Apresenta as ligações como uma lista simples',
+    'display_mode_list_detailed' => 'Apresenta as ligações como uma lista detalhada',
+    'display_mode_cards' => 'Apresenta as ligações como cartões',
+
+    'sharing' => 'Partilha de ligações',
+    'guest_sharing' => 'Partilha de ligações com convidados',
+    'sharing_help' => 'Ativa todos os serviços que pretendes apresentar nos links, para poderes partilhá-los facilmente com um clique.',
+    'sharing_toggle' => 'Liga/desliga tudo',
+
+    'darkmode_setting' => 'Modo escuro',
+    'darkmode_help' => 'Podes optar por ativar permanentemente ou automaticamente com base nas definições do teu dispositivo.<small>(Verifica <a href="https://caniuse.com/#search=prefers-color-scheme">aqui</a> se o teu browser suporta a deteção automática</small>)',
+    'darkmode_disabled' => 'Desativado',
+    'darkmode_auto' => 'Automaticamente',
+    'darkmode_permanent' => 'Permanente',
+
+    'save_settings' => 'Guardar definições',
+    'settings_saved' => 'Actualiza as definições com sucesso!',
+
+    'bookmarklet' => 'Marcador de páginas',
+    'bookmarklet_button' => 'Arrasta isto para os teus Favoritos ou clica com o botão direito do rato e guarda-o como um favorito',
+    'bookmarklet_help' => 'Adiciona este Bookmarklet ao teu browser para adicionares rapidamente links dos sites que visitas sem teres de abrir o LinkAce manualmente.',
+
+    'change_password' => 'Altera a palavra-passe',
+    'old_password' => 'Palavra-passe antiga',
+    'new_password' => 'Nova palavra-passe',
+    'new_password2' => 'Repete a nova palavra-passe',
+    'password_updated' => 'Alteraste a palavra-passe com sucesso!',
+    'old_password_invalid' => 'A palavra-passe antiga não é válida!',
+
+    'two_factor_auth' => 'Autenticação de dois factores',
+    'two_factor_enable' => 'Ativar a autenticação de dois factores',
+    'two_factor_disable' => 'Desativar a autenticação de dois factores',
+    'two_factor_setup_app' => 'A autenticação de dois factores está activada. Configura agora o teu dispositivo de autenticação digitalizando o seguinte código QR.',
+    'two_factor_setup_url' => 'O código QR não está a funcionar? Também podes utilizar este URL diretamente.',
+    'two_factor_recovery_codes' => 'Guarda estes códigos de recuperação num gestor de palavras-passe seguro. Podem ser utilizados para recuperar o acesso à tua conta se o dispositivo de autenticação de dois factores se perder.',
+    'two_factor_recovery_codes_view' => 'Ver códigos de recuperação',
+    'two_factor_regenerate_recovery_codes' => 'Gera novos códigos de recuperação',
+
+    'page_title' => 'Título da página',
+    'logo_text' => 'Texto do logótipo personalizado',
+    'guest_access' => 'Ativar o acesso de convidados',
+    'guest_access_help' => 'Se estiver ativado, o convidado poderá ver todas as ligações que não sejam privadas.',
+    'custom_header_content' => 'Conteúdo do cabeçalho personalizado',
+    'custom_header_content_help' => 'O conteúdo introduzido aqui será colocado antes da etiqueta &lt;/head&gt; em todos os sites LinkAce. Útil para colocar scripts analíticos ou de personalização. Atenção: os conteúdos não são escapados e podem quebrar o site!',
+
+    'additional_footer_link' => 'Link adicional no rodapé',
+    'additional_footer_link_url' => 'Liga o URL',
+    'additional_footer_link_text' => 'Texto da ligação',
+
+    'contact_page' => 'Página de contacto/sobre',
+    'contact_page_info' => 'A página de contacto/sobre pode ser utilizada para apresentar informações adicionais sobre os teus marcadores. A ligação é visível no rodapé. Suporta Markdown.',
+    'contact_page_enabled' => 'Ativar a página de contacto/sobre',
+    'contact_page_title' => 'Título personalizado para a página',
+    'contact_page_content' => 'Conteúdo da página',
+
+    'cron_token' => 'Token Cron',
+    'cron_token_generate' => 'Gerar Token',
+    'cron_token_generate_confirm' => 'Queres mesmo gerar um novo token?',
+    'cron_token_help' => 'O token cron é necessário para executar o serviço cron que verifica se existem links mortos ou se estão a ser executadas cópias de segurança.',
+    'cron_token_url' => 'Aponta o teu cron para o seguinte URL: <span class="cron-token-url">:route</span>',
+    'cron_token_generate_info' => 'Tem cuidado: Se já tiveres um token cron, a criação de um novo token irá interromper o cron job existente!',
+    'cron_token_generate_failure' => 'Não foi possível gerar um novo token cron. Verifica a consola do teu browser e os registos da aplicação para obteres mais informações.',
+    'cron_token_auth_failure' => 'O token cron fornecido é inválido',
+    'cron_execute_successful' => 'Cron executado com sucesso',
+
+    'update_check' => 'Verificação de atualização',
+    'update_check_running' => 'Verifica se há actualizações...',
+    'update_check_version_found' => 'Atualização encontrada. A versão #VERSÃO# está disponível.',
+    'update_check_success' => 'Não encontraste nenhuma atualização.',
+    'update_check_failed' => 'Não foi possível verificar se existem actualizações.',
+
+    'guest_settings_info' => 'As definições seguintes aplicam-se aos visitantes do teu sítio, se o acesso de convidados estiver ativado.',
+];

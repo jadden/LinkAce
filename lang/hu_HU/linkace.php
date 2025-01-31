@@ -8,9 +8,11 @@ return [
     'password' => 'Jelszó',
     'password_confirm' => 'Erősítse meg a jelszót',
     'login' => 'Bejelentkezés',
+    'login_with' => 'Bejelentkezés',
     'logout' => 'Kijelentkezés',
     'remember_me' => 'Jegyezzen meg',
     'go_to_dashboard' => 'Ugrás az irányítópultra',
+    'dashboard' => 'Irányítópult',
     'system_logs' => 'Rendszernaplók',
 
     'reset_password' => 'Jelszó visszaállítása',
@@ -19,8 +21,16 @@ return [
 
     'added' => 'Hozzáadott',
     'added_at' => 'Hozzáadva:',
+    'added_by' => 'Hozzáadta:',
+    'created' => 'Létrehozás',
+    'created_at' => 'Létrehozva',
     'updated_at' => 'Frissítve:',
     'last_update' => 'Utolsó frissítés',
+    'last_used' => 'Legutóbbi használat:',
+    'never_used' => 'Sohasem használva',
+    'blocked' => 'Tiltott',
+    'blocked_at' => 'Blokkolva',
+    'deleted' => 'Törölve',
     'deleted_at' => 'Törölve:',
 
     'add' => 'Hozzáadás',
@@ -28,15 +38,27 @@ return [
     'edit' => 'Szerkesztés',
     'update' => 'Frissítés',
     'delete' => 'Törlés',
+    'restore' => 'Visszaállítás',
+    'block' => 'Blokkolás',
+    'unblock' => 'Eltávolítás',
+    'unblocked' => 'Letiltás visszavonva',
+    'details' => 'Részletek',
 
     'menu' => 'Menü',
     'entries' => 'Bejegyzések',
     'feed' => 'Feed',
+    'contact' => 'Kapcsolat',
 
     'continue_adding' => 'Többet hozzáadni',
 
-    'private' => 'Privát',
-    'is_private' => 'Személyes',
+    'visibility' => 'Láthatóság',
+    'change_visibility' => 'Láthatóság megváltoztatása',
+    'dont_change_visibility' => 'Ne változtassa meg a láthatóságot',
+
+    'history' => 'Előzmények',
+    'history_added' => '<code>:newvalue</code> hozzáadva ehhez: :fieldname.',
+    'history_changed' => ':fieldname változása: <code>:oldvalue</code> – <code>:newvalue</code>',
+    'history_removed' => '<code>:newvalue</code> eltávolítva ebből: :fieldname.',
 
     'yes' => 'Igen',
     'no' => 'Nem',

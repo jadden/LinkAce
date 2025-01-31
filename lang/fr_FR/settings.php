@@ -74,10 +74,21 @@ return [
     'two_factor_regenerate_recovery_codes' => 'Générer nouveaux Codes de Récupération',
 
     'page_title' => 'Titre Page',
+    'logo_text' => 'Texte du logo personnalisé',
     'guest_access' => 'Activer Accès Invité',
     'guest_access_help' => 'Si activé, l\'invité sera en mesure de voir tous les liens qui ne sont pas privés.',
     'custom_header_content' => 'Contenu de l\'en-tête personnalisé',
     'custom_header_content_help' => 'Le contenu entré ici sera placé avant la balise &lt;/head&gt; sur tous les sites LinkAce. Utile pour placer des scripts d\'analyse ou de personnalisation. Attention : les contenus ne sont pas échappés et peuvent casser le site !',
+
+    'additional_footer_link' => 'Lien supplémentaire dans le pied de page',
+    'additional_footer_link_url' => 'URL du lien',
+    'additional_footer_link_text' => 'Texte du lien',
+
+    'contact_page' => 'Contact/Page À propos',
+    'contact_page_info' => 'La page Contact/À propos peut être utilisée pour afficher des informations supplémentaires sur vos signets. Le lien est visible dans le pied de page. Markdown est pris en charge.',
+    'contact_page_enabled' => 'Activer la page Contact/À propos',
+    'contact_page_title' => 'Titre personnalisé pour la page',
+    'contact_page_content' => 'Contenu de la page',
 
     'cron_token' => 'Jeton Cron',
     'cron_token_generate' => 'Générer Jeton',

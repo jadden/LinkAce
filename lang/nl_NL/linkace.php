@@ -8,6 +8,7 @@ return [
     'password' => 'Wachtwoord',
     'password_confirm' => 'Bevestig het wachtwoord',
     'login' => 'Aanmelden',
+    'login_with' => 'Log in met',
     'logout' => 'Afmelden',
     'remember_me' => 'Onthoud mij',
     'go_to_dashboard' => 'Naar het dashboard',
@@ -46,6 +47,7 @@ return [
     'menu' => 'Menu',
     'entries' => 'Invoer',
     'feed' => 'Feed',
+    'contact' => 'Contactpersoon',
 
     'continue_adding' => 'Doorgaan met toevoegen',
 

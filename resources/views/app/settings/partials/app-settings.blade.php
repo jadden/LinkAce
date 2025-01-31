@@ -31,6 +31,10 @@
                     </div>
 
                 </div>
+                <div class="col-12 col-sm-8 col-md-6 d-flex flex-column justify-content-end">
+                    <p class="mb-0 small">Help translate LinkAce on <a href="https://crowdin.com/project/linkace" target="_blank">Crowdin.</a></p>
+                    <p class="mb-4 text-xs text-muted">All languages except English and German are translated by the community or automatically.</p>
+                </div>
                 <div class="col-12 col-sm-8 col-md-6">
 
                     <div class="mb-4">

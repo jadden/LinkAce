@@ -125,8 +125,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'egyéni-üzenet',
+        'visibility' => [
+            'visibility' => 'A Láthatóságnak 1 (nyilvános), 2 (belső) vagy 3 (privát) kell lennie.',
+        ],
+        'api_token_ability' => [
+            'api_token_ability' => 'Az API-token legalább egy képességgel kell rendelkeznie az előre definiált token-képességek közül.',
         ],
     ],
 

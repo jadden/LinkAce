@@ -125,8 +125,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'Wiadomość niestandardowa',
+        'visibility' => [
+            'visibility' => 'Widoczność musi wynosić 1 (publiczna), 2 (wewnętrzna) lub 3 (prywatna).',
+        ],
+        'api_token_ability' => [
+            'api_token_ability' => 'Token API musi mieć co najmniej jedną zdolność z predefiniowanych zdolności tokena.',
         ],
     ],
 

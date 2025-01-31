@@ -16,5 +16,4 @@ return [
 
     'two_factor_otp' => 'Parolă de unică folosință',
     'two_factor_recovery_code' => 'Cod de recuperare',
-
 ];

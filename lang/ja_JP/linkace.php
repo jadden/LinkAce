@@ -8,6 +8,7 @@ return [
     'password' => 'パスワード',
     'password_confirm' => 'パスワードの確認',
     'login' => 'ログイン',
+    'login_with' => 'ログイン',
     'logout' => 'ログアウト',
     'remember_me' => 'ログインを維持',
     'go_to_dashboard' => 'ダッシュボードに移動',
@@ -46,6 +47,7 @@ return [
     'menu' => 'メニュー',
     'entries' => '項目',
     'feed' => 'フィード',
+    'contact' => 'お問い合わせ',
 
     'continue_adding' => '編集を継続',
 

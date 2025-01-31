@@ -22,7 +22,7 @@ return [
     'description' => 'Lijstomschrijving',
     'visibility' => 'Zichtbaarheid',
 
-    'history_deleted' => 'De lijst is verwijderd',
+    'history_deleted' => 'De lijst is verplaatst naar de prullenbak',
     'history_restored' => 'De lijst is hersteld',
     'history_created' => 'De lijst is aangemaakt',
 
@@ -41,6 +41,6 @@ return [
 
     'added_successfully' => 'De lijst is succesvol toegevoegd.',
     'updated_successfully' => 'De lijst is succesvol bijgewerkt.',
-    'deleted_successfully' => 'De lijst is succesvol verwijderd.',
-    'deletion_error' => 'De lijst kon niet worden verwijderd.',
+    'deleted_successfully' => 'Lijst met succes naar de prullenbak verplaatst.',
+    'deletion_error' => 'Lijst kon niet naar de prullenbak worden verplaatst.',
 ];

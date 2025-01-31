@@ -17,6 +17,6 @@ return [
 
     'added_successfully' => 'Note ajoutée avec succès.',
     'updated_successfully' => 'Note mise à jour avec succès.',
-    'deleted_successfully' => 'Note supprimée avec succès.',
-    'deletion_error' => 'La note n\'a pas pu être supprimée.',
+    'deleted_successfully' => 'Note déplacée avec succès vers la corbeille.',
+    'deletion_error' => 'La note n\'a pas pu être déplacée dans la corbeille.',
 ];

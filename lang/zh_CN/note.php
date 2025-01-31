@@ -9,12 +9,14 @@ return [
     'update' => '更新注释',
     'delete' => '删除注释',
 
+    'public' => '公开说明',
+    'internal' => '内部说明',
     'private' => '私人注释',
 
     'note_content' => '备注内容',
 
     'added_successfully' => '已添加注释。',
     'updated_successfully' => '已更新注释。',
-    'deleted_successfully' => '已删除注释。',
-    'deletion_error' => '无法删除注释。',
+    'deleted_successfully' => '注释已成功移至垃圾桶。',
+    'deletion_error' => 'Note 无法移至垃圾桶。',
 ];

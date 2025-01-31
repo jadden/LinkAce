@@ -16,5 +16,4 @@ return [
 
     'two_factor_otp' => '一次性密码',
     'two_factor_recovery_code' => '恢复码',
-
 ];

@@ -4,6 +4,7 @@ return [
     'links' => 'Hivatkozások',
     'all_links' => 'Minden hivatkozás',
     'recent_links' => 'Legutóbbi hivatkozások',
+    'update_links' => 'Lista frissítése',
     'no_links' => 'Nincsenek hivatkozások',
 
     'add' => 'Hivatkozás hozzáadása',
@@ -12,15 +13,13 @@ return [
     'details' => 'Hivatkozás részletek',
     'edit' => 'Hivatkozás szerkesztése',
     'update' => 'Hivatkozás frissítése',
-    'delete' => 'Hivatkozás törlése',
+    'delete' => 'Link törlése|Hivatkozások törlése',
 
+    'public' => 'Nyilvános hivatkozás',
+    'internal' => 'Külső hivatkozás',
     'private' => 'Privát hivatkozás',
 
-    'history' => 'Előzmények',
-    'history_added' => '<code>:newvalue</code> hozzáadva ehhez: :fieldname.',
-    'history_changed' => ':fieldname változása: <code>:oldvalue</code> – <code>:newvalue</code>',
-    'history_removed' => '<code>:newvalue</code> eltávolítva ebből: :fieldname.',
-    'history_deleted' => 'A hivatkozás törölve',
+    'history_deleted' => 'A link a szemétbe került',
     'history_restored' => 'A hivatkozás helyreállítva',
     'history_created' => 'A hivatkozás létrehozva',
 
@@ -29,7 +28,7 @@ return [
     'description' => 'Leírás',
     'revtags' => 'Címkék',
     'revlists' => 'Listák',
-    'is_private' => 'Privát állapot',
+    'visibility' => 'Láthatóság állapota',
 
     'status' => 'Állapot',
     'stati' => [
@@ -42,6 +41,7 @@ return [
 
     'external_link' => 'Külső hivatkozás',
     'wayback' => 'Hivatkozás archívum @ Wayback Machine',
+    'open_in_tabs' => 'Linkek megnyitása lapokon',
 
     'check_disable' => 'Ellenőrzés kikapcsolása',
     'check_disabled' => 'Az ellenőrzés ki van kapcsolva',
@@ -51,12 +51,17 @@ return [
     'status_is_broken' => 'A link megszakadtként van megjelölve',
     'status_mark_working' => 'Megjelölés működőként',
 
+    'bulk_title' => 'Szerkeszteni szeretné :count Link.|Szerkeszteni szeretné :count Links.',
+    'bulk_edit_add' => 'Link hozzáadása a tömeges szerkesztéshez',
+    'bulk_edit_success' => 'Sikeresen frissítette :success Linkek a :selected kiválasztott linkek közül.',
+    'bulk_delete_success' => 'Sikeresen áthelyezte :success Linkek a :selected kiválasztott linkek közül a kukába.',
+
     'added_successfully' => 'Hivatkozás sikeresen hozzáadva.',
     'added_connection_error' => 'A hivatkozás hozzáadásra került, de az URL elérésekor kapcsolati hiba lépett fel. A részletek a naplókban találhatók.',
     'added_request_error' => 'A hivatkozás hozzáadásra került, de hiba lépett fel az URL kérésekor, például érvénytelen tanúsítvány miatt. A részletek a naplókban találhatók.',
     'updated_successfully' => 'Hivatkozás sikeresen frissítve.',
-    'deleted_successfully' => 'Hivatkozás sikeresen törölve.',
-    'deletion_error' => 'Nem sikerült törölni a hivatkozást.',
+    'deleted_successfully' => 'A link sikeresen a szemétbe került.',
+    'deletion_error' => 'A linket nem lehetett a szemétbe helyezni.',
 
     'duplicates_found' => 'LinkAce talált lehetséges duplikátumokat az URL-hez:',
     'existing_found' => 'Már létezik link ezzel az URL-lel.',
