@@ -9,6 +9,7 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Settings\UserSettings;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
 use Tests\Controller\Traits\PreparesTestData;
@@ -148,28 +149,47 @@ class LinkControllerTest extends TestCase
         ]);
     }
 
-    public function test_store_request_with_broken_url(): void
+    public function test_import_with_broken_url(): void
     {
         Http::fake([
-            'example.com' => Http::response('', 500),
+            'https://bad-example.com' => function () {
+                throw new ConnectionException('Unable to reach bad-example.com');
+            },
         ]);
 
-        $this->post('links', [
-            'url' => 'example.com',
+        $response = $this->post('links', [
+            'url' => 'https://bad-example.com',
             'title' => null,
             'description' => null,
             'lists' => null,
             'tags' => null,
-            'visibility' => 1,
-        ])->assertRedirect('links/1');
+            'is_private' => '0',
+        ]);
+
+        $response->assertRedirect('links/1');
 
         $databaseLink = Link::first();
 
         $this->assertTrue($databaseLink->check_disabled);
         $this->assertEquals(Link::STATUS_BROKEN, $databaseLink->status);
-        $this->assertEquals('example.com', $databaseLink->title);
+        $this->assertEquals('bad-example.com', $databaseLink->title);
     }
 
+    public function test_import_with_malicious_url(): void
+    {
+        $response = $this->post('links', [
+            'url' => 'javascript:alert(document.cookie)',
+            'title' => null,
+            'description' => null,
+            'lists' => null,
+            'tags' => null,
+            'is_private' => '0',
+        ]);
+
+        $response->assertSessionHasErrors(['url' => 'The url format is invalid.']);
+
+        $this->assertDatabaseCount('links', 0);
+    }
     public function test_store_request_with_huge_thumbnail(): void
     {
         $img = 'https://picsum.photos/1000/500';

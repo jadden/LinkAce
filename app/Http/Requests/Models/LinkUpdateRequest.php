@@ -25,7 +25,7 @@ class LinkUpdateRequest extends FormRequest
         $rules = [
             'url' => [
                 'required',
-                'string',
+                'url',
             ],
             'title' => [
                 'nullable',

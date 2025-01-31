@@ -33,6 +33,12 @@ class ImportHtmlBookmarks
         ]);
 
         foreach ($links as $i => $link) {
+            if (filter_var($link['url'], FILTER_VALIDATE_URL) === false) {
+                // skip any links that are not a valid URL
+                $this->skipped++;
+                continue;
+            }
+
             if (Link::whereUrl($link['url'])->first()) {
                 $this->skipped++;
                 continue;
