@@ -19,7 +19,8 @@ class ContentTypeHeaderValidationMiddleware
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if ($request->method() === "POST" && $request->header('Content-Type') !== 'application/json') {
+        $checkMethods = ['POST', 'PATCH'];
+        if (in_array($request->method(), $checkMethods) && $request->header('Content-Type') !== 'application/json') {
             return response()->json([
                 'error' => 'Invalid Content-Type'
             ], 415);
