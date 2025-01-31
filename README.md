@@ -8,8 +8,8 @@
 <p align="center"><b>Your self-hosted tool for effortlessly archiving, organizing, and sharing your favorite web links.</b></p>
 
 <p align="center">
-  <a href="https://twitter.com/LinkAceApp"><img src="https://img.shields.io/badge/X.com%2FLinkAceApp-black" alt="Follow LinkAce on X.com"></a>
   <a href="https://mastodon.social/@linkace"><img src="https://img.shields.io/badge/%40linkace%40mastodon.social-6364ff" alt="Follow LinkAce on Mastodon"></a>
+  <a href="https://x.com/LinkAceApp"><img src="https://img.shields.io/badge/X.com%2FLinkAceApp-black" alt="Follow LinkAce on X.com"></a>
   <a href="https://github.com/Kovah/LinkAce/releases"><img src="https://img.shields.io/github/v/release/kovah/linkace?label=Latest%20Release" alt="Latest Release"></a>
   <a href="https://opensource.org/licenses/GPL-3.0"><img src="https://img.shields.io/github/license/kovah/linkace.svg" alt="License"></a>
 </p>
@@ -64,8 +64,10 @@ More screenshots of the app and further details about the features can be found 
 
 LinkAce provides multiple ways of installing it on your server. The complete documentation for all installation methods can be found [**in the wiki**](https://www.linkace.org/docs/v2/setup/).
 
-* [Setup with Docker](https://www.linkace.org/docs/v2/setup/setup-with-docker/) (_recommended_)
-* [Setup without Docker](https://www.linkace.org/docs/v2/setup/setup-without-docker/)
+* [Setup with Docker](https://www.linkace.org/docs/v2/setup/setup-with-docker/)
+* [Setup without Docker](https://www.linkace.org/docs/v2/setup/setup-with-php/)
+* [One-Click Deployment to the Cloud](https://www.linkace.org/docs/v2/setup/one-click-deploy/)
+* [Setup with Kubernetes](https://www.linkace.org/docs/v2/setup/setup-to-k8s/) (Beta)
 * [Official managed Hosting](https://hosting.linkace.org) (_Beta Waitlist_)
 
 &nbsp;
