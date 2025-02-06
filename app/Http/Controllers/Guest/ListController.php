@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Guest;
 
+use App\Enums\ModelAttribute;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\ChecksOrdering;
 use App\Http\Controllers\Traits\ConfiguresLinkDisplay;
@@ -38,11 +39,13 @@ class ListController extends Controller
         ]);
     }
 
-    public function show(Request $request, int $listID): View
+    public function show(Request $request, LinkList $list): View
     {
         $this->updateLinkDisplayForGuest();
 
-        $list = LinkList::publicOnly()->findOrFail($listID);
+        if ($list->visibility !== ModelAttribute::VISIBILITY_PUBLIC) {
+            abort(404);
+        }
 
         $this->orderBy = $request->input('orderBy', 'created_at');
         $this->orderDir = $request->input('orderBy', 'desc');

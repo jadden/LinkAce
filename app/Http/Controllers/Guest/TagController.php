@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Guest;
 
+use App\Enums\ModelAttribute;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\ChecksOrdering;
 use App\Http\Controllers\Traits\ConfiguresLinkDisplay;
-use App\Http\Controllers\Traits\HandlesQueryOrder;
 use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class TagController extends Controller
         $this->checkOrdering();
 
         $tags = Tag::publicOnly()
-            ->withCount(['links' => fn ($query) => $query->publicOnly()])
+            ->withCount(['links' => fn($query) => $query->publicOnly()])
             ->orderBy($this->orderBy, $this->orderDir)
             ->paginate(getPaginationLimit());
 
@@ -40,15 +40,17 @@ class TagController extends Controller
         ]);
     }
 
-    public function show(Request $request, int $tagID): View
+    public function show(Request $request, Tag $tag): View
     {
+        if ($tag->visibility !== ModelAttribute::VISIBILITY_PUBLIC) {
+            abort(404);
+        }
+
         $this->updateLinkDisplayForGuest();
 
         $this->orderBy = $request->input('orderBy', 'created_at');
         $this->orderDir = $request->input('orderBy', 'desc');
         $this->checkOrdering();
-
-        $tag = Tag::publicOnly()->findOrFail($tagID);
 
         $links = $tag->links()
             ->publicOnly()

@@ -64,8 +64,7 @@ class TagControllerTest extends TestCase
 
         Tag::factory()->create(['visibility' => 3]);
 
-        $response = $this->get('guest/tags/1');
-
-        $response->assertNotFound();
+        $this->get('guest/tags/1')->assertNotFound();
+        $this->get('guest/tags/myTag')->assertNotFound();
     }
 }

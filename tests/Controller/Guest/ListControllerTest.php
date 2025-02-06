@@ -4,7 +4,6 @@ namespace Tests\Controller\Guest;
 
 use App\Models\LinkList;
 use App\Models\User;
-use App\Settings\SettingsAudit;
 use App\Settings\SystemSettings;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -66,8 +65,7 @@ class ListControllerTest extends TestCase
             'visibility' => 3,
         ]);
 
-        $response = $this->get('guest/lists/1');
-
-        $response->assertNotFound();
+        $this->get('guest/lists/1')->assertNotFound();
+        $this->get('guest/lists/mylist')->assertNotFound();
     }
 }
