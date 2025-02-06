@@ -18,13 +18,17 @@ class Kernel extends ConsoleKernel
         $schedule->command('links:check')->everyTwoHours()->withoutOverlapping();
 
         if (config('backup.backup.enabled')) {
-            $notificationsDisabled = config('backup.notifications.enabled') === false;
+            $backupArgs = [];
 
-            $schedule->command('backup:clean', ['--disable-notifications' => $notificationsDisabled])
+            if (config('backup.notifications.enabled') === false) {
+                $backupArgs[] = '--disable-notifications';
+            }
+
+            $schedule->command('backup:clean', $backupArgs)
                 ->daily()
                 ->at(config('backup.backup.clean_hour'));
 
-            $schedule->command('backup:run', ['--disable-notifications' => $notificationsDisabled])
+            $schedule->command('backup:run', $backupArgs)
                 ->daily()
                 ->at(config('backup.backup.backup_hour'));
         }
