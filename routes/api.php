@@ -24,6 +24,8 @@ use App\Http\Controllers\API\TrashController;
 |
 */
 
+Route::get('version', fn() => json_encode(['version' => config('app.api_version')]));
+
 Route::prefix('v2')
     ->middleware(['auth:sanctum', 'throttle:' . config('app.api_rate_limit')])
     ->group(function () {

@@ -14,6 +14,11 @@ class GeneralApiTest extends ApiTestCase
         parent::setUp();
     }
 
+    public function test_version(): void
+    {
+        $this->getJsonAuthorized('api/version')->assertJson(['version' => 'v2']);
+    }
+
     public function test_custom_rate_limit(): void
     {
         $response = $this->getJsonAuthorized('api/v2/links');
