@@ -21,7 +21,7 @@
 
     <form action="{{ route('bulk-edit.delete') }}" method="POST" class="card mt-4">
         @csrf
-        <input type="hidden" name="type" value="links">
+        <input type="hidden" name="type" value="tags">
         <input type="hidden" name="models" value="{{ implode(',', $models) }}">
         <header class="card-header">@choice('tag.delete', $modelCount)</header>
         <div class="card-body">
