@@ -102,6 +102,7 @@ return [
         'enabled' => env('SSO_KEYCLOAK_ENABLED', false),
         'client_id' => env('SSO_KEYCLOAK_CLIENT_ID'),
         'client_secret' => env('SSO_KEYCLOAK_CLIENT_SECRET'),
+        'base_url' => env('SSO_KEYCLOAK_BASE_URL'),
         'realms' => env('SSO_KEYCLOAK_REALM'),
         'redirect' => '/auth/sso/keycloak/callback',
     ],
