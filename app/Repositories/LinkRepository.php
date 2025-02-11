@@ -77,7 +77,9 @@ class LinkRepository
         ])->get();
 
         $newTags = is_array($data['tags']) ? $data['tags'] : explode(',', $data['tags']);
+        $newTags = array_map('intval', array_filter($newTags));
         $newLists = is_array($data['lists']) ? $data['lists'] : explode(',', $data['lists']);
+        $newLists = array_map('intval', array_filter($newLists));
 
         return $links->map(function (Link $link) use ($data, $newTags, $newLists) {
             if (!auth()->user()->can('update', $link)) {

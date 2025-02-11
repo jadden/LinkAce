@@ -73,6 +73,32 @@ class BulkEditControllerTest extends TestCase
         $this->assertEquals(ModelAttribute::VISIBILITY_PRIVATE, $otherLink->visibility);
     }
 
+    public function test_links_edit_without_taxonomy(): void
+    {
+        $links = $this->prepareLinkTestData();
+
+        $this->post('bulk-edit/update-links', [
+            'models' => '1,2,3,4',
+            'tags' => null,
+            'tags_mode' => 'append',
+            'lists' => null,
+            'lists_mode' => 'append',
+            'visibility' => null,
+        ])
+            ->assertRedirect('links')
+            ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Links out of 4 selected ones.');
+
+        array_walk($links, fn ($link) => $link->refresh());
+
+        $this->assertEqualsCanonicalizing([1], $links[0]->lists()->pluck('id')->toArray());
+        $this->assertEqualsCanonicalizing([1, 2], $links[1]->lists()->pluck('id')->toArray());
+        $this->assertEmpty($links[2]->lists()->pluck('id')->toArray());
+
+        $this->assertEqualsCanonicalizing([1], $links[0]->tags()->pluck('id')->toArray());
+        $this->assertEqualsCanonicalizing([1, 2], $links[1]->tags()->pluck('id')->toArray());
+        $this->assertEmpty($links[2]->tags()->pluck('id')->toArray());
+    }
+
     public function test_alternative_links_edit(): void
     {
         Log::shouldReceive('warning')->once();
