@@ -32,7 +32,7 @@ trait PreparesTestData
             'created_at' => now()->subMinute(),
         ]);
 
-        return [$link, $link2, $link3];
+        return [$link, $link2, $link3, $otherUser];
     }
 
     public function createTestLists(?User $otherUser = null): array
@@ -56,7 +56,7 @@ trait PreparesTestData
             'created_at' => now()->subMinute(),
         ]);
 
-        return [$list, $list2, $list3];
+        return [$list, $list2, $list3, $otherUser];
     }
 
     public function createTestTags(?User $otherUser = null): array
@@ -80,7 +80,7 @@ trait PreparesTestData
             'created_at' => now()->subMinute(),
         ]);
 
-        return [$tag1, $tag2, $tag3];
+        return [$tag1, $tag2, $tag3, $otherUser];
     }
 
     public function createTestNotes(?Link $linkForNotes = null, ?User $otherUser = null): array
@@ -102,6 +102,6 @@ trait PreparesTestData
             'visibility' => ModelAttribute::VISIBILITY_PRIVATE,
         ]);
 
-        return [$note, $note2, $note3];
+        return [$note, $note2, $note3, $otherUser];
     }
 }

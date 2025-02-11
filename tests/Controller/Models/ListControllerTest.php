@@ -2,6 +2,7 @@
 
 namespace Tests\Controller\Models;
 
+use App\Models\Link;
 use App\Models\LinkList;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -140,9 +141,14 @@ class ListControllerTest extends TestCase
 
     public function test_detail_view(): void
     {
-        $this->createTestLists();
+        $otherUser = User::factory()->create();
 
-        $this->get('lists/1')->assertOk()->assertSee('Public List')->assertSee('Public List');
+        [$list, $list2, $list3, $firstUser] = $this->createTestLists();
+
+        Link::factory()->for($firstUser)->create(['title' => 'FirstTestLink'])->lists()->sync([$list->id]);
+
+        $this->actingAs($otherUser);
+        $this->get('lists/1')->assertOk()->assertSee('Public List')->assertSee('Public List')->assertSee('FirstTestLink');
         $this->get('lists/2')->assertOk()->assertSee('Internal List')->assertSee('Internal List');
         $this->get('lists/3')->assertForbidden();
     }

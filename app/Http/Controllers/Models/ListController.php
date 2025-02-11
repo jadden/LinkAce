@@ -84,7 +84,7 @@ class ListController extends Controller
         $this->checkOrdering();
 
         $links = $list->links()
-            ->byUser()
+            ->visibleForUser()
             ->orderBy($this->orderBy, $this->orderDir)
             ->paginate(getPaginationLimit());
 
