@@ -39,8 +39,9 @@ class SetDefaultSettingsForUser extends SettingsMigration
         $this->migrator->add($group . '.links_new_tab', $defaults['links_new_tab']);
         $this->migrator->add($group . '.markdown_for_text', $defaults['markdown_for_text']);
 
-        $this->migrator->add($group . '.share_email', $defaults['share_services']);
+        $this->migrator->add($group . '.share_bluesky', $defaults['share_services']);
         $this->migrator->add($group . '.share_buffer', $defaults['share_services']);
+        $this->migrator->add($group . '.share_email', $defaults['share_services']);
         $this->migrator->add($group . '.share_evernote', $defaults['share_services']);
         $this->migrator->add($group . '.share_facebook', $defaults['share_services']);
         $this->migrator->add($group . '.share_flipboard', $defaults['share_services']);
