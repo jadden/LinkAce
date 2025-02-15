@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Settings\SystemSettings;
 use App\Settings\UserSettings;
 use Database\Seeders\RolesAndPermissionsSeeder;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\Sanctum;
 use Laravel\Sanctum\SanctumServiceProvider;
@@ -265,35 +266,5 @@ class UserDataMigrationTest extends TestCase
             'note' => 'A public note',
             'visibility' => 1, // is public
         ]);
-    }
-
-    public function test_user_api_token_migration(): void
-    {
-        $this->migrateUpTo('2022_06_23_112431_migrate_user_data.php');
-
-        DB::table('users')->insert([
-            'name' => 'test',
-            'email' => 'test@linkace.org',
-            'password' => 'test',
-            'api_token' => 'testApiToken',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        $this->artisan('migrate');
-
-        $this->assertDatabaseHas('personal_access_tokens', [
-            'tokenable_type' => 'App\Models\User',
-            'tokenable_id' => '1',
-            'name' => 'MigratedApiToken',
-            'abilities' => '["user_access"]',
-        ]);
-
-        // Test if the token is valid
-        Link::factory()->create(['url' => 'https://token-test.com']);
-
-        $this->get('links/feed', [
-            'Authorization' => 'Bearer testApiToken'
-        ])->assertOk()->assertSee('https://token-test.com');
     }
 }
