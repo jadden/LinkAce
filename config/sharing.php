@@ -34,7 +34,7 @@ return [
             'icon' => 'icon.brand.facebook',
         ],
         'twitter' => [
-            'action' => 'https://twitter.com/intent/tweet?text=#SHARETEXT#',
+            'action' => 'https://twitter.com/intent/tweet?text=#E-SHARETEXT#',
             'icon' => 'icon.brand.twitter',
         ],
         'reddit' => [
@@ -64,6 +64,10 @@ return [
         'skype' => [
             'action' => 'https://web.skype.com/share?url=#E-URL#',
             'icon' => 'icon.brand.skype',
+        ],
+        'bluesky' => [
+            'action' => 'https://bsky.app/intent/compose?text=#E-SHARETEXT#',
+            'icon' => 'icon.brand.bluesky',
         ],
         'hackernews' => [
             'action' => 'https://news.ycombinator.com/submitlink?u=#URL#&t=#SUBJECT#',

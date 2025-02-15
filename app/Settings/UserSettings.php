@@ -29,8 +29,9 @@ class UserSettings extends Settings
     public bool $links_new_tab;
     public bool $markdown_for_text;
 
-    public bool $share_email;
+    public bool $share_bluesky;
     public bool $share_buffer;
+    public bool $share_email;
     public bool $share_evernote;
     public bool $share_facebook;
     public bool $share_flipboard;

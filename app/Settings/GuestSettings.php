@@ -12,8 +12,9 @@ class GuestSettings extends Settings
 
     public string $locale;
 
-    public bool $share_email;
+    public bool $share_bluesky;
     public bool $share_buffer;
+    public bool $share_email;
     public bool $share_evernote;
     public bool $share_facebook;
     public bool $share_flipboard;
