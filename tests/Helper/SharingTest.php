@@ -14,7 +14,8 @@ class SharingTest extends TestCase
     public static $shareData = [
         'email' => 'mailto:?subject=Example%20Website&body=I%20found%20this%20awesome%20link%2C%20go%20check%20it%20out%3A%20https%3A%2F%2Fexample.com%2F"',
         'facebook' => 'https://www.facebook.com/sharer/sharer.php?u=https://example.com/',
-        'twitter' => 'https://twitter.com/intent/tweet?text=I found this awesome link, go check it out: https://example.com/',
+        'twitter' => 'https://twitter.com/intent/tweet?text=I%20found%20this%20awesome%20link%2C%20go%20check%20it%20out%3A%20https%3A%2F%2Fexample.com%2F',
+        'bluesky' => 'https://bsky.app/intent/compose?text=I%20found%20this%20awesome%20link%2C%20go%20check%20it%20out%3A%20https%3A%2F%2Fexample.com%2F',
         'reddit' => 'http://www.reddit.com/submit?url=https://example.com/&title=Example Website',
         'pinterest' => 'http://pinterest.com/pin/create/button/?url=https://example.com/&description=Example Website',
         'whatsapp' => 'whatsapp://send?text=I found this awesome link, go check it out: https://example.com/',
