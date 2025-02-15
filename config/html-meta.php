@@ -1,8 +1,9 @@
 <?php
 return [
-    'timeout' => 10,
+    'timeout' => env('META_GENERATION_TIMEOUT'),
     'parser' => \Kovah\HtmlMeta\HtmlMetaParser::class,
     'user_agents' => [
-        env('APP_USER_AGENT', 'LinkAce/1 (https://github.com/Kovah/LinkAce)'),
+        env('APP_USER_AGENT', 'LinkAce/2 (https://github.com/Kovah/LinkAce)'),
     ],
+    'custom_headers' => env('META_GENERATION_CUSTOM_HEADERS'),
 ];
