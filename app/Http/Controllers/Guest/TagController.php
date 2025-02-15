@@ -52,10 +52,15 @@ class TagController extends Controller
         $this->orderDir = $request->input('orderBy', 'desc');
         $this->checkOrdering();
 
-        $links = $tag->links()
-            ->publicOnly()
-            ->orderBy($this->orderBy, $this->orderDir)
-            ->paginate(getPaginationLimit());
+        $links = $tag->links()->publicOnly();
+
+        if ($this->orderBy === 'random') {
+            $links->inRandomOrder();
+        } else {
+            $links->orderBy($this->orderBy, $this->orderDir);
+        }
+
+        $links = $links->paginate(getPaginationLimit());
 
         return view('guest.tags.show', [
             'pageTitle' => trans('tag.tag') . ': ' . $tag->name,

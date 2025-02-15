@@ -83,10 +83,15 @@ class ListController extends Controller
         $this->orderDir = $request->input('orderBy', 'desc');
         $this->checkOrdering();
 
-        $links = $list->links()
-            ->visibleForUser()
-            ->orderBy($this->orderBy, $this->orderDir)
-            ->paginate(getPaginationLimit());
+        $links = $list->links()->publicOnly();
+
+        if ($this->orderBy === 'random') {
+            $links->inRandomOrder();
+        } else {
+            $links->orderBy($this->orderBy, $this->orderDir);
+        }
+
+        $links = $links->paginate(getPaginationLimit());
 
         return view('models.lists.show', [
             'pageTitle' => trans('list.list') . ': ' . $list->name,
