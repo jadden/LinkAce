@@ -9,7 +9,7 @@ return new class extends SettingsMigration {
 
         foreach (DB::table('users')->pluck('id') as $userId) {
             $id = 'user-' . $userId;
-            $this->migrator->add($id . '.share_bluesky', false);
+            $this->migrator->add($id . '.shareAdd_bluesky', false);
         }
     }
 };
