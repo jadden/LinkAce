@@ -83,7 +83,7 @@ class ListController extends Controller
         $this->orderDir = $request->input('orderBy', 'desc');
         $this->checkOrdering();
 
-        $links = $list->links()->publicOnly();
+        $links = $list->links()->visibleForUser();
 
         if ($this->orderBy === 'random') {
             $links->inRandomOrder();

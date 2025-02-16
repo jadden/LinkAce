@@ -2,6 +2,8 @@
 
 namespace Tests\Controller\Models;
 
+use App\Enums\ModelAttribute;
+use App\Models\Link;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -20,7 +22,6 @@ class TagControllerTest extends TestCase
         parent::setUp();
 
         $this->user = User::factory()->create();
-
         $this->actingAs($this->user);
     }
 
@@ -108,7 +109,7 @@ class TagControllerTest extends TestCase
 
     public function test_validation_error_for_create(): void
     {
-        $response = $this->post('tags', [
+        $this->post('tags', [
             'name' => null,
             'visibility' => 1,
         ])->assertSessionHasErrors([
@@ -118,9 +119,17 @@ class TagControllerTest extends TestCase
 
     public function test_detail_view(): void
     {
-        $this->createTestTags();
+        [$tag1, $tag2, $tag3, $otherUser] = $this->createTestTags();
 
-        $this->get('tags/1')->assertOk()->assertSee('Public Tag');
+        Link::factory()->for($this->user)->create(['title' => 'FirstTestLink'])->tags()->sync([$tag1->id]);
+        Link::factory()->for($this->user)->create([
+            'title' => 'SecondTestLink',
+            'visibility' => ModelAttribute::VISIBILITY_INTERNAL,
+        ])->tags()->sync([$tag1->id]);
+
+        $this->get('tags/1')->assertOk()->assertSee('Public Tag')
+            ->assertSee('FirstTestLink')
+            ->assertSee('SecondTestLink');
         $this->get('tags/2')->assertOk()->assertSee('Internal Tag');
         $this->get('tags/3')->assertForbidden();
     }

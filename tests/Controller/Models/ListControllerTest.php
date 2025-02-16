@@ -2,6 +2,7 @@
 
 namespace Tests\Controller\Models;
 
+use App\Enums\ModelAttribute;
 use App\Models\Link;
 use App\Models\LinkList;
 use App\Models\User;
@@ -146,9 +147,15 @@ class ListControllerTest extends TestCase
         [$list, $list2, $list3, $firstUser] = $this->createTestLists();
 
         Link::factory()->for($firstUser)->create(['title' => 'FirstTestLink'])->lists()->sync([$list->id]);
+        Link::factory()->for($firstUser)->create([
+            'title' => 'InternalTestLink',
+            'visibility' => ModelAttribute::VISIBILITY_INTERNAL,
+        ])->lists()->sync([$list->id]);
 
         $this->actingAs($otherUser);
-        $this->get('lists/1')->assertOk()->assertSee('Public List')->assertSee('Public List')->assertSee('FirstTestLink');
+        $this->get('lists/1')->assertOk()->assertSee('Public List')->assertSee('Public List')
+            ->assertSee('FirstTestLink')
+            ->assertSee('InternalTestLink');
         $this->get('lists/2')->assertOk()->assertSee('Internal List')->assertSee('Internal List');
         $this->get('lists/3')->assertForbidden();
     }

@@ -86,7 +86,7 @@ class TagController extends Controller
         $this->orderDir = $request->input('orderBy', 'desc');
         $this->checkOrdering();
 
-        $links = $tag->links()->publicOnly();
+        $links = $tag->links()->visibleForUser();
 
         if ($this->orderBy === 'random') {
             $links->inRandomOrder();
