@@ -36,7 +36,7 @@ replace the word `docker` with `podman` in each command. Clone the repository to
 commands to start the Docker container system:
 
 ```bash
-cp .env.docker .env
+cp .env.dev .env
 docker compose up -d --build
 ```
 

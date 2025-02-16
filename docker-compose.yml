@@ -57,6 +57,14 @@ services:
     ports:
       - "127.0.0.1:6379:6379"
 
+  # --- Buggregator
+  buggregator:
+    image: ghcr.io/buggregator/server:latest
+    ports:
+      - "8000:8000"
+    depends_on:
+      - php
+
 volumes:
   linkace-db:
     driver: local
