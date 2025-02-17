@@ -94,6 +94,7 @@ jobs:
 
       - name: Report coverage to Codacy
         uses: codacy/codacy-coverage-reporter-action@v1.3.0
+        if: ${{ github.ref == 'refs/heads/2.x' }}
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: ./test-coverage.xml
