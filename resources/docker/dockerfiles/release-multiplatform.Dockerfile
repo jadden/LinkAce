@@ -68,7 +68,7 @@ COPY --chown=www-data:www-data ./public /app/public
 COPY --chown=www-data:www-data ./lang /app/lang
 COPY --chown=www-data:www-data ./resources /app/resources
 COPY --chown=www-data:www-data ./routes /app/routes
-COPY --chown=www-data:www-data ./storage /app/storage
+COPY --chown=www-data:www-data --chmod=0777 ./storage /app/storage
 
 COPY --chown=www-data:www-data ["./artisan", "./composer.json", "./composer.lock", "./README.md", "./LICENSE.md", "./package.json", "/app/"]
 
