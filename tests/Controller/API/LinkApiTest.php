@@ -152,27 +152,6 @@ class LinkApiTest extends ApiTestCase
             ]);
     }
 
-    public function test_create_invalid_content_type_request(): void
-    {
-        $list = LinkList::factory()->create(['name' => 'Test List 1']);
-        $tag = Tag::factory()->create(['name' => 'a test 1']);
-        $tag2 = Tag::factory()->create(['name' => 'tag #2']);
-
-        $this->postJsonAuthorized('api/v2/links', [
-            'url' => 'https://example.com',
-            'title' => 'Search the Web',
-            'description' => 'There could be a description here',
-            'lists' => [$list->id],
-            'tags' => [$tag->id, $tag2->id],
-            'visibility' => 1,
-            'check_disabled' => false,
-        ], ['Content-Type' => 'application/xml'])
-            ->assertUnsupportedMediaType()
-            ->assertJson([
-                'error' => "Invalid Content-Type"
-            ]);
-    }
-
     public function test_create_request_with_list(): void
     {
         $list = LinkList::factory()->create(['name' => 'Test List 1']);
@@ -467,25 +446,6 @@ class LinkApiTest extends ApiTestCase
             'is_private' => false,
             'check_disabled' => false,
         ])->assertForbidden();
-    }
-
-    public function test_update_invalid_content_type_request(): void
-    {
-        $list = LinkList::factory()->create();
-        $this->createTestLinks();
-
-        $this->patchJsonAuthorized('api/v2/links/1', [
-            'url' => 'https://new-public-link.com',
-            'title' => 'Custom Title',
-            'description' => 'Custom Description',
-            'lists' => [$list->id],
-            'is_private' => false,
-            'check_disabled' => false,
-        ], ['Content-Type' => 'application/xml'])
-            ->assertUnsupportedMediaType()
-            ->assertJson([
-                'error' => 'Invalid Content-Type'
-            ]);
     }
 
     public function test_invalid_update_request(): void

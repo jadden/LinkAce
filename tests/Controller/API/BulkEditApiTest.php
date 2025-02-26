@@ -38,7 +38,7 @@ class BulkEditApiTest extends TestCase
         $otherUser = User::factory()->create();
         $otherLink = Link::factory()->for($otherUser)->create(['visibility' => ModelAttribute::VISIBILITY_PRIVATE]);
 
-        $this->patch('api/v2/bulk/links', [
+        $this->patchJson('api/v2/bulk/links', [
             'models' => [1, 2, 3, 4],
             'tags' => [3],
             'tags_mode' => 'append',
@@ -71,7 +71,7 @@ class BulkEditApiTest extends TestCase
         $otherUser = User::factory()->create();
         $otherLink = Link::factory()->for($otherUser)->create(['visibility' => ModelAttribute::VISIBILITY_PRIVATE]);
 
-        $this->patch('api/v2/bulk/links', [
+        $this->patchJson('api/v2/bulk/links', [
             'models' => [1, 2, 3, 4],
             'tags' => [2, 3],
             'tags_mode' => 'replace',
@@ -104,7 +104,7 @@ class BulkEditApiTest extends TestCase
         $otherUser = User::factory()->create();
         $otherList = LinkList::factory()->for($otherUser)->create(['visibility' => ModelAttribute::VISIBILITY_PRIVATE]);
 
-        $this->patch('api/v2/bulk/lists', [
+        $this->patchJson('api/v2/bulk/lists', [
             'models' => [1, 2, 3, 4],
             'visibility' => null,
         ])->assertJsonCount(4);
@@ -125,7 +125,7 @@ class BulkEditApiTest extends TestCase
         $otherUser = User::factory()->create();
         $otherList = LinkList::factory()->for($otherUser)->create(['visibility' => ModelAttribute::VISIBILITY_PRIVATE]);
 
-        $this->patch('api/v2/bulk/lists', [
+        $this->patchJson('api/v2/bulk/lists', [
             'models' => [1, 2, 3, 4],
             'visibility' => 2,
         ])->assertJsonCount(4);
@@ -146,7 +146,7 @@ class BulkEditApiTest extends TestCase
         $otherUser = User::factory()->create();
         $otherTag = Tag::factory()->for($otherUser)->create(['visibility' => ModelAttribute::VISIBILITY_PRIVATE]);
 
-        $this->patch('api/v2/bulk/tags', [
+        $this->patchJson('api/v2/bulk/tags', [
             'models' => [1, 2, 3, 4],
             'visibility' => null,
         ])->assertJsonCount(4);
@@ -167,7 +167,7 @@ class BulkEditApiTest extends TestCase
         $otherUser = User::factory()->create();
         $otherTag = Tag::factory()->for($otherUser)->create(['visibility' => ModelAttribute::VISIBILITY_PRIVATE]);
 
-        $this->patch('api/v2/bulk/tags', [
+        $this->patchJson('api/v2/bulk/tags', [
             'models' => [1, 2, 3, 4],
             'visibility' => 2,
         ])->assertJsonCount(4);
@@ -192,7 +192,7 @@ class BulkEditApiTest extends TestCase
         $tags = $this->createTestTags($this->user);
         $otherTag = Tag::factory()->for($otherUser)->create();
 
-        $this->delete('api/v2/bulk/delete', [
+        $this->deleteJson('api/v2/bulk/delete', [
             'models' => [1, 2, 4],
             'type' => 'links',
         ])->assertJsonCount(3)->assertJson([
@@ -206,7 +206,7 @@ class BulkEditApiTest extends TestCase
         $this->assertNotNull($links[1]->deleted_at);
         $this->assertNull($otherLink->deleted_at);
 
-        $this->delete('api/v2/bulk/delete', [
+        $this->deleteJson('api/v2/bulk/delete', [
             'models' => [1, 2, 4],
             'type' => 'lists',
         ])->assertJsonCount(3)->assertJson([
@@ -220,7 +220,7 @@ class BulkEditApiTest extends TestCase
         $this->assertNotNull($lists[1]->deleted_at);
         $this->assertNull($otherList->deleted_at);
 
-        $this->delete('api/v2/bulk/delete', [
+        $this->deleteJson('api/v2/bulk/delete', [
             'models' => [1, 2, 4],
             'type' => 'tags',
         ])->assertJsonCount(3)->assertJson([

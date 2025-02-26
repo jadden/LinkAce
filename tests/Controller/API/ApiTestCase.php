@@ -74,6 +74,8 @@ abstract class ApiTestCase extends TestCase
         bool $useSystemToken = false
     ): TestResponse {
         $headers['Authorization'] = 'Bearer ' . ($useSystemToken ? $this->systemAccessToken : $this->accessToken);
+        $headers['Content-Type'] = 'application/json';
+        $headers['Accept'] = 'application/json';
         return $this->postJson($uri, $data, $headers);
     }
 
@@ -92,7 +94,11 @@ abstract class ApiTestCase extends TestCase
         array $headers = [],
         bool $useSystemToken = false
     ): TestResponse {
-        $headers['Authorization'] = 'Bearer ' . ($useSystemToken ? $this->systemAccessToken : $this->accessToken);
+        $headers = array_merge([
+            'Authorization' => 'Bearer ' . ($useSystemToken ? $this->systemAccessToken : $this->accessToken),
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ], $headers);
         return $this->patchJson($uri, $data, $headers);
     }
 
@@ -112,6 +118,8 @@ abstract class ApiTestCase extends TestCase
         bool $useSystemToken = false
     ): TestResponse {
         $headers['Authorization'] = 'Bearer ' . ($useSystemToken ? $this->systemAccessToken : $this->accessToken);
+        $headers['Content-Type'] = 'application/json';
+        $headers['Accept'] = 'application/json';
         return $this->deleteJson($uri, $data, $headers);
     }
 }
