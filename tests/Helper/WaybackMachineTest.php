@@ -3,11 +3,14 @@
 namespace Tests\Helper;
 
 use App\Helper\WaybackMachine;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class WaybackMachineTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * Test the saveToArchive() helper funtion with a valid URL.
      * Must return true.

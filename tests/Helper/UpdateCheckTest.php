@@ -3,12 +3,15 @@
 namespace Tests\Helper;
 
 use App\Helper\UpdateHelper;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class UpdateCheckTest extends TestCase
 {
+    use RefreshDatabase;
+
     /*
      * Test the checkForUpdates() helper function with a new update available.
      * Must return the given version string.

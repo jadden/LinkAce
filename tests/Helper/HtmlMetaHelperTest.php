@@ -4,6 +4,7 @@ namespace Tests\Helper;
 
 use App\Helper\HtmlMeta;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
@@ -11,6 +12,8 @@ use Tests\TestCase;
 
 class HtmlMetaHelperTest extends TestCase
 {
+    use RefreshDatabase;
+
     /*
      * Test the HtmlMeta helper with a regular website containing some meta information. Must properly return the
      * information extracted from the meta.

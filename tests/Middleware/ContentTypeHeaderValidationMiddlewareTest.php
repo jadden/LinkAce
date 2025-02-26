@@ -4,11 +4,14 @@ namespace Tests\Middleware;
 
 use App\Enums\ApiToken;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class ContentTypeHeaderValidationMiddlewareTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function testMissingContentTypeHeader(): void
     {
         $user = User::factory()->create();
