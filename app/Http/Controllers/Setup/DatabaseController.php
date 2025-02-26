@@ -111,7 +111,7 @@ class DatabaseController extends Controller
             'DB_PORT=' . ($this->dbConfig['port'] ?? ''),
             'DB_DATABASE=' . ($this->dbConfig['database'] ?? ''),
             'DB_USERNAME=' . ($this->dbConfig['username'] ?? ''),
-            'DB_PASSWORD=' . ($this->dbConfig['password'] ?? ''),
+            'DB_PASSWORD="' . ($this->dbConfig['password'] ?? '') . '"',
         ], $envContent);
 
         if ($envContent !== null) {
