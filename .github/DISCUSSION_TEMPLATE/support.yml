@@ -13,6 +13,7 @@ body:
     validations:
       required: true
   - type: checkboxes
+    label: Troubleshooting
     attributes:
       options:
         - label: I have read the troubleshooting guide
