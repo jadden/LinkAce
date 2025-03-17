@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Enums\Role;
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Validation\ValidationException;
 
@@ -19,6 +20,11 @@ class RegisterUserCommand extends Command
 
     public function handle(): void
     {
+        if ($this->option('admin') === false && User::query()->count() <= 1) {
+            $this->warn('It seems you are creating the first user. This user should be an admin!');
+            $this->warn('Please consider running the command with --admin again.');
+        }
+
         $this->userName = $this->argument('name');
         $this->userEmail = $this->argument('email');
 
@@ -52,7 +58,8 @@ class RegisterUserCommand extends Command
     protected function askForUserDetails(): void
     {
         if (empty($this->userName) || $this->validationFailed) {
-            $this->userName = $this->ask('Please enter the user name containing only alpha-numeric characters, dashes or underscores', $this->userName);
+            $this->userName = $this->ask('Please enter the user name containing only alpha-numeric characters, dashes or underscores',
+                $this->userName);
         }
 
         if (empty($this->userEmail) || $this->validationFailed) {

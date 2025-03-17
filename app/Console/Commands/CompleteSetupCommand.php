@@ -24,7 +24,7 @@ class CompleteSetupCommand extends Command
             return;
         }
 
-        $this->info('Successfully marked the setup as completed. You can now visit the web interface.');
-        $this->line('Hint: If you install LinkAce with PostgreSQL or SQLite, use the <options=reverse>registeruser</> command now.');
+        $this->info('Successfully marked the setup as completed.');
+        $this->info('Use the <options=reverse> php artisan registeruser --admin </> command now to create your first admin user.');
     }
 }
