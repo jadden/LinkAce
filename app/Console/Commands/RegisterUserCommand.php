@@ -58,8 +58,10 @@ class RegisterUserCommand extends Command
     protected function askForUserDetails(): void
     {
         if (empty($this->userName) || $this->validationFailed) {
-            $this->userName = $this->ask('Please enter the user name containing only alpha-numeric characters, dashes or underscores',
-                $this->userName);
+            $this->userName = $this->ask(
+                'Please enter the user name containing only alpha-numeric characters, dashes or underscores',
+                $this->userName
+            );
         }
 
         if (empty($this->userEmail) || $this->validationFailed) {
