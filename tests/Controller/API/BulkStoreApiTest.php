@@ -36,8 +36,8 @@ class BulkStoreApiTest extends TestCase
             'duckduckgo.com' => Http::response($testHtml),
         ]);
 
-        $testList = LinkList::factory()->create();
-        $testTag = Tag::factory()->create();
+        $testList = LinkList::factory()->create(['name' => 'existing List']);
+        $testTag = Tag::factory()->create(['name' => 'existingTag']);
 
         $response = $this->postJson('api/v2/bulk/links', [
             'models' => [
@@ -66,10 +66,10 @@ class BulkStoreApiTest extends TestCase
         $this->assertEquals('https://example.com', $response->json()[0]['url']);
         $this->assertEquals('https://duckduckgo.com', $response->json()[1]['url']);
 
-        $this->assertEquals($testList->name, $response->json()[0]['lists'][0]['name']);
+        $this->assertEquals('existing List', $response->json()[0]['lists'][0]['name']);
         $this->assertEquals('new List', $response->json()[0]['lists'][1]['name']);
 
-        $this->assertEquals($testTag->name, $response->json()[0]['tags'][0]['name']);
+        $this->assertEquals('existingTag', $response->json()[0]['tags'][0]['name']);
         $this->assertEquals('newTag', $response->json()[0]['tags'][1]['name']);
 
         $this->assertDatabaseHas('links', [
