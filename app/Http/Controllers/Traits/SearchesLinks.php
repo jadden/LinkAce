@@ -68,13 +68,11 @@ trait SearchesLinks
             $search->where('status', '>', 1);
         }
 
-        //dd($request->input('only_lists'), $request->input('only_tags'));
-
         // Show by specific list only if applicable
         if ($this->emptyLists = (bool)$request->input('empty_lists', false)) {
             $search->doesntHave('lists');
         } elseif ($request->input('only_lists')) {
-            $this->searchLists = array_map('intval', explode(',', $request->input('only_lists', '')));
+            $this->searchLists = json_decode($request->input('only_lists', '[]'));
             $search->whereHas('lists', function ($query) {
                 $query->whereIn('id', $this->searchLists);
             });
@@ -84,7 +82,7 @@ trait SearchesLinks
         if ($this->emptyTags = (bool)$request->input('empty_tags', false)) {
             $search->doesntHave('tags');
         } elseif ($request->input('only_tags')) {
-            $this->searchTags = array_map('intval', explode(',', $request->input('only_tags')));
+            $this->searchTags = json_decode($request->input('only_tags', '[]'));
             $search->whereHas('tags', function ($query) {
                 $query->whereIn('id', $this->searchTags);
             });

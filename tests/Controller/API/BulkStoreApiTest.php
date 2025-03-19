@@ -2,6 +2,8 @@
 
 namespace Tests\Controller\API;
 
+use App\Models\LinkList;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
@@ -12,14 +14,12 @@ class BulkStoreApiTest extends TestCase
 {
     use RefreshDatabase;
 
-    private User $user;
-
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->user = User::factory()->create();
-        $this->actingAs($this->user);
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
         Queue::fake();
     }
@@ -36,14 +36,17 @@ class BulkStoreApiTest extends TestCase
             'duckduckgo.com' => Http::response($testHtml),
         ]);
 
+        $testList = LinkList::factory()->create();
+        $testTag = Tag::factory()->create();
+
         $response = $this->postJson('api/v2/bulk/links', [
             'models' => [
                 [
                     'url' => 'https://example.com',
                     'title' => 'The famous Example',
                     'description' => 'There could be a description here',
-                    'lists' => [],
-                    'tags' => [],
+                    'lists' => [$testList->id, 'new List'],
+                    'tags' => [$testTag->id, 'newTag'],
                     'visibility' => 1,
                     'check_disabled' => false,
                 ],
@@ -61,7 +64,11 @@ class BulkStoreApiTest extends TestCase
 
         $response->assertSuccessful()->assertJsonIsArray();
         $this->assertEquals('https://example.com', $response->json()[0]['url']);
+        $this->assertEquals($testList->name, $response->json()[0]['lists'][0]['name']);
+        $this->assertEquals('new List', $response->json()[0]['lists'][1]['name']);
         $this->assertEquals('https://duckduckgo.com', $response->json()[1]['url']);
+        $this->assertEquals($testTag->name, $response->json()[0]['tags'][0]['name']);
+        $this->assertEquals('newTag', $response->json()[0]['tags'][1]['name']);
 
         $this->assertDatabaseHas('links', [
             'id' => 1,
@@ -73,6 +80,18 @@ class BulkStoreApiTest extends TestCase
             'id' => 2,
             'url' => 'https://duckduckgo.com',
             'title' => 'Search the Web',
+        ]);
+
+        $this->assertDatabaseCount('lists', 2);
+        $this->assertDatabaseHas('lists', [
+            'id' => 2,
+            'name' => 'new List',
+        ]);
+
+        $this->assertDatabaseCount('tags', 2);
+        $this->assertDatabaseHas('tags', [
+            'id' => 2,
+            'name' => 'newTag',
         ]);
     }
 

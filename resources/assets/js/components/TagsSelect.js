@@ -27,6 +27,7 @@ export default class TagsSelect {
       delimiter: ',',
       persist: false,
       create: this.selectAllowsCreation(),
+      addPrecedence: true,
       valueField: 'id',
       labelField: 'name',
       searchField: 'name',
@@ -34,6 +35,18 @@ export default class TagsSelect {
       onItemAdd: function () {
         this.setTextboxValue('');
         this.refreshOptions();
+      },
+      onInitialize: function () {
+        if (!selectObject.$el.value.startsWith('[')) {
+          selectObject.$el.value = `[${selectObject.$el.value}]`;
+        }
+      },
+      onChange: function () {
+        const items = this.items.map((item) => {
+          const option = Object.values(this.options).find((option) => option.id === parseInt(item));
+          return option !== undefined ? option.id : item;
+        });
+        selectObject.$el.value = JSON.stringify(items.length > 0 ? items : []);
       },
       render: {
         option: function (item, escape) {

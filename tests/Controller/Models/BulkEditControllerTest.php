@@ -48,24 +48,44 @@ class BulkEditControllerTest extends TestCase
 
         $this->post('bulk-edit/update-links', [
             'models' => '1,2,3,4',
-            'tags' => '3',
+            'tags' => json_encode([3, 'new-tag', '1337']),
             'tags_mode' => 'append',
-            'lists' => '3',
+            'lists' => json_encode([3, 'new list', '1001']),
             'lists_mode' => 'append',
             'visibility' => null,
         ])
             ->assertRedirect('links')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Links out of 4 selected ones.');
 
-        array_walk($links, fn ($link) => $link->refresh());
+        array_walk($links, fn($link) => $link->refresh());
 
-        $this->assertEqualsCanonicalizing([3, 1], $links[0]->lists()->pluck('id')->toArray());
-        $this->assertEqualsCanonicalizing([1, 2, 3], $links[1]->lists()->pluck('id')->toArray());
-        $this->assertEqualsCanonicalizing([3], $links[2]->lists()->pluck('id')->toArray());
+        $this->assertDatabaseCount('tags', 5);
+        $this->assertDatabaseHas('tags', [
+            'id' => 4,
+            'name' => 'new-tag',
+        ]);
+        $this->assertDatabaseHas('tags', [
+            'id' => 5,
+            'name' => '1337',
+        ]);
 
-        $this->assertEqualsCanonicalizing([3, 1], $links[0]->tags()->pluck('id')->toArray());
-        $this->assertEqualsCanonicalizing([1, 2, 3], $links[1]->tags()->pluck('id')->toArray());
-        $this->assertEqualsCanonicalizing([3], $links[2]->tags()->pluck('id')->toArray());
+        $this->assertDatabaseCount('lists', 5);
+        $this->assertDatabaseHas('lists', [
+            'id' => 4,
+            'name' => 'new list',
+        ]);
+        $this->assertDatabaseHas('lists', [
+            'id' => 5,
+            'name' => '1001',
+        ]);
+
+        $this->assertEqualsCanonicalizing([3, 1, 4, 5], $links[0]->lists()->pluck('id')->toArray());
+        $this->assertEqualsCanonicalizing([1, 2, 3, 4, 5], $links[1]->lists()->pluck('id')->toArray());
+        $this->assertEqualsCanonicalizing([3, 4, 5], $links[2]->lists()->pluck('id')->toArray());
+
+        $this->assertEqualsCanonicalizing([3, 1, 4, 5], $links[0]->tags()->pluck('id')->toArray());
+        $this->assertEqualsCanonicalizing([1, 2, 3, 4, 5], $links[1]->tags()->pluck('id')->toArray());
+        $this->assertEqualsCanonicalizing([3, 4, 5], $links[2]->tags()->pluck('id')->toArray());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_PUBLIC, $links[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $links[1]->visibility);
@@ -88,7 +108,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('links')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Links out of 4 selected ones.');
 
-        array_walk($links, fn ($link) => $link->refresh());
+        array_walk($links, fn($link) => $link->refresh());
 
         $this->assertEqualsCanonicalizing([1], $links[0]->lists()->pluck('id')->toArray());
         $this->assertEqualsCanonicalizing([1, 2], $links[1]->lists()->pluck('id')->toArray());
@@ -109,16 +129,16 @@ class BulkEditControllerTest extends TestCase
 
         $this->post('bulk-edit/update-links', [
             'models' => '1,2,3,4',
-            'tags' => '2,3',
+            'tags' => json_encode([2, 3]),
             'tags_mode' => 'replace',
-            'lists' => '3',
+            'lists' => json_encode([3]),
             'lists_mode' => 'replace',
             'visibility' => ModelAttribute::VISIBILITY_INTERNAL,
         ])
             ->assertRedirect('links')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Links out of 4 selected ones.');
 
-        array_walk($links, fn ($link) => $link->refresh());
+        array_walk($links, fn($link) => $link->refresh());
 
         $this->assertEqualsCanonicalizing([3], $links[0]->lists()->pluck('id')->sort()->toArray());
         $this->assertEqualsCanonicalizing([3], $links[1]->lists()->pluck('id')->sort()->toArray());
@@ -149,7 +169,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('lists')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Lists out of 4 selected ones.');
 
-        array_walk($lists, fn ($list) => $list->refresh());
+        array_walk($lists, fn($list) => $list->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_PUBLIC, $lists[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $lists[1]->visibility);
@@ -172,7 +192,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('lists')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Lists out of 4 selected ones.');
 
-        array_walk($lists, fn ($list) => $list->refresh());
+        array_walk($lists, fn($list) => $list->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $lists[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $lists[1]->visibility);
@@ -195,7 +215,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('tags')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Tags out of 4 selected ones.');
 
-        array_walk($tags, fn ($tag) => $tag->refresh());
+        array_walk($tags, fn($tag) => $tag->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_PUBLIC, $tags[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $tags[1]->visibility);
@@ -218,7 +238,7 @@ class BulkEditControllerTest extends TestCase
             ->assertRedirect('tags')
             ->assertSessionHas('flash_notification.0.message', 'Successfully updated 3 Tags out of 4 selected ones.');
 
-        array_walk($tags, fn ($tag) => $tag->refresh());
+        array_walk($tags, fn($tag) => $tag->refresh());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $tags[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $tags[1]->visibility);
@@ -243,9 +263,12 @@ class BulkEditControllerTest extends TestCase
             'type' => 'links',
         ])
             ->assertRedirect('links')
-            ->assertSessionHas('flash_notification.0.message', 'Successfully moved 2 Links out of 3 selected ones to the trash.');
+            ->assertSessionHas(
+                'flash_notification.0.message',
+                'Successfully moved 2 Links out of 3 selected ones to the trash.'
+            );
 
-        array_walk($links, fn ($link) => $link->refresh());
+        array_walk($links, fn($link) => $link->refresh());
         $this->assertNotNull($links[0]->deleted_at);
         $this->assertNotNull($links[1]->deleted_at);
         $this->assertNull($otherLink->deleted_at);
@@ -255,9 +278,12 @@ class BulkEditControllerTest extends TestCase
             'type' => 'lists',
         ])
             ->assertRedirect('lists')
-            ->assertSessionHas('flash_notification.1.message', 'Successfully moved 2 Lists out of 3 selected ones to the trash.');
+            ->assertSessionHas(
+                'flash_notification.1.message',
+                'Successfully moved 2 Lists out of 3 selected ones to the trash.'
+            );
 
-        array_walk($lists, fn ($list) => $list->refresh());
+        array_walk($lists, fn($list) => $list->refresh());
         $this->assertNotNull($lists[0]->deleted_at);
         $this->assertNotNull($lists[1]->deleted_at);
         $this->assertNull($otherList->deleted_at);
@@ -267,9 +293,12 @@ class BulkEditControllerTest extends TestCase
             'type' => 'tags',
         ])
             ->assertRedirect('tags')
-            ->assertSessionHas('flash_notification.2.message', 'Successfully moved 2 Tags out of 3 selected ones to the trash.');
+            ->assertSessionHas(
+                'flash_notification.2.message',
+                'Successfully moved 2 Tags out of 3 selected ones to the trash.'
+            );
 
-        array_walk($tags, fn ($tag) => $tag->refresh());
+        array_walk($tags, fn($tag) => $tag->refresh());
         $this->assertNotNull($tags[0]->deleted_at);
         $this->assertNotNull($tags[1]->deleted_at);
         $this->assertNull($otherTag->deleted_at);

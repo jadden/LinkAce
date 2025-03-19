@@ -50,10 +50,10 @@ trait ProvidesTaxonomyOutput
 
         $data = collect();
         if ($old = old($taxonomy, false)) {
-            $items = explode(',', $old);
+            $items = json_decode($old);
 
             foreach ($items as $item) {
-                if ((int)$item > 0) {
+                if (is_int($item) && $item > 0) {
                     $item = $model::find($item)?->load('user:id,name');
                 } else {
                     $item = [

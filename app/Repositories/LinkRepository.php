@@ -76,12 +76,7 @@ class LinkRepository
             'lists:id',
         ])->get();
 
-        $newTags = is_array($data['tags']) ? $data['tags'] : explode(',', $data['tags']);
-        $newTags = array_map('intval', array_filter($newTags));
-        $newLists = is_array($data['lists']) ? $data['lists'] : explode(',', $data['lists']);
-        $newLists = array_map('intval', array_filter($newLists));
-
-        return $links->map(function (Link $link) use ($data, $newTags, $newLists) {
+        return $links->map(function (Link $link) use ($data) {
             if (!auth()->user()->can('update', $link)) {
                 Log::warning('Could not update ' . $link->id . ' during bulk update: Permission denied!');
                 return null;
@@ -89,14 +84,14 @@ class LinkRepository
 
             $linkData = $link->toArray();
             $linkData['tags'] = $data['tags_mode'] === 'replace'
-                ? $newTags
-                : array_merge($link->tags->pluck('id')->toArray(), $newTags);
+                ? $data['tags']
+                : array_merge($link->tags->pluck('id')->toArray(), $data['tags']);
             $linkData['lists'] = $data['lists_mode'] === 'replace'
-                ? $newLists
-                : array_merge($link->lists->pluck('id')->toArray(), $newLists);
+                ? $data['lists']
+                : array_merge($link->lists->pluck('id')->toArray(), $data['lists']);
             $linkData['visibility'] = $data['visibility'] ?: $linkData['visibility'];
 
-            return LinkRepository::update($link, $linkData);
+            return self::update($link, $linkData);
         });
     }
 
@@ -232,7 +227,7 @@ class LinkRepository
         };
 
         foreach ($entries as $entry) {
-            if ((int)$entry > 0) {
+            if (is_int($entry) && $entry > 0) {
                 $newEntry = $model::find($entry);
             } else {
                 $newEntry = $model::firstOrCreate([

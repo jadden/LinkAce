@@ -40,22 +40,33 @@ class BulkEditApiTest extends TestCase
 
         $this->patchJson('api/v2/bulk/links', [
             'models' => [1, 2, 3, 4],
-            'tags' => [3],
+            'tags' => [3, 'new-tag'],
             'tags_mode' => 'append',
-            'lists' => [3],
+            'lists' => [3, 'new list'],
             'lists_mode' => 'append',
             'visibility' => null,
         ])->assertJsonCount(4);
 
         array_walk($links, fn ($link) => $link->refresh());
 
-        $this->assertEqualsCanonicalizing([1, 3], $links[0]->lists()->pluck('id')->toArray());
-        $this->assertEqualsCanonicalizing([1, 2, 3], $links[1]->lists()->pluck('id')->toArray());
-        $this->assertEqualsCanonicalizing([3], $links[2]->lists()->pluck('id')->toArray());
+        $this->assertDatabaseCount('tags', 4);
+        $this->assertDatabaseHas('tags', [
+            'id' => 4,
+            'name' => 'new-tag',
+        ]);
+        $this->assertDatabaseCount('lists', 4);
+        $this->assertDatabaseHas('lists', [
+            'id' => 4,
+            'name' => 'new list',
+        ]);
 
-        $this->assertEqualsCanonicalizing([1, 3], $links[0]->tags()->pluck('id')->toArray());
-        $this->assertEqualsCanonicalizing([1, 2, 3], $links[1]->tags()->pluck('id')->toArray());
-        $this->assertEqualsCanonicalizing([3], $links[2]->tags()->pluck('id')->toArray());
+        $this->assertEqualsCanonicalizing([1, 3, 4], $links[0]->lists()->pluck('id')->toArray());
+        $this->assertEqualsCanonicalizing([1, 2, 3, 4], $links[1]->lists()->pluck('id')->toArray());
+        $this->assertEqualsCanonicalizing([3, 4], $links[2]->lists()->pluck('id')->toArray());
+
+        $this->assertEqualsCanonicalizing([1, 3, 4], $links[0]->tags()->pluck('id')->toArray());
+        $this->assertEqualsCanonicalizing([1, 2, 3, 4], $links[1]->tags()->pluck('id')->toArray());
+        $this->assertEqualsCanonicalizing([3, 4], $links[2]->tags()->pluck('id')->toArray());
 
         $this->assertEquals(ModelAttribute::VISIBILITY_PUBLIC, $links[0]->visibility);
         $this->assertEquals(ModelAttribute::VISIBILITY_INTERNAL, $links[1]->visibility);

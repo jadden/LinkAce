@@ -1,5 +1,7 @@
 <?php
+
 use App\Enums\ModelAttribute;
+
 ?>
 @extends('layouts.app')
 
@@ -92,17 +94,20 @@ use App\Enums\ModelAttribute;
                             <option value="{{ ModelAttribute::VISIBILITY_PUBLIC }}"
                                 {{ (int)old('visibility', $query_settings['visibility']) === ModelAttribute::VISIBILITY_PUBLIC
                                     ? 'selected' : '' }}>
-                                @lang('linkace.visibility'): @lang('attributes.visibility.' . ModelAttribute::VISIBILITY_PUBLIC)
+                                @lang('linkace.visibility')
+                                : @lang('attributes.visibility.' . ModelAttribute::VISIBILITY_PUBLIC)
                             </option>
                             <option value="{{ ModelAttribute::VISIBILITY_INTERNAL }}"
                                 {{ (int)old('visibility', $query_settings['visibility']) === ModelAttribute::VISIBILITY_INTERNAL
                                     ? 'selected' : '' }}>
-                                @lang('linkace.visibility'): @lang('attributes.visibility.' . ModelAttribute::VISIBILITY_INTERNAL)
+                                @lang('linkace.visibility')
+                                : @lang('attributes.visibility.' . ModelAttribute::VISIBILITY_INTERNAL)
                             </option>
                             <option value="{{ ModelAttribute::VISIBILITY_PRIVATE }}"
                                 {{ (int)old('visibility', $query_settings['visibility']) === ModelAttribute::VISIBILITY_PRIVATE
                                     ? 'selected' : '' }}>
-                                @lang('linkace.visibility'): @lang('attributes.visibility.' . ModelAttribute::VISIBILITY_PRIVATE)
+                                @lang('linkace.visibility')
+                                : @lang('attributes.visibility.' . ModelAttribute::VISIBILITY_PRIVATE)
                             </option>
                         </select>
                     </div>
@@ -111,13 +116,15 @@ use App\Enums\ModelAttribute;
                 <div class="row mt-4">
 
                     <div class="col-md mb-3 mb-md-0">
+                        @php ray($query_settings['only_lists'], json_encode($query_settings['only_lists'])) @endphp
                         <label for="only_lists" class="d-none" aria-hidden="true">
                             @lang('search.filter_by_list')
                         </label>
-                        <input name="only_lists" id="only_lists" type="text" placeholder="@lang('search.filter_by_list')"
+                        <input name="only_lists" id="only_lists" type="text"
+                            placeholder="@lang('search.filter_by_list')"
                             class="tag-select" data-tag-data="{{ $all_lists->toJson() }}"
                             data-value="{{ json_encode($query_settings['only_lists']) }}"
-                            data-allow-creation="1" data-tag-type="lists">
+                            data-tag-type="lists">
                     </div>
 
                     <div class="col-md mb-3 mb-md-0">
@@ -127,7 +134,7 @@ use App\Enums\ModelAttribute;
                         <input name="only_tags" id="only_tags" type="text" placeholder="@lang('search.filter_by_tag')"
                             class="tag-select" data-tag-data="{{ $all_tags->toJson() }}"
                             data-value="{{ json_encode($query_settings['only_tags']) }}"
-                            data-allow-creation="1" data-tag-type="tags">
+                            data-tag-type="tags">
                     </div>
 
                     <div class="col-md">
@@ -143,7 +150,7 @@ use App\Enums\ModelAttribute;
                                 </option>
                             @endforeach
                             <option value="random"
-                                @if($query_settings['order_by'] == 'random') selected @endif>
+                                @if($query_settings['order_by'] === 'random') selected @endif>
                                 @lang('search.order_by.random')
                             </option>
                         </select>

@@ -37,7 +37,10 @@ class BulkEditController extends Controller
     {
         $models = explode(',', $request->input('models'));
 
-        $results = LinkRepository::bulkUpdate($models, $request->input());
+        $data = $request->input();
+        $data['tags'] = json_decode($data['tags']) ?? [];
+        $data['lists'] = json_decode($data['lists']) ?? [];
+        $results = LinkRepository::bulkUpdate($models, $data);
 
         $successCount = $results->filter(fn($e) => $e !== null)->count();
 

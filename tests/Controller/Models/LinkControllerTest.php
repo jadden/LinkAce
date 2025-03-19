@@ -87,25 +87,36 @@ class LinkControllerTest extends TestCase
 
     public function test_full_store_request(): void
     {
-        $tag = Tag::factory()->create();
-        $list = LinkList::factory()->create();
+        $tag = Tag::factory()->create(['name' => 'testTag']);
+        $list = LinkList::factory()->create(['name' => 'Test List']);
 
         $this->post('links', [
             'url' => 'https://example.com',
             'title' => 'My custom title',
             'description' => 'My custom description',
-            'lists' => $list->name,
-            'tags' => $tag->name,
+            'lists' => json_encode([$list->id, 'new list']),
+            'tags' => json_encode([$tag->id, 'new-tag']),
             'visibility' => 1,
         ])->assertRedirect('links/1');
+
+        $this->assertDatabaseCount('tags', 4);
+        $this->assertDatabaseHas('tags', [
+            'id' => 4,
+            'name' => 'new-tag',
+        ]);
+        $this->assertDatabaseCount('lists', 4);
+        $this->assertDatabaseHas('lists', [
+            'id' => 4,
+            'name' => 'new list',
+        ]);
 
         $databaseLink = Link::first();
 
         $this->assertEquals('https://example.com', $databaseLink->url);
         $this->assertEquals('My custom title', $databaseLink->title);
         $this->assertEquals('My custom description', $databaseLink->description);
-        $this->assertEquals($list->name, $databaseLink->lists->first()->name);
-        $this->assertEquals($tag->name, $databaseLink->tags->first()->name);
+        $this->assertEqualsCanonicalizing(['Test List', 'new list'], $databaseLink->lists->pluck('name')->toArray());
+        $this->assertEqualsCanonicalizing(['testTag', 'new-tag'], $databaseLink->tags->pluck('name')->toArray());
     }
 
     public function test_store_request_with_duplicate(): void
@@ -309,13 +320,15 @@ class LinkControllerTest extends TestCase
     public function test_update_response(): void
     {
         $this->createTestLinks();
+        $this->createTestLists();
+        $this->createTestTags();
 
         $this->patch('links/1', [
             'url' => 'https://new-public-link.com',
             'title' => 'New Title',
             'description' => 'New Description',
-            'lists' => null,
-            'tags' => null,
+            'lists' => json_encode([1, 'new list']),
+            'tags' => json_encode([1, 'new-tag']),
             'visibility' => 1,
             'check_disabled' => '0',
         ])->assertRedirect('links/1');
@@ -326,6 +339,8 @@ class LinkControllerTest extends TestCase
         $this->assertEquals('https://new-public-link.com', $link->url);
         $this->assertEquals('New Title', $link->title);
         $this->assertEquals('New Description', $link->description);
+        $this->assertEqualsCanonicalizing(['Public List', 'new list'], $link->lists->pluck('name')->toArray());
+        $this->assertEqualsCanonicalizing(['Public Tag', 'new-tag'], $link->tags->pluck('name')->toArray());
 
         $historyData = $link->audits()->first()->getModified();
 

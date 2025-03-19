@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Models;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\ChecksOrdering;
 use App\Http\Controllers\Traits\ConfiguresLinkDisplay;
-use App\Http\Controllers\Traits\HandlesQueryOrder;
 use App\Http\Requests\Models\LinkStoreRequest;
 use App\Http\Requests\Models\LinkUpdateRequest;
 use App\Http\Requests\Models\ToggleLinkCheckRequest;
@@ -71,7 +70,10 @@ class LinkController extends Controller
 
     public function store(LinkStoreRequest $request): RedirectResponse
     {
-        $link = LinkRepository::create($request->all(), true);
+        $data = $request->validated();
+        $data['tags'] = json_decode($data['tags']) ?? [];
+        $data['lists'] = json_decode($data['lists']) ?? [];
+        $link = LinkRepository::create($data, true);
 
         flash(trans('link.added_successfully'), 'success');
 
@@ -131,7 +133,10 @@ class LinkController extends Controller
 
     public function update(LinkUpdateRequest $request, Link $link): RedirectResponse
     {
-        $link = LinkRepository::update($link, $request->input());
+        $data = $request->validated();
+        $data['tags'] = json_decode($data['tags']) ?? [];
+        $data['lists'] = json_decode($data['lists']) ?? [];
+        $link = LinkRepository::update($link, $data);
 
         flash(trans('link.updated_successfully'), 'success');
         return redirect()->route('links.show', [$link->id]);
