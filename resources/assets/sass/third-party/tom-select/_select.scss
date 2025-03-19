@@ -4,6 +4,10 @@
   > input::placeholder {
     color: $input-placeholder-color;
   }
+
+  .item.active .text-muted {
+    color: $select-color-input !important;
+  }
 }
 
 .#{$select-ns}-dropdown,

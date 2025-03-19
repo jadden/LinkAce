@@ -11,7 +11,7 @@
             @lang('link.links')
         </h3>
         <x-models.link-display-toggles class="ms-auto"/>
-        <a href="{{ route('guest.links.feed') }}" class="ms-3 btn btn-sm btn-outline-secondary">
+        <a href="{{ route('guest.links.feed') }}" class="ms-3 btn btn-xs btn-outline-secondary">
             <x-icon.feed class="fw"/>
             <span class="visually-hidden">@lang('linkace.add')</span>
         </a>
