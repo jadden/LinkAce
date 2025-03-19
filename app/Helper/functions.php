@@ -1,7 +1,6 @@
 <?php
 
 use App\Helper\Sharing;
-use App\Helper\WaybackMachine;
 use App\Models\Link;
 use App\Settings\GuestSettings;
 use App\Settings\SystemSettings;
@@ -10,7 +9,6 @@ use Carbon\CarbonInterface;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 /**
  * Check if the setup was completed.

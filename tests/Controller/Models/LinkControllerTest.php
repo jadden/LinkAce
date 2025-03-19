@@ -99,14 +99,14 @@ class LinkControllerTest extends TestCase
             'visibility' => 1,
         ])->assertRedirect('links/1');
 
-        $this->assertDatabaseCount('tags', 4);
+        $this->assertDatabaseCount('tags', 2);
         $this->assertDatabaseHas('tags', [
-            'id' => 4,
+            'id' => 2,
             'name' => 'new-tag',
         ]);
-        $this->assertDatabaseCount('lists', 4);
+        $this->assertDatabaseCount('lists', 2);
         $this->assertDatabaseHas('lists', [
-            'id' => 4,
+            'id' => 2,
             'name' => 'new list',
         ]);
 

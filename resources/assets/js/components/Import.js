@@ -31,7 +31,6 @@ export default class Import {
     }).then((response) => {
 
       if (response.ok === false) {
-        console.log(response);
         this.$alertNetworkError.classList.remove('d-none');
         return response;
       }

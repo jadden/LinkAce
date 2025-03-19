@@ -116,7 +116,6 @@ use App\Enums\ModelAttribute;
                 <div class="row mt-4">
 
                     <div class="col-md mb-3 mb-md-0">
-                        @php ray($query_settings['only_lists'], json_encode($query_settings['only_lists'])) @endphp
                         <label for="only_lists" class="d-none" aria-hidden="true">
                             @lang('search.filter_by_list')
                         </label>

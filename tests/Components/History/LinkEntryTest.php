@@ -100,7 +100,7 @@ class LinkEntryTest extends TestCase
             'title' => $link->title,
             'description' => $link->description,
             'lists' => null,
-            'tags' => 'newtag',
+            'tags' => json_encode(['newtag']),
             'is_private' => $link->is_private,
         ]);
 
@@ -125,7 +125,7 @@ class LinkEntryTest extends TestCase
             'title' => $link->title,
             'description' => $link->description,
             'lists' => null,
-            'tags' => 'newtag',
+            'tags' => json_encode(['newtag']),
             'is_private' => $link->is_private,
         ]);
 
@@ -171,13 +171,12 @@ class LinkEntryTest extends TestCase
     {
         $link = Link::factory()->create();
 
-        $this->post('links/1', [
-            '_method' => 'patch',
+        $this->patch('links/1', [
             'link_id' => $link->id,
             'url' => $link->url,
             'title' => $link->title,
             'description' => $link->description,
-            'lists' => 'New List,Example List',
+            'lists' => json_encode(['New List', 'Example List']),
             'tags' => null,
             'is_private' => $link->is_private,
         ]);
@@ -202,7 +201,7 @@ class LinkEntryTest extends TestCase
             'url' => $link->url,
             'title' => $link->title,
             'description' => $link->description,
-            'lists' => 'New List,Example List',
+            'lists' => json_encode(['New List', 'Example List']),
             'tags' => null,
             'is_private' => $link->is_private,
         ]);

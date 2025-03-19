@@ -53,7 +53,7 @@ class LinkTaxonomyTest extends TestCase
 
         $this->patch('links/2', [
             'url' => 'https://existing.com',
-            'tags' => '2,3,test tag',
+            'tags' => json_encode([2,3,'test tag']),
         ])->assertSessionHasErrors(['url']);
 
         $data = $link->oldTaxonomyOutput('tags');

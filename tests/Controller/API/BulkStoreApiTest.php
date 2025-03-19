@@ -64,9 +64,11 @@ class BulkStoreApiTest extends TestCase
 
         $response->assertSuccessful()->assertJsonIsArray();
         $this->assertEquals('https://example.com', $response->json()[0]['url']);
+        $this->assertEquals('https://duckduckgo.com', $response->json()[1]['url']);
+
         $this->assertEquals($testList->name, $response->json()[0]['lists'][0]['name']);
         $this->assertEquals('new List', $response->json()[0]['lists'][1]['name']);
-        $this->assertEquals('https://duckduckgo.com', $response->json()[1]['url']);
+
         $this->assertEquals($testTag->name, $response->json()[0]['tags'][0]['name']);
         $this->assertEquals('newTag', $response->json()[0]['tags'][1]['name']);
 

@@ -115,7 +115,7 @@ class LinkRepository
 
     protected static function processLinkTaxonomies(Link $link, array $data): void
     {
-        if (isset($data['tags'])) {
+        if (!empty($data['tags'])) {
             self::updateTagsForLink($link, $data['tags']);
         } else {
             // Only save a "removed" revision if there were tags before
@@ -131,7 +131,7 @@ class LinkRepository
             $link->tags()->detach();
         }
 
-        if (isset($data['lists'])) {
+        if (!empty($data['lists'])) {
             self::updateListsForLink($link, $data['lists']);
         } else {
             // Only save a "removed" revision if there were lists before

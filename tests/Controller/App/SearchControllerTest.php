@@ -119,7 +119,7 @@ class SearchControllerTest extends TestCase
     public function test_valid_tag_search_result(): void
     {
         $response = $this->post('search', [
-            'only_tags' => '1',
+            'only_tags' => json_encode([1]),
         ]);
 
         $response->assertOk()
@@ -130,7 +130,7 @@ class SearchControllerTest extends TestCase
     public function test_valid_tag_search_result_without_result(): void
     {
         $response = $this->post('search', [
-            'only_tags' => '5',
+            'only_tags' => json_encode([5]),
         ]);
 
         $response->assertOk()
@@ -141,7 +141,7 @@ class SearchControllerTest extends TestCase
     public function test_valid_list_search_result(): void
     {
         $response = $this->post('search', [
-            'only_lists' => '1',
+            'only_lists' => json_encode([1]),
         ]);
 
         $response->assertOk()
@@ -152,7 +152,7 @@ class SearchControllerTest extends TestCase
     public function test_valid_list_search_result_without_results(): void
     {
         $response = $this->post('search', [
-            'only_lists' => '5',
+            'only_lists' => json_encode([5]),
         ]);
 
         $response->assertOk()

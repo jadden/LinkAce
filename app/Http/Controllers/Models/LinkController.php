@@ -71,8 +71,12 @@ class LinkController extends Controller
     public function store(LinkStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $data['tags'] = json_decode($data['tags']) ?? [];
-        $data['lists'] = json_decode($data['lists']) ?? [];
+        if (isset($data['tags'])) {
+            $data['tags'] = json_decode($data['tags']);
+        }
+        if (isset($data['lists'])) {
+            $data['lists'] = json_decode($data['lists']);
+        }
         $link = LinkRepository::create($data, true);
 
         flash(trans('link.added_successfully'), 'success');
@@ -134,8 +138,12 @@ class LinkController extends Controller
     public function update(LinkUpdateRequest $request, Link $link): RedirectResponse
     {
         $data = $request->validated();
-        $data['tags'] = json_decode($data['tags']) ?? [];
-        $data['lists'] = json_decode($data['lists']) ?? [];
+        if (isset($data['tags'])) {
+            $data['tags'] = json_decode($data['tags']);
+        }
+        if (isset($data['lists'])) {
+            $data['lists'] = json_decode($data['lists']);
+        }
         $link = LinkRepository::update($link, $data);
 
         flash(trans('link.updated_successfully'), 'success');

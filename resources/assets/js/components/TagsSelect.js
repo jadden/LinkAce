@@ -46,7 +46,7 @@ export default class TagsSelect {
           const option = Object.values(this.options).find((option) => option.id === parseInt(item));
           return option !== undefined ? option.id : item;
         });
-        selectObject.$el.value = JSON.stringify(items.length > 0 ? items : []);
+        selectObject.$el.value = items.length > 0 ? JSON.stringify(items) : null;
       },
       render: {
         option: function (item, escape) {
