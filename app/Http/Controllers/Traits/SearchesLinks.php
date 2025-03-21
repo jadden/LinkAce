@@ -73,10 +73,12 @@ trait SearchesLinks
             $search->doesntHave('lists');
         } elseif ($request->input('only_lists')) {
             $lists = $request->input('only_lists', '[]');
-            $this->searchLists = preg_match('/\[.+\]/', $lists) ? json_decode($lists) : explode(',', $lists);
-            $search->whereHas('lists', function ($query) {
-                $query->whereIn('id', $this->searchLists);
-            });
+            $this->searchLists = preg_match('/\[.*\]/', $lists) > 0 ? json_decode($lists) : explode(',', $lists);
+            if (!empty($this->searchLists)) {
+                $search->whereHas('lists', function ($query) {
+                    $query->whereIn('id', $this->searchLists);
+                });
+            }
         }
 
         // Show by specific tag only if applicable
@@ -84,10 +86,12 @@ trait SearchesLinks
             $search->doesntHave('tags');
         } elseif ($request->input('only_tags')) {
             $tags = $request->input('only_tags', '[]');
-            $this->searchTags = preg_match('/\[.+\]/', $tags) ? json_decode($tags) : explode(',', $tags);
-            $search->whereHas('tags', function ($query) {
-                $query->whereIn('id', $this->searchTags);
-            });
+            $this->searchTags = preg_match('/\[.*\]/', $tags) > 0 ? json_decode($tags) : explode(',', $tags);
+            if (!empty($this->searchTags)) {
+                $search->whereHas('tags', function ($query) {
+                    $query->whereIn('id', $this->searchTags);
+                });
+            }
         }
 
         // Order the results if applicable and only allow predefined ordering
