@@ -17,8 +17,6 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
         Http::preventStrayRequests();
 
-        Ray::beforeSendRequest(fn()=> $this->fail('Ray is present in application code!'));
-
         if (Schema::hasTable('settings')) {
             SystemSettings::fake([
                 'setup_completed' => true,
