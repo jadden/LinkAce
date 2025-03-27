@@ -48,10 +48,10 @@
                             <label for="db_path">
                                 @lang('setup.database.db_path')
                             </label>
-                            <input type="text" name="db_path" id="db_path" required
+                            <input type="text" name="db_path" id="db_path"
                                 class="form-control{{ $errors->has('db_path') ? ' is-invalid' : '' }}"
                                 placeholder="localhost"
-                                value="{{ old('db_path') ?: database_path('database.sqlite') }}">
+                                value="{{ old('db_path') ?: env('DB_DATABASE', database_path('database.sqlite')) }}">
                             @if ($errors->has('db_path'))
                                 <p class="invalid-feedback" role="alert">
                                     {{ $errors->first('db_path') }}
@@ -63,7 +63,7 @@
                             <label for="db_host">
                                 @lang('setup.database.db_host')
                             </label>
-                            <input type="text" name="db_host" id="db_host" required
+                            <input type="text" name="db_host" id="db_host"
                                 class="form-control{{ $errors->has('db_host') ? ' is-invalid' : '' }}"
                                 placeholder="localhost" value="{{ old('db_host') ?: env('DB_HOST', 'localhost') }}">
                             @if ($errors->has('db_host'))
@@ -77,7 +77,7 @@
                             <label for="db_port">
                                 @lang('setup.database.db_port')
                             </label>
-                            <input type="number" name="db_port" id="db_port" required
+                            <input type="number" name="db_port" id="db_port"
                                 class="form-control{{ $errors->has('db_port') ? ' is-invalid' : '' }}"
                                 placeholder="3306" value="{{ old('db_port') ?: env('DB_PORT', 3306) }}">
                             @if ($errors->has('db_port'))
@@ -91,7 +91,7 @@
                             <label for="db_name">
                                 @lang('setup.database.db_name')
                             </label>
-                            <input type="text" name="db_name" id="db_name" required
+                            <input type="text" name="db_name" id="db_name"
                                 class="form-control{{ $errors->has('db_name') ? ' is-invalid' : '' }}"
                                 value="{{ old('db_name') ?: env('DB_DATABASE') }}">
                             @if ($errors->has('db_name'))
@@ -105,7 +105,7 @@
                             <label for="db_user">
                                 @lang('setup.database.db_user')
                             </label>
-                            <input type="text" name="db_user" id="db_user" required
+                            <input type="text" name="db_user" id="db_user"
                                 class="form-control{{ $errors->has('db_user') ? ' is-invalid' : '' }}"
                                 value="{{ old('db_user') ?: env('DB_USERNAME') }}">
                             @if ($errors->has('db_user'))
