@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\ChecksOrdering;
 use App\Http\Controllers\Traits\ConfiguresLinkDisplay;
 use App\Http\Requests\Models\ListStoreRequest;
 use App\Http\Requests\Models\ListUpdateRequest;
+use App\Models\Link;
 use App\Models\LinkList;
 use App\Repositories\ListRepository;
 use Illuminate\Contracts\View\View;
@@ -79,6 +80,7 @@ class ListController extends Controller
     {
         $this->updateLinkDisplayForUser();
 
+        $this->allowedOrderBy = Link::$allowOrderBy;
         $this->orderBy = $request->input('orderBy', 'created_at');
         $this->orderDir = $request->input('orderBy', 'desc');
         $this->checkOrdering();
