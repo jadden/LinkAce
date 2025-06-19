@@ -104,6 +104,8 @@ class LinkRepository
     public static function delete(Link $link): bool
     {
         try {
+            $link->tags()->detach();
+            $link->lists()->detach();
             $link->delete();
         } catch (Exception $e) {
             Log::error($e);
