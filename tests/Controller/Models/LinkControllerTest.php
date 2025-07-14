@@ -160,7 +160,7 @@ class LinkControllerTest extends TestCase
         ]);
     }
 
-    public function test_import_with_broken_url(): void
+    public function test_store_with_connection_exception(): void
     {
         Http::fake([
             'https://bad-example.com' => function () {
@@ -189,12 +189,11 @@ class LinkControllerTest extends TestCase
     public function test_import_with_malicious_url(): void
     {
         $response = $this->post('links', [
-            'url' => 'javascript:alert(document.cookie)',
+            'url' => 'javascript:alert(1)',
             'title' => null,
             'description' => null,
             'lists' => null,
             'tags' => null,
-            'is_private' => '0',
         ]);
 
         $response->assertSessionHasErrors(['url' => 'The url format is invalid.']);
@@ -368,6 +367,23 @@ class LinkControllerTest extends TestCase
             'visibility' => 1,
             'check_disabled' => '0',
         ])->assertForbidden();
+    }
+
+    public function test_update_with_malicious_url(): void
+    {
+        $this->createTestLinks();
+
+        $this->patch('links/1', [
+            'url' => 'javascript:alert(1)',
+            'title' => 'New Title',
+            'description' => 'New Description',
+            'lists' => null,
+            'tags' => null,
+            'visibility' => 1,
+            'check_disabled' => '0',
+        ])->assertSessionHasErrors([
+            'url' => 'The url format is invalid.'
+        ]);
     }
 
     public function test_missing_model_error_for_update(): void
